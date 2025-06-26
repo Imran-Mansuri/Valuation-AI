@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Preferences</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a href="tasks.html">My Tasks</a></li>
+                    <li class="nav-item"><a href="data-collection.html">Data Collection</a></li>
+                    <li class="nav-item"><a href="reports.html">Reports</a></li>
+                    <li class="nav-item active"><a href="profile-preferences.html">Profile</a></li>
+                    <li class="nav-item"><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Profile - Preferences</h1>
+            </header>
+            <div class="profile-tabs">
+                <a class="tab-btn" href="profile-personal.html"><i class="fas fa-user"></i> Personal Info</a>
+                <a class="tab-btn" href="profile-security.html"><i class="fas fa-shield-alt"></i> Security</a>
+                <a class="tab-btn active" href="profile-preferences.html"><i class="fas fa-cog"></i> Preferences</a>
+                <a class="tab-btn" href="profile-activity.html"><i class="fas fa-history"></i> Activity</a>
+            </div>
+            <div class="tab-content active" id="preferences">
+                <div class="form-section">
+                    <h3>Notification Preferences</h3>
+                    <div class="preferences-grid">
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>New Task Assignments</h4>
+                                <p>Get notified when new tasks are assigned to you</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>Task Reminders</h4>
+                                <p>Receive reminders for pending tasks</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>Report Reviews</h4>
+                                <p>Notifications when your reports are reviewed</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        <div class="preference-item">
+                            <div class="preference-info">
+                                <h4>System Updates</h4>
+                                <p>Important system updates and maintenance</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3>App Preferences</h3>
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Language</label>
+                                <select>
+                                    <option value="en" selected>English</option>
+                                    <option value="hi">Hindi</option>
+                                    <option value="mr">Marathi</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Time Zone</label>
+                                <select>
+                                    <option value="IST" selected>India Standard Time (IST)</option>
+                                    <option value="GMT">Greenwich Mean Time (GMT)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Auto-save Interval</label>
+                                <select>
+                                    <option value="30">30 seconds</option>
+                                    <option value="60" selected>1 minute</option>
+                                    <option value="300">5 minutes</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Photo Quality</label>
+                                <select>
+                                    <option value="high" selected>High Quality</option>
+                                    <option value="medium">Medium Quality</option>
+                                    <option value="low">Low Quality</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+    <style>
+    .profile-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1.5rem 0 2rem 0;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .profile-tabs .tab-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        border: none;
+        background: none;
+        border-radius: 8px 8px 0 0;
+        transition: background 0.2s, color 0.2s;
+        margin-bottom: -2px;
+        position: relative;
+    }
+    .profile-tabs .tab-btn.active, .profile-tabs .tab-btn:hover {
+        background: #fff;
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+        z-index: 1;
+    }
+    .profile-tabs .tab-btn.active {
+        font-weight: 700;
+        border-bottom: 3px solid #007bff;
+    }
+    </style>
+</body>
+</html> 

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Activity</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a href="tasks.html">My Tasks</a></li>
+                    <li class="nav-item"><a href="data-collection.html">Data Collection</a></li>
+                    <li class="nav-item"><a href="reports.html">Reports</a></li>
+                    <li class="nav-item active"><a href="profile-activity.html">Profile</a></li>
+                    <li class="nav-item"><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Profile - Activity</h1>
+            </header>
+            <div class="profile-tabs">
+                <a class="tab-btn" href="profile-personal.html"><i class="fas fa-user"></i> Personal Info</a>
+                <a class="tab-btn" href="profile-security.html"><i class="fas fa-shield-alt"></i> Security</a>
+                <a class="tab-btn" href="profile-preferences.html"><i class="fas fa-cog"></i> Preferences</a>
+                <a class="tab-btn active" href="profile-activity.html"><i class="fas fa-history"></i> Activity</a>
+            </div>
+            <div class="tab-content active" id="activity">
+                <div class="form-section">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-section">
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-camera"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Completed Assessment</h4>
+                                    <p>Submitted assessment for Honda City 2020 (REQ001)</p>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Task Started</h4>
+                                    <p>Started assessment for Hyundai i20 2020 (REQ004)</p>
+                                    <span class="activity-time">4 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Report Approved</h4>
+                                    <p>Report for Toyota Innova 2019 (REP002) was approved</p>
+                                    <span class="activity-time">1 day ago</span>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <div class="activity-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>Profile Updated</h4>
+                                    <p>Updated personal information</p>
+                                    <span class="activity-time">2 days ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+    <style>
+    .profile-tabs {
+        display: flex;
+        gap: 0.5rem;
+        margin: 1.5rem 0 2rem 0;
+        border-bottom: 2px solid #e0e0e0;
+    }
+    .profile-tabs .tab-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        color: #555;
+        font-weight: 500;
+        border: none;
+        background: none;
+        border-radius: 8px 8px 0 0;
+        transition: background 0.2s, color 0.2s;
+        margin-bottom: -2px;
+        position: relative;
+    }
+    .profile-tabs .tab-btn.active, .profile-tabs .tab-btn:hover {
+        background: #fff;
+        color: #007bff;
+        border-bottom: 2px solid #007bff;
+        z-index: 1;
+    }
+    .profile-tabs .tab-btn.active {
+        font-weight: 700;
+        border-bottom: 3px solid #007bff;
+    }
+    </style>
+</body>
+</html> 

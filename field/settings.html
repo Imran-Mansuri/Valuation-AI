@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Field Officer</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tasks.html">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="data-collection.html">
+                            <i class="fas fa-camera"></i>
+                            <span>Data Collection</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1>Settings</h1>
+                        <p>Configure your application preferences and system settings</p>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn btn-primary" onclick="saveSettings()">
+                            <i class="fas fa-save"></i>
+                            Save Settings
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Settings Categories -->
+                <div class="settings-categories">
+                    <div class="category-tabs">
+                        <button class="tab-btn active" onclick="showSettingsTab('general')">
+                            <i class="fas fa-cog"></i>
+                            General
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsTab('notifications')">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsTab('privacy')">
+                            <i class="fas fa-shield-alt"></i>
+                            Privacy & Security
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsTab('data')">
+                            <i class="fas fa-database"></i>
+                            Data & Storage
+                        </button>
+                    </div>
+
+                    <!-- General Settings -->
+                    <div class="settings-section active" id="general">
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <h3>App Preferences</h3>
+                                <div class="setting-item">
+                                    <label>Language</label>
+                                    <select class="setting-select">
+                                        <option value="en" selected>English</option>
+                                        <option value="hi">Hindi</option>
+                                        <option value="mr">Marathi</option>
+                                    </select>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Time Zone</label>
+                                    <select class="setting-select">
+                                        <option value="IST" selected>India Standard Time (IST)</option>
+                                        <option value="GMT">Greenwich Mean Time (GMT)</option>
+                                    </select>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Theme</label>
+                                    <select class="setting-select">
+                                        <option value="light" selected>Light</option>
+                                        <option value="dark">Dark</option>
+                                        <option value="auto">Auto</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Assessment Settings</h3>
+                                <div class="setting-item">
+                                    <label>Auto-save Interval</label>
+                                    <select class="setting-select">
+                                        <option value="30">30 seconds</option>
+                                        <option value="60" selected>1 minute</option>
+                                        <option value="300">5 minutes</option>
+                                    </select>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Photo Quality</label>
+                                    <select class="setting-select">
+                                        <option value="high" selected>High Quality</option>
+                                        <option value="medium">Medium Quality</option>
+                                        <option value="low">Low Quality</option>
+                                    </select>
+                                </div>
+                                <div class="setting-item">
+                                    <label>GPS Accuracy</label>
+                                    <select class="setting-select">
+                                        <option value="high" selected>High Accuracy</option>
+                                        <option value="medium">Medium Accuracy</option>
+                                        <option value="low">Low Accuracy</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Display Settings</h3>
+                                <div class="setting-item">
+                                    <label>Font Size</label>
+                                    <select class="setting-select">
+                                        <option value="small">Small</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="large">Large</option>
+                                    </select>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Show Task Progress</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Show Location on Map</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications Settings -->
+                    <div class="settings-section" id="notifications">
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <h3>Push Notifications</h3>
+                                <div class="setting-item">
+                                    <label>New Task Assignments</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Task Reminders</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Report Reviews</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>System Updates</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Email Notifications</h3>
+                                <div class="setting-item">
+                                    <label>Daily Summary</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Weekly Reports</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Important Alerts</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Sound & Vibration</h3>
+                                <div class="setting-item">
+                                    <label>Notification Sound</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Vibration</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Silent Mode</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Privacy & Security Settings -->
+                    <div class="settings-section" id="privacy">
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <h3>Privacy Settings</h3>
+                                <div class="setting-item">
+                                    <label>Location Sharing</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Photo Metadata</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Analytics Data</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Security Settings</h3>
+                                <div class="setting-item">
+                                    <label>Biometric Login</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Auto-lock</label>
+                                    <select class="setting-select">
+                                        <option value="never">Never</option>
+                                        <option value="1">1 minute</option>
+                                        <option value="5" selected>5 minutes</option>
+                                        <option value="15">15 minutes</option>
+                                    </select>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Session Timeout</label>
+                                    <select class="setting-select">
+                                        <option value="30">30 minutes</option>
+                                        <option value="60" selected>1 hour</option>
+                                        <option value="240">4 hours</option>
+                                        <option value="never">Never</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Data Protection</h3>
+                                <div class="setting-item">
+                                    <label>Encrypt Local Data</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Backup to Cloud</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Auto-delete Old Data</label>
+                                    <select class="setting-select">
+                                        <option value="never">Never</option>
+                                        <option value="30">30 days</option>
+                                        <option value="90" selected>90 days</option>
+                                        <option value="365">1 year</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data & Storage Settings -->
+                    <div class="settings-section" id="data">
+                        <div class="settings-grid">
+                            <div class="settings-card">
+                                <h3>Storage Management</h3>
+                                <div class="setting-item">
+                                    <label>Cache Size</label>
+                                    <span>156 MB</span>
+                                    <button class="btn btn-outline btn-sm">Clear Cache</button>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Photos Storage</label>
+                                    <span>2.3 GB</span>
+                                    <button class="btn btn-outline btn-sm">Manage</button>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Reports Storage</label>
+                                    <span>45 MB</span>
+                                    <button class="btn btn-outline btn-sm">Manage</button>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Data Sync</h3>
+                                <div class="setting-item">
+                                    <label>Auto Sync</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Sync on WiFi Only</label>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Sync Frequency</label>
+                                    <select class="setting-select">
+                                        <option value="realtime">Real-time</option>
+                                        <option value="5min">Every 5 minutes</option>
+                                        <option value="15min" selected>Every 15 minutes</option>
+                                        <option value="1hour">Every hour</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings-card">
+                                <h3>Export & Backup</h3>
+                                <div class="setting-item">
+                                    <label>Export Data</label>
+                                    <button class="btn btn-primary btn-sm">Export All</button>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Backup Settings</label>
+                                    <button class="btn btn-outline btn-sm">Backup Now</button>
+                                </div>
+                                <div class="setting-item">
+                                    <label>Restore Settings</label>
+                                    <input type="file" class="setting-file" accept=".json">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+</body>
+</html>

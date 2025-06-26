@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Personal Info</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a href="tasks.html">My Tasks</a></li>
+                    <li class="nav-item"><a href="data-collection.html">Data Collection</a></li>
+                    <li class="nav-item"><a href="reports.html">Reports</a></li>
+                    <li class="nav-item active"><a href="profile-personal.html">Profile</a></li>
+                    <li class="nav-item"><a href="settings.html">Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="page-header">
+                <h1>Profile - Personal Info</h1>
+                <nav>
+                    <a href="profile-personal.html">Personal Info</a> |
+                    <a href="profile-security.html">Security</a> |
+                    <a href="profile-preferences.html">Preferences</a> |
+                    <a href="profile-activity.html">Activity</a>
+                </nav>
+            </header>
+            <div class="page-content">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=JS" alt="Profile Avatar">
+                        <div class="avatar-upload">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" accept="image/*" onchange="uploadAvatar(this)">
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h2>John Smith</h2>
+                        <p>Field Officer</p>
+                        <p>Employee ID: FO-2024-001</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">24</span>
+                                <span class="stat-label">Tasks Completed</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">4.8</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">21</span>
+                                <span class="stat-label">Reports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name *</label>
+                                <input type="text" value="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name *</label>
+                                <input type="text" value="Smith" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email *</label>
+                                <input type="email" value="john.smith@company.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone *</label>
+                                <input type="tel" value="+91 98765 43210" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input type="date" value="1990-05-15">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <select>
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <textarea rows="3" placeholder="Enter your address">123, ABC Street, Mumbai, Maharashtra 400001</textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-section">
+                    <h3>Professional Information</h3>
+                    <div class="form-grid">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Employee ID</label>
+                                <input type="text" value="FO-2024-001" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                <input type="text" value="Field Operations" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Joining Date</label>
+                                <input type="date" value="2024-01-15" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Experience</label>
+                                <input type="text" value="2 years" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Skills & Certifications</label>
+                            <textarea rows="3" placeholder="Enter your skills and certifications">Vehicle Assessment, Photography, Customer Service, GPS Navigation, Mobile App Usage</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+</body>
+</html> 

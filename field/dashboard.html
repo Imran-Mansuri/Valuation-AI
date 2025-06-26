@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Officer Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tasks.html">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="data-collection.html">
+                            <i class="fas fa-camera"></i>
+                            <span>Data Collection</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1>Field Officer Dashboard</h1>
+                        <p>Welcome back, <span id="officerName">John Smith</span></p>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search tasks, reports..." class="search-input">
+                        </div>
+                        <div class="status-indicator online">
+                            <i class="fas fa-circle"></i>
+                            <span>Online</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="location.href='data-collection.html'">
+                            <i class="fas fa-camera"></i>
+                            Start Assessment
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Tasks</h3>
+                            <p class="stat-value">24</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12.5%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending</h3>
+                            <p class="stat-value">3</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -2.1%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Completed</h3>
+                            <p class="stat-value">21</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +8.7%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Rating</h3>
+                            <p class="stat-value">4.8</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +0.2
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Task Section -->
+                <div class="current-task-section">
+                    <div class="section-header">
+                        <h3>Current Task</h3>
+                        <span class="status-badge active">Active</span>
+                    </div>
+                    <div class="task-card">
+                        <div class="task-header">
+                            <h4>Honda City 2020 - REQ001</h4>
+                            <span class="status-badge re-finance">Re-finance</span>
+                        </div>
+                        <div class="task-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Mumbai, Maharashtra</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>Started: 2 hours ago</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-user"></i>
+                                <span>Owner: Mr. Rajesh Kumar</span>
+                            </div>
+                        </div>
+                        <div class="task-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="progress-text">75% Complete</span>
+                        </div>
+                        <div class="task-actions">
+                            <button class="btn btn-primary" onclick="location.href='data-collection.html?task=REQ001'">
+                                <i class="fas fa-camera"></i>
+                                Continue Assessment
+                            </button>
+                            <button class="btn btn-secondary" onclick="location.href='tasks.html?task=REQ001'">
+                                <i class="fas fa-eye"></i>
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Tasks Section -->
+                <div class="recent-tasks-section">
+                    <div class="section-header">
+                        <h3>Recent Tasks</h3>
+                        <a href="tasks.html" class="btn btn-outline btn-sm">View All</a>
+                    </div>
+                    <div class="tasks-list">
+                        <div class="task-item completed">
+                            <div class="task-info">
+                                <h4>Toyota Innova 2019</h4>
+                                <p>REPO - Completed 2 hours ago</p>
+                                <span class="location">Pune, Maharashtra</span>
+                            </div>
+                            <div class="task-status-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Completed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-item completed">
+                            <div class="task-info">
+                                <h4>Maruti Swift 2021</h4>
+                                <p>CAN-DO - Completed yesterday</p>
+                                <span class="location">Nagpur, Maharashtra</span>
+                            </div>
+                            <div class="task-status-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Completed</span>
+                            </div>
+                        </div>
+                        
+                        <div class="task-item pending">
+                            <div class="task-info">
+                                <h4>Hyundai i20 2020</h4>
+                                <p>Re-finance - Assigned today</p>
+                                <span class="location">Thane, Maharashtra</span>
+                            </div>
+                            <div class="task-status-badge">
+                                <i class="fas fa-clock"></i>
+                                <span>Pending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Section -->
+                <div class="quick-actions-section">
+                    <div class="section-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="location.href='data-collection.html'">
+                            <i class="fas fa-camera"></i>
+                            <span>Start Assessment</span>
+                        </button>
+                        
+                        <button class="action-btn" onclick="location.href='tasks.html'">
+                            <i class="fas fa-list"></i>
+                            <span>View Tasks</span>
+                        </button>
+                        
+                        <button class="action-btn" onclick="location.href='reports.html'">
+                            <i class="fas fa-file-alt"></i>
+                            <span>My Reports</span>
+                        </button>
+                        
+                        <button class="action-btn" onclick="location.href='profile.html'">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+</body>
+</html> 

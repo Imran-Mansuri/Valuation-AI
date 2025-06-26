@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Field Officer</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tasks.html">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="data-collection.html">
+                            <i class="fas fa-camera"></i>
+                            <span>Data Collection</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1>Profile</h1>
+                        <p>Manage your personal information and preferences</p>
+                    </div>
+                    <div class="header-right">
+                        <button class="btn btn-primary" onclick="saveProfile()">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://via.placeholder.com/120x120/667eea/ffffff?text=JS" alt="Profile Avatar">
+                        <div class="avatar-upload">
+                            <i class="fas fa-camera"></i>
+                            <input type="file" accept="image/*" onchange="uploadAvatar(this)">
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h2>John Smith</h2>
+                        <p>Field Officer</p>
+                        <p>Employee ID: FO-2024-001</p>
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <span class="stat-value">24</span>
+                                <span class="stat-label">Tasks Completed</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">4.8</span>
+                                <span class="stat-label">Rating</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">21</span>
+                                <span class="stat-label">Reports</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Tabs -->
+                <div class="profile-tabs">
+                    <a class="tab-btn active" href="#" data-tab="personal" onclick="switchTab(event, 'personal')">
+                        <i class="fas fa-user"></i>
+                        Personal Info
+                    </a>
+                    <a class="tab-btn" href="#" data-tab="security" onclick="switchTab(event, 'security')">
+                        <i class="fas fa-shield-alt"></i>
+                        Security
+                    </a>
+                    <a class="tab-btn" href="#" data-tab="preferences" onclick="switchTab(event, 'preferences')">
+                        <i class="fas fa-cog"></i>
+                        Preferences
+                    </a>
+                    <a class="tab-btn" href="#" data-tab="activity" onclick="switchTab(event, 'activity')">
+                        <i class="fas fa-history"></i>
+                        Activity
+                    </a>
+                </div>
+
+                <!-- Personal Info Tab -->
+                <div class="tab-content active" id="personal">
+                    <div class="form-section">
+                        <h3>Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>First Name *</label>
+                                    <input type="text" value="John" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name *</label>
+                                    <input type="text" value="Smith" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Email *</label>
+                                    <input type="email" value="john.smith@company.com" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone *</label>
+                                    <input type="tel" value="+91 98765 43210" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Date of Birth</label>
+                                    <input type="date" value="1990-05-15">
+                                </div>
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    <select>
+                                        <option value="male" selected>Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <textarea rows="3" placeholder="Enter your address">123, ABC Street, Mumbai, Maharashtra 400001</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Professional Information</h3>
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Employee ID</label>
+                                    <input type="text" value="FO-2024-001" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    <input type="text" value="Field Operations" readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Joining Date</label>
+                                    <input type="date" value="2024-01-15" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Experience</label>
+                                    <input type="text" value="2 years" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Skills & Certifications</label>
+                                <textarea rows="3" placeholder="Enter your skills and certifications">Vehicle Assessment, Photography, Customer Service, GPS Navigation, Mobile App Usage</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Tab -->
+                <div class="tab-content" id="security">
+                    <div class="form-section">
+                        <h3>Change Password</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Current Password *</label>
+                                <input type="password" placeholder="Enter current password">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password *</label>
+                                <input type="password" placeholder="Enter new password">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password *</label>
+                                <input type="password" placeholder="Confirm new password">
+                            </div>
+                        </div>
+                        <div class="password-requirements">
+                            <h4>Password Requirements:</h4>
+                            <ul>
+                                <li>At least 8 characters long</li>
+                                <li>Contains at least one uppercase letter</li>
+                                <li>Contains at least one lowercase letter</li>
+                                <li>Contains at least one number</li>
+                                <li>Contains at least one special character</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Two-Factor Authentication</h3>
+                        <div class="two-factor-section">
+                            <div class="two-factor-status">
+                                <p>Two-factor authentication is currently <strong>enabled</strong></p>
+                                <button class="btn btn-secondary">Disable 2FA</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Active Sessions</h3>
+                        <div class="sessions-list">
+                            <div class="session-item current">
+                                <div class="session-info">
+                                    <div class="session-device">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Current Session</span>
+                                    </div>
+                                    <div class="session-details">
+                                        <span>Chrome on Windows • Mumbai, India</span>
+                                        <span>Last active: Just now</span>
+                                    </div>
+                                </div>
+                                <span class="current-badge">Current</span>
+                            </div>
+                            <div class="session-item">
+                                <div class="session-info">
+                                    <div class="session-device">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <span>Mobile App</span>
+                                    </div>
+                                    <div class="session-details">
+                                        <span>Android App • Mumbai, India</span>
+                                        <span>Last active: 2 hours ago</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline btn-sm">Revoke</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferences Tab -->
+                <div class="tab-content" id="preferences">
+                    <div class="form-section">
+                        <h3>Notification Preferences</h3>
+                        <div class="preferences-grid">
+                            <div class="preference-item">
+                                <div class="preference-info">
+                                    <h4>New Task Assignments</h4>
+                                    <p>Get notified when new tasks are assigned to you</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="preference-item">
+                                <div class="preference-info">
+                                    <h4>Task Reminders</h4>
+                                    <p>Receive reminders for pending tasks</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="preference-item">
+                                <div class="preference-info">
+                                    <h4>Report Reviews</h4>
+                                    <p>Notifications when your reports are reviewed</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="preference-item">
+                                <div class="preference-info">
+                                    <h4>System Updates</h4>
+                                    <p>Important system updates and maintenance</p>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>App Preferences</h3>
+                        <div class="form-grid">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Language</label>
+                                    <select>
+                                        <option value="en" selected>English</option>
+                                        <option value="hi">Hindi</option>
+                                        <option value="mr">Marathi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Time Zone</label>
+                                    <select>
+                                        <option value="IST" selected>India Standard Time (IST)</option>
+                                        <option value="GMT">Greenwich Mean Time (GMT)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Auto-save Interval</label>
+                                    <select>
+                                        <option value="30">30 seconds</option>
+                                        <option value="60" selected>1 minute</option>
+                                        <option value="300">5 minutes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Photo Quality</label>
+                                    <select>
+                                        <option value="high" selected>High Quality</option>
+                                        <option value="medium">Medium Quality</option>
+                                        <option value="low">Low Quality</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Tab -->
+                <div class="tab-content" id="activity">
+                    <div class="form-section">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-section">
+                            <div class="activity-list">
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Completed Assessment</h4>
+                                        <p>Submitted assessment for Honda City 2020 (REQ001)</p>
+                                        <span class="activity-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Task Started</h4>
+                                        <p>Started assessment for Hyundai i20 2020 (REQ004)</p>
+                                        <span class="activity-time">4 hours ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Report Approved</h4>
+                                        <p>Report for Toyota Innova 2019 (REP002) was approved</p>
+                                        <span class="activity-time">1 day ago</span>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="activity-content">
+                                        <h4>Profile Updated</h4>
+                                        <p>Updated personal information</p>
+                                        <span class="activity-time">2 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+    <script>
+    function switchTab(event, tabName) {
+        event.preventDefault();
+        // Remove active class from all tab buttons
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked tab
+        event.currentTarget.classList.add('active');
+        // Hide all tab contents
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        // Show selected tab content
+        document.getElementById(tabName).classList.add('active');
+    }
+    </script>
+</body>
+</html>

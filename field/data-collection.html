@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Collection - Field Officer</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tasks.html">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="data-collection.html">
+                            <i class="fas fa-camera"></i>
+                            <span>Data Collection</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1>Data Collection</h1>
+                        <p>Assessment for <span id="taskId">REQ001</span></p>
+                    </div>
+                    <div class="header-right">
+                        <div class="status-indicator online">
+                            <i class="fas fa-circle"></i>
+                            <span>Online</span>
+                        </div>
+                        <button class="btn btn-secondary" onclick="saveProgress()">
+                            <i class="fas fa-save"></i>
+                            Save Progress
+                        </button>
+                        <button class="btn btn-primary" onclick="submitAssessment()">
+                            <i class="fas fa-check"></i>
+                            Submit Assessment
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Progress Indicator -->
+                <div class="progress-indicator">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <span>Vehicle Details</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <span>Exterior Details</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <span>Exterior Photos</span>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <span>Interior Details</span>
+                    </div>
+                    <div class="progress-step" data-step="5">
+                        <div class="step-number">5</div>
+                        <span>Interior Photos</span>
+                    </div>
+                    <div class="progress-step" data-step="6">
+                        <div class="step-number">6</div>
+                        <span>Engine & Documents</span>
+                    </div>
+                    <div class="progress-step" data-step="7">
+                        <div class="step-number">7</div>
+                        <span>Engine & Documents Photos</span>
+                    </div>
+                    <div class="progress-step" data-step="8">
+                        <div class="step-number">8</div>
+                        <span>Assessment</span>
+                    </div>
+                </div>
+
+                <!-- Step 1: Vehicle Details -->
+                <div class="assessment-step active" id="step1">
+                    <div class="step-header">
+                        <h2>Vehicle Details</h2>
+                        <p>Enter basic vehicle information</p>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Make *</label>
+                                <input type="text" value="Honda" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Model *</label>
+                                <input type="text" value="City" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Year *</label>
+                                <input type="number" value="2020" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Registration Number *</label>
+                                <input type="text" value="MH01AB1234" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Chassis Number</label>
+                                <input type="text" placeholder="Enter chassis number">
+                            </div>
+                            <div class="form-group">
+                                <label>Engine Number</label>
+                                <input type="text" placeholder="Enter engine number">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Fuel Type</label>
+                                <select>
+                                    <option value="petrol" selected>Petrol</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="electric">Electric</option>
+                                    <option value="hybrid">Hybrid</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Transmission</label>
+                                <select>
+                                    <option value="manual">Manual</option>
+                                    <option value="automatic" selected>Automatic</option>
+                                    <option value="cvt">CVT</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Color</label>
+                                <input type="text" value="White" placeholder="Vehicle color">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Owner Details</label>
+                            <div class="owner-details">
+                                <div class="detail-row">
+                                    <span><strong>Name:</strong> Mr. Rajesh Kumar</span>
+                                    <span><strong>Phone:</strong> +91 98765 43210</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span><strong>Address:</strong> 123, ABC Street, Mumbai, Maharashtra</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn btn-primary" onclick="nextStep(2)">
+                            Next: Exterior Details
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Exterior Details -->
+                <div class="assessment-step" id="step2">
+                    <div class="step-header">
+                        <h2>Exterior Details</h2>
+                        <p>Enter details about the vehicle's exterior condition</p>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Body Condition</label>
+                                <select>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Good</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Paint Condition</label>
+                                <select>
+                                    <option value="original">Original</option>
+                                    <option value="repainted">Repainted</option>
+                                    <option value="scratched">Scratched</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Visible Damages</label>
+                                <input type="text" placeholder="Describe any visible damages">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tyre Condition</label>
+                                <select>
+                                    <option value="new">New</option>
+                                    <option value="good">Good</option>
+                                    <option value="worn">Worn</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Windshield Condition</label>
+                                <select>
+                                    <option value="intact">Intact</option>
+                                    <option value="chipped">Chipped</option>
+                                    <option value="cracked">Cracked</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(1)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep(3)">
+                            Next: Exterior Photos
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Exterior Photos -->
+                <div class="assessment-step" id="step3">
+                    <div class="step-header">
+                        <h2>Exterior Photos</h2>
+                        <p>Capture photos of the vehicle exterior</p>
+                    </div>
+                    
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Front View</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Rear View</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Left Side</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Right Side</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(2)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep(4)">
+                            Next: Interior Details
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Interior Details -->
+                <div class="assessment-step" id="step4">
+                    <div class="step-header">
+                        <h2>Interior Details</h2>
+                        <p>Enter details about the vehicle's interior</p>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Seat Condition</label>
+                                <select>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Good</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Dashboard Condition</label>
+                                <select>
+                                    <option value="intact">Intact</option>
+                                    <option value="scratched">Scratched</option>
+                                    <option value="damaged">Damaged</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Upholstery</label>
+                                <select>
+                                    <option value="clean">Clean</option>
+                                    <option value="stained">Stained</option>
+                                    <option value="torn">Torn</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>AC/Heater Functionality</label>
+                                <select>
+                                    <option value="working">Working</option>
+                                    <option value="not-working">Not Working</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Infotainment System</label>
+                                <select>
+                                    <option value="working">Working</option>
+                                    <option value="not-working">Not Working</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(3)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep(5)">
+                            Next: Interior Photos
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Interior Photos -->
+                <div class="assessment-step" id="step5">
+                    <div class="step-header">
+                        <h2>Interior Photos</h2>
+                        <p>Capture photos of the vehicle interior</p>
+                    </div>
+                    
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Dashboard</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Seats</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Steering Wheel</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Gear Shift</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(4)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep(6)">
+                            Next: Engine & Documents
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Engine & Documents -->
+                <div class="assessment-step" id="step6">
+                    <div class="step-header">
+                        <h2>Engine & Documents</h2>
+                        <p>Enter engine and document details</p>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Engine Condition</label>
+                                <select>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Good</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>RC Book</label>
+                                <select>
+                                    <option value="available">Available</option>
+                                    <option value="not-available">Not Available</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Insurance</label>
+                                <select>
+                                    <option value="valid">Valid</option>
+                                    <option value="expired">Expired</option>
+                                    <option value="not-available">Not Available</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>PUC Certificate</label>
+                                <select>
+                                    <option value="valid">Valid</option>
+                                    <option value="expired">Expired</option>
+                                    <option value="not-available">Not Available</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Other Documents</label>
+                                <input type="text" placeholder="List any other documents">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(5)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep(7)">
+                            Next: Engine & Documents Photos
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 7: Engine & Documents Photos -->
+                <div class="assessment-step" id="step7">
+                    <div class="step-header">
+                        <h2>Engine & Documents Photos</h2>
+                        <p>Capture engine and document photos</p>
+                    </div>
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Engine Bay</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>RC Book</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>Insurance</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                        <div class="photo-item">
+                            <div class="photo-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>PUC Certificate</span>
+                            </div>
+                            <button class="btn btn-outline btn-sm">Take Photo</button>
+                        </div>
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(6)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="nextStep(8)">
+                            Next: Assessment
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 8: Assessment -->
+                <div class="assessment-step" id="step8">
+                    <div class="step-header">
+                        <h2>Vehicle Assessment</h2>
+                        <p>Complete the final assessment</p>
+                    </div>
+                    
+                    <div class="assessment-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Overall Condition</label>
+                                <select>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good" selected>Good</option>
+                                    <option value="fair">Fair</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Estimated Value (₹)</label>
+                                <input type="number" placeholder="Enter estimated value">
+                            </div>
+                            <div class="form-group">
+                                <label>Mileage (km)</label>
+                                <input type="number" placeholder="Enter current mileage">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Additional Notes</label>
+                            <textarea rows="4" placeholder="Enter any additional observations or notes"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Recommendations</label>
+                            <textarea rows="3" placeholder="Enter recommendations for the client"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="step-actions">
+                        <button class="btn btn-secondary" onclick="prevStep(7)">
+                            <i class="fas fa-arrow-left"></i>
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" onclick="submitAssessment()">
+                            <i class="fas fa-check"></i>
+                            Submit Assessment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+</body>
+</html> 

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reports - Field Officer</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Field Officer</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tasks.html">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="data-collection.html">
+                            <i class="fas fa-camera"></i>
+                            <span>Data Collection</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="reports.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <h1>My Reports</h1>
+                        <p>View and manage your assessment reports</p>
+                    </div>
+                    <div class="header-right">
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search reports..." class="search-input">
+                        </div>
+                        <button class="btn btn-primary" onclick="generateReport()">
+                            <i class="fas fa-file-alt"></i>
+                            Generate Report
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Reports</h3>
+                            <p class="stat-value">21</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +15.2%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Approved</h3>
+                            <p class="stat-value">19</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +8.7%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Review</h3>
+                            <p class="stat-value">2</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -1.2%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Average Rating</h3>
+                            <p class="stat-value">4.8</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +0.2
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-date" id="startDate" value="2024-01-01">
+                                <span>to</span>
+                                <input type="date" class="filter-date" id="endDate" value="2024-01-31">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="approved">Approved</option>
+                                <option value="pending">Pending Review</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Task Type</label>
+                            <select class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="re-finance">Re-finance</option>
+                                <option value="repo">REPO</option>
+                                <option value="can-do">CAN-DO</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">&nbsp;</label>
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reports List -->
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Reports List</h3>
+                            <p>Showing 21 reports</p>
+                        </div>
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search reports..." onkeyup="searchReports(this.value)">
+                            </div>
+                            <button class="btn btn-primary" onclick="exportReports()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Report ID</th>
+                                    <th>Vehicle Info</th>
+                                    <th>Task Type</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Rating</th>
+                                    <th>Created</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="task-id">
+                                            <strong>REP001</strong>
+                                            <span class="task-date">Today</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-avatar">
+                                                <i class="fas fa-car"></i>
+                                            </div>
+                                            <div class="vehicle-details">
+                                                <strong>Honda City 2020</strong>
+                                                <span>White • Petrol</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge re-finance">Re-finance</span>
+                                    </td>
+                                    <td>Mumbai, Maharashtra</td>
+                                    <td>
+                                        <span class="status-badge approved">Approved</span>
+                                    </td>
+                                    <td>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>5.0</span>
+                                        </div>
+                                    </td>
+                                    <td>2 hours ago</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view" onclick="viewReport('REP001')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="downloadReport('REP001')">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="task-id">
+                                            <strong>REP002</strong>
+                                            <span class="task-date">Yesterday</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-avatar">
+                                                <i class="fas fa-car"></i>
+                                            </div>
+                                            <div class="vehicle-details">
+                                                <strong>Toyota Innova 2019</strong>
+                                                <span>Silver • Diesel</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge repo">REPO</span>
+                                    </td>
+                                    <td>Pune, Maharashtra</td>
+                                    <td>
+                                        <span class="status-badge approved">Approved</span>
+                                    </td>
+                                    <td>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="far fa-star"></i>
+                                            <span>4.0</span>
+                                        </div>
+                                    </td>
+                                    <td>1 day ago</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view" onclick="viewReport('REP002')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="downloadReport('REP002')">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <div class="task-id">
+                                            <strong>REP003</strong>
+                                            <span class="task-date">2 days ago</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-avatar">
+                                                <i class="fas fa-car"></i>
+                                            </div>
+                                            <div class="vehicle-details">
+                                                <strong>Maruti Swift 2021</strong>
+                                                <span>Red • Petrol</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge can-do">CAN-DO</span>
+                                    </td>
+                                    <td>Nagpur, Maharashtra</td>
+                                    <td>
+                                        <span class="status-badge pending">Pending Review</span>
+                                    </td>
+                                    <td>
+                                        <div class="rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <span>5.0</span>
+                                        </div>
+                                    </td>
+                                    <td>2 days ago</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-view" onclick="viewReport('REP003')">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-edit" onclick="downloadReport('REP003')">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-10 of 21 reports
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">2</button>
+                            <button class="pagination-btn">3</button>
+                            <button class="pagination-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Report Details Modal -->
+    <div class="modal" id="reportDetailsModal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Report Details</h3>
+                <button class="modal-close" onclick="closeModal('reportDetailsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="report-details-content">
+                    <div class="detail-section">
+                        <h4>Vehicle Information</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Make & Model:</label>
+                                <span>Honda City 2020</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Registration:</label>
+                                <span>MH-01-AB-1234</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Color:</label>
+                                <span>White</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Fuel Type:</label>
+                                <span>Petrol</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Assessment Details</h4>
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <label>Overall Condition:</label>
+                                <span>Good</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Estimated Value:</label>
+                                <span>₹8,50,000</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Mileage:</label>
+                                <span>45,000 km</span>
+                            </div>
+                            <div class="detail-item">
+                                <label>Rating:</label>
+                                <span>5.0/5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h4>Assessment Notes</h4>
+                        <p>The vehicle is in excellent condition with minimal wear and tear. All systems are functioning properly. The interior is well-maintained and the exterior shows no major damage. Recommended for financing.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('reportDetailsModal')">Close</button>
+                <button class="btn btn-primary" onclick="downloadReport('REP001')">
+                    <i class="fas fa-download"></i>
+                    Download Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/field.js"></script>
+</body>
+</html>
