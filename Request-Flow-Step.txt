@@ -1,0 +1,84 @@
+Main aapke project ko analyze karke workflow ke steps explain karta hun. Pehle main project structure ko dekhta hun taki exact process samajh sakun.
+
+Read file: index.html
+Read file: admin/create-request.html
+Read file: admin/create-request.html
+Read file: agency/requests.html
+Read file: field/data-collection.html
+Read file: agency/quality-control.html
+Read file: admin/quality-control.html
+Ab main aapke project ke complete workflow ko samajh gaya hun. Main aapko step by step process explain karta hun Roman Hindi mein:
+
+## **Vehicle Valuation System - Complete Workflow Steps**
+
+### **Step 1: Request Creation (Admin Side)**
+- **Admin** login karke `create-request.html` page pe jata hai
+- Client ki information fill karta hai (name, phone, email, address)
+- Vehicle ki details enter karta hai (make, model, year, registration number, etc.)
+- Request type select karta hai (bank valuation, insurance, auction, etc.)
+- **Agency ko assign** karta hai dropdown se
+- Request submit karta hai
+
+### **Step 2: Agency ko Request Assignment**
+- **Agency** apne dashboard pe new request dekhti hai
+- `requests.html` page pe pending requests list hoti hai
+- Agency request ko accept karti hai
+- **Field Officer ko assign** karti hai apne available officers mein se
+- Request status "In Progress" ho jata hai
+
+### **Step 3: Field Officer ko Task Assignment**
+- **Field Officer** ko notification aata hai new task ke liye
+- `tasks.html` page pe assigned tasks dikhte hain
+- Field officer task ko accept karta hai
+- `data-collection.html` page pe jata hai assessment ke liye
+
+### **Step 4: Field Officer Data Collection**
+- **Field Officer** vehicle ke location pe jata hai
+- 8 steps mein data collect karta hai:
+  1. **Vehicle Details** (make, model, year, registration)
+  2. **Exterior Details** (condition, damage assessment)
+  3. **Exterior Photos** (front, rear, left, right, damage photos)
+  4. **Interior Details** (seats, dashboard, accessories)
+  5. **Interior Photos** (dashboard, seats, damage)
+  6. **Engine & Documents** (engine condition, RC book, insurance)
+  7. **Engine & Documents Photos** (engine bay, documents)
+  8. **Assessment** (final valuation, condition rating)
+
+### **Step 5: Payment Collection**
+- Field officer assessment complete karne ke baad
+- **Online payment** collect karta hai client se
+- Payment confirmation system mein update hota hai
+- Assessment data agency ko submit ho jata hai
+
+### **Step 6: Agency Quality Control**
+- **Agency** `quality-control.html` page pe submitted reports dekhti hai
+- Field officer ka data review karti hai
+- Photos aur details check karti hai
+- Agar koi issue hai to revision request bhejti hai
+- Agar sab sahi hai to **price edit** karti hai (agar zarurat hai)
+- Final report admin ko send karti hai
+
+### **Step 7: Admin Final Review**
+- **Admin** `quality-control.html` page pe agency se aaye reports dekhta hai
+- Final quality check karta hai
+- Pricing aur assessment accuracy verify karta hai
+- Report ko approve ya reject karta hai
+- Client ko final report generate hota hai
+
+### **Key Features:**
+- **Real-time tracking** - Agency field officer ko live track kar sakti hai
+- **Photo upload** - Field officer vehicle ki photos upload karta hai
+- **Payment integration** - Online payment collection
+- **Quality control** - Multiple level quality checks
+- **Status tracking** - Har step ka status track hota hai
+- **Report generation** - Final valuation report generate hota hai
+
+### **File Structure:**
+- `admin/` - Admin ke liye sab pages
+- `agency/` - Agency ke liye sab pages  
+- `field/` - Field officer ke liye sab pages
+- `assets/photos/` - Vehicle photos store hoti hain
+- `js/` - JavaScript functionality
+- `styles/` - CSS styling
+
+Ye complete workflow hai jisme request creation se lekar final report generation tak sab steps cover hote hain. Har role (Admin, Agency, Field Officer) ka specific responsibility hai aur system seamlessly work karta hai.

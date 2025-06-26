@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Login - Vehicle Valuation System</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .debug-info {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <h1>Vehicle Valuation System</h1>
+                </div>
+                <p>Test Page - Demo Credentials Debug</p>
+            </div>
+
+            <div class="role-selector">
+                <h2>Select Your Role</h2>
+                <div class="role-cards">
+                    <div class="role-card" onclick="selectRole('admin')">
+                        <div class="role-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Administrator</h3>
+                        <p>System management, client oversight, and final quality control</p>
+                    </div>
+                    <div class="role-card" onclick="selectRole('agency')">
+                        <div class="role-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <h3>Valuation Agency</h3>
+                        <p>Request management, field officer coordination, and quality control</p>
+                    </div>
+                    <div class="role-card" onclick="selectRole('field')">
+                        <div class="role-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Field Officer</h3>
+                        <p>On-site data collection and vehicle assessment</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="login-form" id="loginForm" style="display: none;">
+                <div class="form-header">
+                    <button class="back-btn" onclick="showRoleSelector()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2 id="loginTitle">Login</h2>
+                </div>
+                
+                <!-- Debug Info -->
+                <div class="debug-info" id="debugInfo">
+                    Debug: Select a role to see credentials
+                </div>
+                
+                <!-- Demo Credentials Section -->
+                <div class="demo-credentials" id="demoCredentials" style="display: none;">
+                    <div class="demo-header">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Demo Credentials</span>
+                    </div>
+                    <div class="demo-content">
+                        <div class="demo-role" id="demoRoleInfo">
+                            <!-- Demo credentials will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="authForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-group">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group remember-me">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    
+                    <button type="submit" class="login-btn">
+                        <span>Sign In</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentRole = '';
+        let isAuthenticated = false;
+
+        // Mock user data for demonstration
+        const mockUsers = {
+            admin: [
+                { email: 'admin@vehiclevaluation.com', password: 'admin123', name: 'System Administrator' },
+                { email: 'admin@test.com', password: 'password', name: 'Test Admin' }
+            ],
+            agency: [
+                { email: 'agency@vehiclevaluation.com', password: 'agency123', name: 'ABC Valuation Agency' },
+                { email: 'agency@test.com', password: 'password', name: 'Test Agency' }
+            ],
+            field: [
+                { email: 'field@vehiclevaluation.com', password: 'field123', name: 'John Field Officer' },
+                { email: 'field@test.com', password: 'password', name: 'Test Field Officer' }
+            ]
+        };
+
+        // Role selection function
+        function selectRole(role) {
+            console.log('selectRole called with:', role);
+            currentRole = role;
+            
+            const roleSelector = document.querySelector('.role-selector');
+            const loginForm = document.getElementById('loginForm');
+            const loginTitle = document.getElementById('loginTitle');
+            const debugInfo = document.getElementById('debugInfo');
+            
+            // Update debug info
+            debugInfo.textContent = `Debug: Role selected - ${role}`;
+            
+            // Update login title based on role
+            const roleNames = {
+                admin: 'Administrator Login',
+                agency: 'Agency Login',
+                field: 'Field Officer Login'
+            };
+            
+            loginTitle.textContent = roleNames[role];
+            
+            // Populate demo credentials
+            populateDemoCredentials(role);
+            
+            // Animate transition
+            roleSelector.style.display = 'none';
+            loginForm.style.display = 'block';
+            loginForm.classList.add('slide-up');
+            
+            // Pre-fill email based on role for demo
+            const emailInput = document.getElementById('email');
+            const demoEmails = {
+                admin: 'admin@vehiclevaluation.com',
+                agency: 'agency@vehiclevaluation.com',
+                field: 'field@vehiclevaluation.com'
+            };
+            emailInput.value = demoEmails[role];
+            emailInput.focus();
+        }
+
+        // Populate demo credentials
+        function populateDemoCredentials(role) {
+            console.log('populateDemoCredentials called with role:', role);
+            
+            const demoRoleInfo = document.getElementById('demoRoleInfo');
+            const demoCredentials = document.getElementById('demoCredentials');
+            const debugInfo = document.getElementById('debugInfo');
+            
+            console.log('demoRoleInfo element:', demoRoleInfo);
+            console.log('demoCredentials element:', demoCredentials);
+            
+            const credentials = mockUsers[role];
+            console.log('credentials for role:', credentials);
+            
+            debugInfo.textContent = `Debug: Found ${credentials ? credentials.length : 0} credentials for role ${role}`;
+            
+            if (credentials && credentials.length > 0) {
+                const user = credentials[0]; // Use first user for demo
+                console.log('selected user:', user);
+                
+                const credentialsHTML = `
+                    <div class="demo-credential">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email:</span>
+                        <span class="credential-value">${user.email}</span>
+                    </div>
+                    <div class="demo-credential">
+                        <i class="fas fa-lock"></i>
+                        <span>Password:</span>
+                        <span class="credential-value">${user.password}</span>
+                    </div>
+                    <div class="demo-credential">
+                        <i class="fas fa-user"></i>
+                        <span>Name:</span>
+                        <span class="credential-value">${user.name}</span>
+                    </div>
+                `;
+                
+                console.log('Setting innerHTML:', credentialsHTML);
+                demoRoleInfo.innerHTML = credentialsHTML;
+                
+                demoCredentials.style.display = 'block';
+                console.log('Demo credentials should now be visible');
+                debugInfo.textContent = `Debug: Credentials displayed for ${user.name}`;
+            } else {
+                demoCredentials.style.display = 'none';
+                console.log('No credentials found for role:', role);
+                debugInfo.textContent = `Debug: No credentials found for role ${role}`;
+            }
+        }
+
+        // Show role selector
+        function showRoleSelector() {
+            const roleSelector = document.querySelector('.role-selector');
+            const loginForm = document.getElementById('loginForm');
+            const demoCredentials = document.getElementById('demoCredentials');
+            const debugInfo = document.getElementById('debugInfo');
+            
+            loginForm.style.display = 'none';
+            demoCredentials.style.display = 'none';
+            roleSelector.style.display = 'block';
+            roleSelector.classList.add('fade-in');
+            
+            debugInfo.textContent = 'Debug: Back to role selection';
+            
+            // Clear form
+            document.getElementById('authForm').reset();
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.className = 'fas fa-eye';
+            }
+        }
+
+        // Handle login form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            console.log('Login attempt:', { email, password, role: currentRole });
+            
+            // Show loading state
+            const loginBtn = document.querySelector('.login-btn');
+            const originalText = loginBtn.innerHTML;
+            loginBtn.classList.add('loading');
+            loginBtn.innerHTML = '<span>Signing In...</span>';
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                const user = authenticateUser(email, password, currentRole);
+                
+                if (user) {
+                    console.log('Login successful:', user);
+                    alert('Login successful! Redirecting...');
+                } else {
+                    console.log('Login failed');
+                    alert('Invalid email or password. Please try again.');
+                    
+                    // Reset button
+                    loginBtn.classList.remove('loading');
+                    loginBtn.innerHTML = originalText;
+                }
+            }, 1500);
+        }
+
+        // Authenticate user
+        function authenticateUser(email, password, role) {
+            const users = mockUsers[role] || [];
+            return users.find(user => user.email === email && user.password === password);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Test page loaded');
+            document.getElementById('authForm').addEventListener('submit', handleLogin);
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control View Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-passed { background: #10b981; }
+        .status-failed { background: #ef4444; }
+        .status-pending { background: #f59e0b; }
+        .status-under-review { background: #3b82f6; }
+        .btn {
+            padding: 8px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-view { background: #3b82f6; }
+        .btn:hover { opacity: 0.8; }
+        .data-preview {
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quality Control View Button Test</h1>
+    
+    <div class="test-section">
+        <h2>Test All View Buttons</h2>
+        <p>Click the View buttons below to test if they show proper data:</p>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC001 - Passed Status</h3>
+            <span class="status-badge status-passed">Passed</span>
+            <br><br>
+            <a href="quality-check-details.html?id=QC001&status=passed" class="btn btn-view" target="_blank">View QC001</a>
+            <div class="data-preview">
+                Expected Data: Honda City 2020, Priya Sharma, Documentation, 95% score
+            </div>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC002 - Failed Status</h3>
+            <span class="status-badge status-failed">Failed</span>
+            <br><br>
+            <a href="quality-check-details.html?id=QC002&status=failed" class="btn btn-view" target="_blank">View QC002</a>
+            <div class="data-preview">
+                Expected Data: Maruti Swift 2019, Amit Patel, Photography, 72% score
+            </div>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC003 - Pending Status</h3>
+            <span class="status-badge status-pending">Pending</span>
+            <br><br>
+            <a href="quality-check-details.html?id=QC003&status=pending" class="btn btn-view" target="_blank">View QC003</a>
+            <div class="data-preview">
+                Expected Data: Toyota Innova 2021, Rajesh Kumar, Assessment, -- score
+            </div>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC004 - Under Review Status</h3>
+            <span class="status-badge status-under-review">Under Review</span>
+            <br><br>
+            <a href="quality-check-details.html?id=QC004&status=under-review" class="btn btn-view" target="_blank">View QC004</a>
+            <div class="data-preview">
+                Expected Data: Hyundai Creta 2022, Priya Sharma, Compliance, 85% score
+            </div>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Instructions</h2>
+        <ol>
+            <li>Click each "View" button above</li>
+            <li>Each should open in a new tab</li>
+            <li>Verify that the correct data is displayed for each quality check</li>
+            <li>Check that the status badges show the correct colors</li>
+            <li>Verify that vehicle information, officer name, and scores are correct</li>
+        </ol>
+        
+        <h3>Expected Results:</h3>
+        <ul>
+            <li><strong>QC001:</strong> Should show Honda City with Passed status (green)</li>
+            <li><strong>QC002:</strong> Should show Maruti Swift with Failed status (red)</li>
+            <li><strong>QC003:</strong> Should show Toyota Innova with Pending status (orange)</li>
+            <li><strong>QC004:</strong> Should show Hyundai Creta with Under Review status (blue)</li>
+        </ul>
+    </div>
+</body>
+</html> 

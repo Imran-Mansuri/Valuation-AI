@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control Routing Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-passed { background: #10b981; }
+        .status-failed { background: #ef4444; }
+        .status-pending { background: #f59e0b; }
+        .status-under-review { background: #3b82f6; }
+        .btn {
+            padding: 8px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-view { background: #3b82f6; }
+        .btn-edit { background: #10b981; }
+        .btn:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <h1>Quality Control Status-Based Routing Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Cases</h2>
+        <p>This page demonstrates how the View and Edit buttons work based on different statuses:</p>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC001 - Passed Status</h3>
+            <span class="status-badge status-passed">Passed</span>
+            <br><br>
+            <button class="btn btn-view" onclick="testView('QC001', 'Passed')">View</button>
+            <button class="btn btn-edit" onclick="testEdit('QC001', 'Passed')">Edit</button>
+            <p><strong>Expected:</strong> View → quality-check-details.html?id=QC001&status=passed, Edit → edit-quality-check.html?id=QC001&status=passed</p>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC002 - Failed Status</h3>
+            <span class="status-badge status-failed">Failed</span>
+            <br><br>
+            <button class="btn btn-view" onclick="testView('QC002', 'Failed')">View</button>
+            <button class="btn btn-edit" onclick="testEdit('QC002', 'Failed')">Edit</button>
+            <p><strong>Expected:</strong> View → quality-check-details.html?id=QC002&status=failed, Edit → edit-quality-check.html?id=QC002&status=failed</p>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC003 - Pending Status</h3>
+            <span class="status-badge status-pending">Pending</span>
+            <br><br>
+            <button class="btn btn-view" onclick="testView('QC003', 'Pending')">View</button>
+            <button class="btn btn-edit" onclick="testEdit('QC003', 'Pending')">Edit</button>
+            <p><strong>Expected:</strong> View → quality-check-details.html?id=QC003&status=pending, Edit → edit-quality-check.html?id=QC003&status=pending</p>
+        </div>
+        
+        <div style="margin: 20px 0;">
+            <h3>QC004 - Under Review Status</h3>
+            <span class="status-badge status-under-review">Under Review</span>
+            <br><br>
+            <button class="btn btn-view" onclick="testView('QC004', 'Under Review')">View</button>
+            <button class="btn btn-edit" onclick="testEdit('QC004', 'Under Review')">Edit</button>
+            <p><strong>Expected:</strong> View → quality-check-details.html?id=QC004&status=under-review, Edit → edit-quality-check.html?id=QC004&status=under-review</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Output</h2>
+        <div id="console-output" style="background: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; min-height: 100px;">
+            Click the buttons above to see the routing logic...
+        </div>
+    </div>
+
+    <script>
+        function log(message) {
+            const output = document.getElementById('console-output');
+            output.innerHTML += '<div>' + new Date().toLocaleTimeString() + ': ' + message + '</div>';
+            console.log(message);
+        }
+        
+        function testView(checkId, status) {
+            log(`Testing VIEW for ${checkId} with status: ${status}`);
+            
+            let targetPage = '';
+            if (status === 'Passed') {
+                targetPage = `quality-check-details.html?id=${checkId}&status=passed`;
+            } else if (status === 'Failed') {
+                targetPage = `quality-check-details.html?id=${checkId}&status=failed`;
+            } else if (status === 'Pending') {
+                targetPage = `quality-check-details.html?id=${checkId}&status=pending`;
+            } else if (status === 'Under Review') {
+                targetPage = `quality-check-details.html?id=${checkId}&status=under-review`;
+            } else {
+                targetPage = `quality-check-details.html?id=${checkId}`;
+            }
+            
+            log(`→ Would navigate to: ${targetPage}`);
+        }
+        
+        function testEdit(checkId, status) {
+            log(`Testing EDIT for ${checkId} with status: ${status}`);
+            
+            let targetPage = '';
+            if (status === 'Passed') {
+                targetPage = `edit-quality-check.html?id=${checkId}&status=passed`;
+            } else if (status === 'Failed') {
+                targetPage = `edit-quality-check.html?id=${checkId}&status=failed`;
+            } else if (status === 'Pending') {
+                targetPage = `edit-quality-check.html?id=${checkId}&status=pending`;
+            } else if (status === 'Under Review') {
+                targetPage = `edit-quality-check.html?id=${checkId}&status=under-review`;
+            } else {
+                targetPage = `edit-quality-check.html?id=${checkId}`;
+            }
+            
+            log(`→ Would navigate to: ${targetPage}`);
+        }
+    </script>
+</body>
+</html> 
