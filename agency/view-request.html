@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Request - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="requests.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Requests
+                        </a>
+                    </div>
+                    <h1>Request Details</h1>
+                    <p>View complete request information and status</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Request Header -->
+                <div class="request-header">
+                    <div class="request-info">
+                        <div class="request-id-section">
+                            <h2>REQ-2024-001</h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>Maruti Swift VDI</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>ABC Motors Ltd</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="status-badge status-completed">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-outline" onclick="editRequest('REQ-2024-001')">
+                                <i class="fas fa-edit"></i>
+                                Edit Request
+                            </button>
+                            <button class="btn btn-primary" onclick="downloadReport('REQ-2024-001')">
+                                <i class="fas fa-download"></i>
+                                Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Request Details Grid -->
+                <div class="request-details-grid">
+                    <!-- Vehicle Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-car"></i> Vehicle Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Vehicle Model</span>
+                                <span class="info-value">Maruti Swift VDI</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Registration Number</span>
+                                <span class="info-value">MH-12-AB-1234</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Manufacturing Year</span>
+                                <span class="info-value">2020</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Engine Capacity</span>
+                                <span class="info-value">1248 cc</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Fuel Type</span>
+                                <span class="info-value">Diesel</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Color</span>
+                                <span class="info-value">Pearl White</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Client Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user"></i> Client Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Client Name</span>
+                                <span class="info-value">ABC Motors Ltd</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Client Type</span>
+                                <span class="info-value">
+                                    <span class="badge badge-dealer">Dealer</span>
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Contact Person</span>
+                                <span class="info-value">Rahul Sharma</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Phone Number</span>
+                                <span class="info-value">+91 98765 43210</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email Address</span>
+                                <span class="info-value">rahul@abcmotors.com</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Address</span>
+                                <span class="info-value">123 Auto Street, Andheri West, Mumbai - 400058</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Request Details -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clipboard-list"></i> Request Details</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Request ID</span>
+                                <span class="info-value">REQ-2024-001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Request Type</span>
+                                <span class="info-value">
+                                    <span class="badge badge-re-finance">Re-finance</span>
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Priority</span>
+                                <span class="info-value">
+                                    <span class="badge badge-priority-high">High</span>
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Request Date</span>
+                                <span class="info-value">10 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Due Date</span>
+                                <span class="info-value">15 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-completed">Completed</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assignment Details -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user-check"></i> Assignment Details</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Assigned Field Officer</span>
+                                <span class="info-value">John Smith (FO001)</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Assignment Date</span>
+                                <span class="info-value">11 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Service Area</span>
+                                <span class="info-value">Mumbai Central</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Inspection Date</span>
+                                <span class="info-value">12 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Completion Date</span>
+                                <span class="info-value">14 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">QC Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-completed">Approved</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Documents</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-image"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Vehicle Photos</h4>
+                                        <p>Complete vehicle photo documentation</p>
+                                        <span class="document-size">15.2 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Valuation Report</h4>
+                                        <p>Complete valuation assessment report</p>
+                                        <span class="document-size">3.8 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>RC Book</h4>
+                                        <p>Vehicle registration certificate</p>
+                                        <span class="document-size">2.1 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Insurance Documents</h4>
+                                        <p>Vehicle insurance policy documents</p>
+                                        <span class="document-size">4.5 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Request Timeline -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> Request Timeline</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Request Completed</h4>
+                                        <p>Valuation completed and QC approved</p>
+                                        <span class="timeline-time">2 days ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>QC Review</h4>
+                                        <p>Quality control review completed</p>
+                                        <span class="timeline-time">3 days ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Inspection Completed</h4>
+                                        <p>Field officer completed vehicle inspection</p>
+                                        <span class="timeline-time">4 days ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-user-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Assigned to Field Officer</h4>
+                                        <p>Request assigned to John Smith (FO001)</p>
+                                        <span class="timeline-time">5 days ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Request Created</h4>
+                                        <p>New valuation request submitted by ABC Motors Ltd</p>
+                                        <span class="timeline-time">6 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+</body>
+</html> 

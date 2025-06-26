@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Details - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="agencies.html">Agencies</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Agency Details</span>
+                    </div>
+                    <h1>Agency Details</h1>
+                    <p>View complete information about the agency</p>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-building"></i></div>
+                        <div class="stat-info">
+                            <h3>Agency ID</h3>
+                            <p class="stat-value" id="agencyId">AGY001</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+                        <div class="stat-info">
+                            <h3>Contact Person</h3>
+                            <p class="stat-value" id="contactPerson">Mr. Rajesh Kumar</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-star"></i></div>
+                        <div class="stat-info">
+                            <h3>Performance</h3>
+                            <p class="stat-value"><span class="rating-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span> <span class="rating-text">4.8</span></p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-info">
+                            <h3>Field Officers</h3>
+                            <p class="stat-value" id="officersCount">12</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modern-card modern-shadow-md modern-radius-lg modern-padding-lg modern-mb-lg">
+                    <div class="modern-details-grid">
+                        <div>
+                            <div class="info-row"><span class="info-label">Agency Name:</span><span class="info-value" id="agencyName">ABC Agency</span></div>
+                            <div class="info-row"><span class="info-label">Email:</span><span class="info-value" id="agencyEmail">abc@agency.com</span></div>
+                            <div class="info-row"><span class="info-label">Phone:</span><span class="info-value" id="agencyPhone">+91 98765 43210</span></div>
+                            <div class="info-row"><span class="info-label">Status:</span><span class="status-badge status-active" id="agencyStatus">Active</span></div>
+                        </div>
+                        <div>
+                            <div class="info-row"><span class="info-label">Address:</span><span class="info-value" id="agencyAddress">123, Main Street, Mumbai</span></div>
+                            <div class="info-row"><span class="info-label">City:</span><span class="info-value" id="agencyCity">Mumbai</span></div>
+                            <div class="info-row"><span class="info-label">State:</span><span class="info-value" id="agencyState">Maharashtra</span></div>
+                            <div class="info-row"><span class="info-label">GST Number:</span><span class="info-value" id="agencyGST">27ABCDE1234F1Z5</span></div>
+                            <div class="info-row"><span class="info-label">PAN Number:</span><span class="info-value" id="agencyPAN">ABCDE1234F</span></div>
+                        </div>
+                    </div>
+                    <div class="info-row"><span class="info-label">Notes:</span><span class="info-value" id="agencyNotes">Top performing agency in Mumbai region.</span></div>
+                </div>
+                <div class="form-actions">
+                    <a href="agencies.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Agencies</a>
+                    <a href="#" class="btn btn-primary" id="editAgencyBtn"><i class="fas fa-edit"></i> Edit Agency</a>
+                    <a href="#" class="btn btn-secondary" id="manageOfficersBtn"><i class="fas fa-users"></i> Manage Officers</a>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script src="../js/agencies.js"></script>
+    <script>
+        // Add logic to populate details from query param if needed
+        document.getElementById('editAgencyBtn').onclick = function() {
+            const id = document.getElementById('agencyId').textContent;
+            window.location.href = `edit-agency.html?id=${id}`;
+        };
+        document.getElementById('manageOfficersBtn').onclick = function() {
+            const id = document.getElementById('agencyId').textContent;
+            window.location.href = `agency-officers.html?id=${id}`;
+        };
+    </script>
+</body>
+</html> 

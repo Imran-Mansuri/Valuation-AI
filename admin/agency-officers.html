@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Officers - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="agencies.html">Agencies</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Manage Officers</span>
+                    </div>
+                    <h1>Manage Field Officers</h1>
+                    <p>View and manage field officers for this agency</p>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="modern-card modern-shadow-md modern-radius-lg modern-padding-lg modern-mb-lg">
+                    <div class="modern-details-grid">
+                        <div>
+                            <div class="info-row"><span class="info-label">Agency Name:</span><span class="info-value" id="agencyName">ABC Agency</span></div>
+                            <div class="info-row"><span class="info-label">Contact Person:</span><span class="info-value" id="contactPerson">Mr. Rajesh Kumar</span></div>
+                        </div>
+                        <div>
+                            <div class="info-row"><span class="info-label">Email:</span><span class="info-value" id="agencyEmail">abc@agency.com</span></div>
+                            <div class="info-row"><span class="info-label">Phone:</span><span class="info-value" id="agencyPhone">+91 98765 43210</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Field Officers</h3>
+                            <span class="table-count">Showing 1-5 of 12 officers</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-primary btn-sm" onclick="showAddOfficerModal()">
+                                <i class="fas fa-plus"></i> Add Officer
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Officer ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>FO001</td>
+                                    <td>Sunil Patil</td>
+                                    <td>sunil.patil@abcagency.com</td>
+                                    <td>+91 90000 11111</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="Edit" onclick="editOfficer('FO001')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon btn-danger" title="Remove" onclick="removeOfficer('FO001')"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>FO002</td>
+                                    <td>Rita Mehra</td>
+                                    <td>rita.mehra@abcagency.com</td>
+                                    <td>+91 90000 22222</td>
+                                    <td><span class="status-badge status-inactive">Inactive</span></td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="Edit" onclick="editOfficer('FO002')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon btn-danger" title="Remove" onclick="removeOfficer('FO002')"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>FO003</td>
+                                    <td>Ajay Singh</td>
+                                    <td>ajay.singh@abcagency.com</td>
+                                    <td>+91 90000 33333</td>
+                                    <td><span class="status-badge status-active">Active</span></td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" title="Edit" onclick="editOfficer('FO003')"><i class="fas fa-edit"></i></button>
+                                            <button class="btn-icon btn-danger" title="Remove" onclick="removeOfficer('FO003')"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <a href="agency-details.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Agency</a>
+                </div>
+            </div>
+            <!-- Add/Edit Officer Modal (example, not functional) -->
+            <div class="modal-overlay" id="addOfficerModal">
+                <div class="modal">
+                    <div class="modal-header">
+                        <h2 class="modal-title">Add Field Officer</h2>
+                        <button class="modal-close" onclick="closeModal('addOfficerModal')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addOfficerForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Name *</label>
+                                    <input type="text" class="input" required placeholder="Officer name">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Email *</label>
+                                    <input type="email" class="input" required placeholder="officer@email.com">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Phone *</label>
+                                    <input type="tel" class="input" required placeholder="+91 90000 00000">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <select class="input">
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeModal('addOfficerModal')">Cancel</button>
+                        <button class="btn btn-primary" onclick="addOfficer()">Add Officer</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script src="../js/agencies.js"></script>
+    <script>
+        function showAddOfficerModal() {
+            document.getElementById('addOfficerModal').classList.add('show');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+        function addOfficer() {
+            alert('Officer added!');
+            closeModal('addOfficerModal');
+        }
+        function editOfficer(id) {
+            alert('Edit officer: ' + id);
+        }
+        function removeOfficer(id) {
+            if(confirm('Remove officer ' + id + '?')) {
+                alert('Officer removed!');
+            }
+        }
+    </script>
+</body>
+</html> 

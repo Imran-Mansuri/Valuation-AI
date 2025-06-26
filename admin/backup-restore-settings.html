@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backup & Restore Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Backup & Restore Settings</h1>
+                    <p>Manage system backups and data recovery</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="saveBackupSettings()" style="display: none;">
+                        <i class="fas fa-save"></i>
+                        Save Backup Settings
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='settings.html'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Settings
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Backup Status Overview -->
+                <div class="backup-overview">
+                    <div class="backup-stats">
+                        <div class="backup-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Last Backup</h3>
+                                <div class="stat-number">2 hours ago</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-check"></i>
+                                    Successful
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backup-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-hdd"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Backup Size</h3>
+                                <div class="stat-number">256 MB</div>
+                                <div class="stat-change">
+                                    <i class="fas fa-arrow-up"></i>
+                                    +12 MB
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backup-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Storage Used</h3>
+                                <div class="stat-number">45%</div>
+                                <div class="stat-change">
+                                    <i class="fas fa-circle"></i>
+                                    2.3 GB / 5 GB
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backup & Restore Settings Grid -->
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fas fa-download"></i> Backup Settings</h3>
+                        <div class="setting-item">
+                            <label>Auto Backup</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoBackupSetting" name="autoBackupSetting" checked>
+                                <label for="autoBackupSetting"></label>
+                            </div>
+                            <small>Automatically create backups at scheduled intervals</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Backup Frequency</label>
+                            <select name="backupFrequencySetting" class="setting-select">
+                                <option value="hourly">Hourly</option>
+                                <option value="daily" selected>Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Backup Time</label>
+                            <input type="time" name="backupTime" value="02:00" class="setting-input">
+                            <small>Time when automatic backups should run</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Retention Period (days)</label>
+                            <input type="number" name="backupRetention" value="30" class="setting-input">
+                            <small>How long to keep backup files</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Compress Backups</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="compressBackups" name="compressBackups" checked>
+                                <label for="compressBackups"></label>
+                            </div>
+                            <small>Reduce backup file size</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Encrypt Backups</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="encryptBackups" name="encryptBackups" checked>
+                                <label for="encryptBackups"></label>
+                            </div>
+                            <small>Secure backup files with encryption</small>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="createBackup()">
+                                <i class="fas fa-download"></i>
+                                Create Backup Now
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-upload"></i> Restore Settings</h3>
+                        <div class="setting-item">
+                            <label>Last Backup</label>
+                            <input type="text" name="lastBackup" value="2024-01-15 02:00:00" class="setting-input" readonly>
+                        </div>
+                        <div class="setting-item">
+                            <label>Backup Size</label>
+                            <input type="text" name="backupSize" value="256 MB" class="setting-input" readonly>
+                        </div>
+                        <div class="setting-item">
+                            <label>Backup Status</label>
+                            <input type="text" name="backupStatus" value="Completed Successfully" class="setting-input" readonly>
+                        </div>
+                        <div class="setting-item">
+                            <label>Upload Backup File</label>
+                            <input type="file" name="backupFile" accept=".zip,.sql,.backup" class="setting-file">
+                            <small>Supported formats: ZIP, SQL, BACKUP</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Restore Options</label>
+                            <select name="restoreOptions" class="setting-select">
+                                <option value="full" selected>Full Restore</option>
+                                <option value="database">Database Only</option>
+                                <option value="files">Files Only</option>
+                                <option value="settings">Settings Only</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="restoreBackup()">
+                                <i class="fas fa-upload"></i>
+                                Restore from Backup
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="downloadBackup()">
+                                <i class="fas fa-download"></i>
+                                Download Latest Backup
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-cloud"></i> Storage Settings</h3>
+                        <div class="setting-item">
+                            <label>Backup Location</label>
+                            <select name="backupLocation" class="setting-select">
+                                <option value="local" selected>Local Storage</option>
+                                <option value="cloud">Cloud Storage</option>
+                                <option value="network">Network Drive</option>
+                                <option value="ftp">FTP Server</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Cloud Provider</label>
+                            <select name="cloudProvider" class="setting-select">
+                                <option value="aws">Amazon S3</option>
+                                <option value="gcp">Google Cloud Storage</option>
+                                <option value="azure">Azure Blob Storage</option>
+                                <option value="dropbox">Dropbox</option>
+                                <option value="onedrive">OneDrive</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Storage Path</label>
+                            <input type="text" name="storagePath" value="/backups/valuation-system/" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Max Storage Space (GB)</label>
+                            <input type="number" name="maxStorageSpace" value="5" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Cleanup Old Backups</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="cleanupOldBackups" name="cleanupOldBackups" checked>
+                                <label for="cleanupOldBackups"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Backup Verification</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="backupVerification" name="backupVerification" checked>
+                                <label for="backupVerification"></label>
+                            </div>
+                            <small>Verify backup integrity after creation</small>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-tools"></i> System Maintenance</h3>
+                        <div class="setting-item">
+                            <label>Maintenance Mode</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="maintenanceMode" name="maintenanceMode" onchange="toggleMaintenanceMode(this.checked)">
+                                <label for="maintenanceMode"></label>
+                            </div>
+                            <small>Restrict access during maintenance</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Maintenance Message</label>
+                            <textarea name="maintenanceMessage" class="setting-textarea" placeholder="Enter maintenance message for users">System is currently under maintenance. Please check back later.</textarea>
+                        </div>
+                        <div class="setting-item">
+                            <label>Clear Cache</label>
+                            <button class="btn btn-secondary" onclick="clearCache()">
+                                <i class="fas fa-broom"></i>
+                                Clear Cache
+                            </button>
+                            <small>Remove temporary files and cached data</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Optimize Database</label>
+                            <button class="btn btn-secondary" onclick="optimizeDatabase()">
+                                <i class="fas fa-database"></i>
+                                Optimize Database
+                            </button>
+                            <small>Improve database performance</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>System Health Check</label>
+                            <button class="btn btn-secondary" onclick="runHealthCheck()">
+                                <i class="fas fa-heartbeat"></i>
+                                Run Health Check
+                            </button>
+                            <small>Check system status and performance</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Log Rotation</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="logRotation" name="logRotation" checked>
+                                <label for="logRotation"></label>
+                            </div>
+                            <small>Automatically rotate log files</small>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-history"></i> Backup History</h3>
+                        <div class="backup-history">
+                            <div class="history-item">
+                                <div class="history-info">
+                                    <div class="history-date">2024-01-15 02:00:00</div>
+                                    <div class="history-size">256 MB</div>
+                                    <div class="history-status success">Completed</div>
+                                </div>
+                                <div class="history-actions">
+                                    <button class="btn-icon" onclick="downloadSpecificBackup('2024-01-15')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-icon" onclick="restoreSpecificBackup('2024-01-15')">
+                                        <i class="fas fa-upload"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-info">
+                                    <div class="history-date">2024-01-14 02:00:00</div>
+                                    <div class="history-size">244 MB</div>
+                                    <div class="history-status success">Completed</div>
+                                </div>
+                                <div class="history-actions">
+                                    <button class="btn-icon" onclick="downloadSpecificBackup('2024-01-14')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-icon" onclick="restoreSpecificBackup('2024-01-14')">
+                                        <i class="fas fa-upload"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="history-item">
+                                <div class="history-info">
+                                    <div class="history-date">2024-01-13 02:00:00</div>
+                                    <div class="history-size">238 MB</div>
+                                    <div class="history-status success">Completed</div>
+                                </div>
+                                <div class="history-actions">
+                                    <button class="btn-icon" onclick="downloadSpecificBackup('2024-01-13')">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <button class="btn-icon" onclick="restoreSpecificBackup('2024-01-13')">
+                                        <i class="fas fa-upload"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="viewAllBackups()">
+                                <i class="fas fa-list"></i>
+                                View All Backups
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-cog"></i> Backup Tools</h3>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="scheduleBackup()">
+                                <i class="fas fa-calendar"></i>
+                                Schedule Backup
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="backupAnalytics()">
+                                <i class="fas fa-chart-line"></i>
+                                Backup Analytics
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="exportBackupLogs()">
+                                <i class="fas fa-download"></i>
+                                Export Backup Logs
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="testBackupConnection()">
+                                <i class="fas fa-plug"></i>
+                                Test Connection
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="backupSettings()">
+                                <i class="fas fa-cog"></i>
+                                Backup Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .backup-overview {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .backup-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .backup-stat {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .stat-content h3 {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.25rem;
+            line-height: 1;
+        }
+
+        .stat-change {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #64748b;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        .backup-history {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .history-date {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .history-size {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .history-status {
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+            width: fit-content;
+        }
+
+        .history-status.success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .history-status.failed {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            background: #f1f5f9;
+            color: #64748b;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: #e2e8f0;
+            color: #1a1a1a;
+        }
+    </style>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/settings.js"></script>
+    <script>
+        // Backup & Restore specific functions
+        function saveBackupSettings() {
+            // Collect all backup settings
+            const backupSettings = {};
+            
+            const inputs = document.querySelectorAll('.setting-input, .setting-select, .setting-textarea');
+            inputs.forEach(input => {
+                if (input.name) {
+                    backupSettings[input.name] = input.value;
+                }
+            });
+            
+            const toggles = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                if (toggle.name) {
+                    backupSettings[toggle.name] = toggle.checked;
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('backupSettings', JSON.stringify(backupSettings));
+            
+            showNotification('Backup settings saved successfully!', 'success');
+            
+            // Hide save button
+            const saveBtn = document.querySelector('.btn-primary');
+            if (saveBtn) {
+                saveBtn.style.display = 'none';
+            }
+        }
+
+        function downloadSpecificBackup(date) {
+            showNotification(`Downloading backup from ${date}...`, 'info');
+            setTimeout(() => {
+                showNotification(`Backup from ${date} downloaded successfully!`, 'success');
+            }, 1500);
+        }
+
+        function restoreSpecificBackup(date) {
+            if (confirm(`Are you sure you want to restore from backup dated ${date}? This will overwrite current data.`)) {
+                showNotification(`Restoring from backup dated ${date}...`, 'info');
+                setTimeout(() => {
+                    showNotification(`Successfully restored from backup dated ${date}!`, 'success');
+                }, 3000);
+            }
+        }
+
+        function viewAllBackups() {
+            showNotification('Opening backup history...', 'info');
+            // This would typically open a modal or navigate to a history page
+        }
+
+        function scheduleBackup() {
+            showNotification('Opening backup scheduler...', 'info');
+            // This would typically open a scheduling interface
+        }
+
+        function backupAnalytics() {
+            showNotification('Opening backup analytics...', 'info');
+            // This would typically open analytics dashboard
+        }
+
+        function exportBackupLogs() {
+            showNotification('Exporting backup logs...', 'info');
+            setTimeout(() => {
+                showNotification('Backup logs exported successfully!', 'success');
+            }, 1500);
+        }
+
+        function testBackupConnection() {
+            showNotification('Testing backup connection...', 'info');
+            setTimeout(() => {
+                showNotification('Backup connection test successful!', 'success');
+            }, 2000);
+        }
+
+        function backupSettings() {
+            showNotification('Backing up settings...', 'info');
+            setTimeout(() => {
+                showNotification('Settings backed up successfully!', 'success');
+            }, 1000);
+        }
+
+        // Load backup settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSettings = localStorage.getItem('backupSettings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                Object.keys(settings).forEach(key => {
+                    const element = document.querySelector(`[name="${key}"]`);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = settings[key];
+                        } else {
+                            element.value = settings[key];
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

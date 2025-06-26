@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Dashboard - Vehicle Valuation System</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Dashboard</h1>
+                    <p>Welcome back, <span id="agencyName">ABC Valuation Agency</span>! Here's what's happening today.</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search requests, officers...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="banner-content">
+                        <div class="banner-text">
+                            <h2>Good Morning, ABC Agency!</h2>
+                            <p>You have <strong>23 pending requests</strong> and <strong>18 cases under QC</strong> that need your attention.</p>
+                        </div>
+                        <div class="banner-actions">
+                            <button class="btn btn-primary" onclick="location.href='requests.html'">
+                                <i class="fas fa-eye"></i>
+                                View Requests
+                            </button>
+                            <button class="btn btn-outline" onclick="location.href='quality-control.html'">
+                                <i class="fas fa-shield-alt"></i>
+                                QC Review
+                            </button>
+                        </div>
+                    </div>
+                    <div class="banner-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Total Requests</h3>
+                            <p class="metric-value">156</p>
+                            <span class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +8.2%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Pending Requests</h3>
+                            <p class="metric-value">23</p>
+                            <span class="metric-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -12.5%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Rejected Cases</h3>
+                            <p class="metric-value">5</p>
+                            <span class="metric-change neutral">
+                                <i class="fas fa-minus"></i>
+                                0%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Under QC</h3>
+                            <p class="metric-value">18</p>
+                            <span class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +15.3%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Completed</h3>
+                            <p class="metric-value">110</p>
+                            <span class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +22.1%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="metric-info">
+                            <h3>Active Officers</h3>
+                            <p class="metric-value">8</p>
+                            <span class="metric-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +1
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Field Officer Performance</h3>
+                            <div class="chart-actions">
+                                <select class="chart-filter">
+                                    <option>Last 30 Days</option>
+                                    <option>Last 7 Days</option>
+                                    <option>Last 3 Months</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="officerPerformanceChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Request Status Distribution</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="statusDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Section -->
+                <div class="bottom-section">
+                    <!-- Live Tracking -->
+                    <div class="recent-activity">
+                        <div class="section-header">
+                            <h3>Live Field Officer Tracking</h3>
+                            <a href="tracking.html" class="view-all">View Map</a>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">John Smith</div>
+                                <div class="activity-desc">Mumbai Central, Maharashtra</div>
+                                <div class="activity-time">
+                                    <span class="status-badge status-in-progress">Online</span>
+                                    <span>2 min ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Sarah Jones</div>
+                                <div class="activity-desc">Pune Station, Maharashtra</div>
+                                <div class="activity-time">
+                                    <span class="status-badge status-in-progress">Online</span>
+                                    <span>5 min ago</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Mike Wilson</div>
+                                <div class="activity-desc">Nagpur City, Maharashtra</div>
+                                <div class="activity-time">
+                                    <span class="status-badge status-pending">Offline</span>
+                                    <span>1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="recent-activity">
+                        <div class="section-header">
+                            <h3>Recent Activity</h3>
+                            <a href="#" class="view-all">View All</a>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Request REQ001 completed</div>
+                                <div class="activity-desc">John Smith completed Honda City valuation</div>
+                                <div class="activity-time">2 minutes ago</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">New field officer assigned</div>
+                                <div class="activity-desc">Sarah Jones assigned to REQ002</div>
+                                <div class="activity-time">1 hour ago</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-shield-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Quality check passed</div>
+                                <div class="activity-desc">REQ002 quality check approved</div>
+                                <div class="activity-time">3 hours ago</div>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-title">Request requires attention</div>
+                                <div class="activity-desc">REQ003 needs additional photos</div>
+                                <div class="activity-time">5 hours ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <div class="section-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div class="actions-grid">
+                        <div class="quick-action-card" onclick="location.href='requests.html'">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-clipboard-list"></i>
+                            </div>
+                            <div class="quick-action-title">View Requests</div>
+                            <div class="quick-action-desc">Check all assigned requests and their status</div>
+                        </div>
+                        
+                        <div class="quick-action-card" onclick="location.href='field-officers.html'">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="quick-action-title">Manage Officers</div>
+                            <div class="quick-action-desc">Add, edit, or remove field officers</div>
+                        </div>
+                        
+                        <div class="quick-action-card" onclick="location.href='quality-control.html'">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="quick-action-title">Quality Control</div>
+                            <div class="quick-action-desc">Review and approve completed valuations</div>
+                        </div>
+                        
+                        <div class="quick-action-card" onclick="location.href='reports.html'">
+                            <div class="quick-action-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="quick-action-title">Generate Reports</div>
+                            <div class="quick-action-desc">Create performance and activity reports</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+</body>
+</html> 

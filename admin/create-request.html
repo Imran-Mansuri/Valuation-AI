@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Request - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="requests.html">Requests</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Create Request</span>
+                    </div>
+                    <h1>Create New Request</h1>
+                    <p>Add a new vehicle valuation request to the system</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">System Administrator</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Form Content -->
+            <div class="content-wrapper">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Vehicle Valuation Request</h2>
+                        <p>Fill in the details below to create a new valuation request</p>
+                    </div>
+
+                    <form class="modern-form" id="createRequestForm">
+                        <!-- Client Information -->
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-user"></i>
+                                Client Information
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="clientName">Client Name *</label>
+                                    <input type="text" id="clientName" name="clientName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="clientPhone">Phone Number *</label>
+                                    <input type="tel" id="clientPhone" name="clientPhone" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="clientEmail">Email Address</label>
+                                    <input type="email" id="clientEmail" name="clientEmail">
+                                </div>
+                                <div class="form-group">
+                                    <label for="clientType">Client Type</label>
+                                    <select id="clientType" name="clientType">
+                                        <option value="individual">Individual</option>
+                                        <option value="dealer">Dealer</option>
+                                        <option value="bank">Bank</option>
+                                        <option value="insurance">Insurance</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="clientAddress">Address</label>
+                                <textarea id="clientAddress" name="clientAddress" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Vehicle Information -->
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-car"></i>
+                                Vehicle Information
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleMake">Make *</label>
+                                    <input type="text" id="vehicleMake" name="vehicleMake" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehicleModel">Model *</label>
+                                    <input type="text" id="vehicleModel" name="vehicleModel" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleYear">Year *</label>
+                                    <input type="number" id="vehicleYear" name="vehicleYear" min="1990" max="2024" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehicleColor">Color</label>
+                                    <input type="text" id="vehicleColor" name="vehicleColor">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleRegNo">Registration Number *</label>
+                                    <input type="text" id="vehicleRegNo" name="vehicleRegNo" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehicleEngineNo">Engine Number</label>
+                                    <input type="text" id="vehicleEngineNo" name="vehicleEngineNo">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleChassisNo">Chassis Number</label>
+                                    <input type="text" id="vehicleChassisNo" name="vehicleChassisNo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="vehicleFuelType">Fuel Type</label>
+                                    <select id="vehicleFuelType" name="vehicleFuelType">
+                                        <option value="petrol">Petrol</option>
+                                        <option value="diesel">Diesel</option>
+                                        <option value="cng">CNG</option>
+                                        <option value="electric">Electric</option>
+                                        <option value="hybrid">Hybrid</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Request Details -->
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-clipboard-list"></i>
+                                Request Details
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="requestType">Request Type *</label>
+                                    <select id="requestType" name="requestType" required>
+                                        <option value="">Select Request Type</option>
+                                        <option value="bank_valuation">Bank Valuation</option>
+                                        <option value="insurance_valuation">Insurance Valuation</option>
+                                        <option value="auction_valuation">Auction Valuation</option>
+                                        <option value="legal_valuation">Legal Valuation</option>
+                                        <option value="personal_valuation">Personal Valuation</option>
+                                        <option value="refinance_request">Re-finance Request</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="priority">Priority</label>
+                                    <select id="priority" name="priority">
+                                        <option value="normal">Normal</option>
+                                        <option value="high">High</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="requestNotes">Additional Notes</label>
+                                <textarea id="requestNotes" name="requestNotes" rows="4" placeholder="Any additional information about the request..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Assignment -->
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-user-tie"></i>
+                                Assignment
+                            </h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="assignedAgency">Assign to Agency</label>
+                                    <select id="assignedAgency" name="assignedAgency">
+                                        <option value="">Select Agency</option>
+                                        <option value="agency1">ABC Valuation Agency</option>
+                                        <option value="agency2">XYZ Assessment Services</option>
+                                        <option value="agency3">Premium Valuers Ltd</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="assignedFieldOfficer">Assign Field Officer</label>
+                                    <select id="assignedFieldOfficer" name="assignedFieldOfficer">
+                                        <option value="">Select Field Officer</option>
+                                        <option value="officer1">John Doe</option>
+                                        <option value="officer2">Jane Smith</option>
+                                        <option value="officer3">Mike Johnson</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Re-finance Request Section (hidden by default) -->
+                        <div class="form-section" id="refinanceSection" style="display:none; margin-top: 24px;">
+                            <h3 class="section-title"><i class="fas fa-sync-alt"></i> Re-finance Request Details</h3>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleCategory">Vehicle Category*</label>
+                                    <select id="vehicleCategory" name="vehicleCategory">
+                                        <option value="4W">4W</option>
+                                        <option value="2W">2W</option>
+                                        <option value="CV">CV</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="refinanceMake">Make*</label>
+                                    <input type="text" id="refinanceMake" name="refinanceMake">
+                                </div>
+                                <div class="form-group">
+                                    <label for="refinanceModel">Model*</label>
+                                    <input type="text" id="refinanceModel" name="refinanceModel">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="variant">Variant*</label>
+                                    <input type="text" id="variant" name="variant">
+                                </div>
+                                <div class="form-group">
+                                    <label for="chassisNo">Chassis No.</label>
+                                    <input type="text" id="chassisNo" name="chassisNo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="engineNo">Engine No.</label>
+                                    <input type="text" id="engineNo" name="engineNo">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="manufacturing">Manufacturing (MM/YYYY)</label>
+                                    <input type="text" id="manufacturing" name="manufacturing" placeholder="MM/YYYY">
+                                </div>
+                                <div class="form-group">
+                                    <label for="applicantName">Applicant Name*</label>
+                                    <input type="text" id="applicantName" name="applicantName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="applicantMobile">Applicant Mobile No.*</label>
+                                    <input type="text" id="applicantMobile" name="applicantMobile">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleRegNo">Vehicle Register No.*</label>
+                                    <input type="text" id="vehicleRegNo" name="vehicleRegNo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="dealNo">Deal No.*</label>
+                                    <input type="text" id="dealNo" name="dealNo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pincode">Pincode*</label>
+                                    <input type="text" id="pincode" name="pincode">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inspectionLocation">Inspection Location*</label>
+                                <textarea id="inspectionLocation" name="inspectionLocation" rows="2"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="state">State*</label>
+                                    <input type="text" id="state" name="state">
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City*</label>
+                                    <input type="text" id="city" name="city">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="rcUpload">RC Upload*</label>
+                                    <input type="file" id="rcUpload" name="rcUpload">
+                                </div>
+                                <div class="form-group">
+                                    <label for="refinanceClientName">Client Name*</label>
+                                    <input type="text" id="refinanceClientName" name="refinanceClientName">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="amountCollection">Amount Collection*</label>
+                                    <select id="amountCollection" name="amountCollection">
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amount">Amount*</label>
+                                    <input type="number" id="amount" name="amount">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="location.href='requests.html'">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="saveDraft()">
+                                <i class="fas fa-save"></i>
+                                Save Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Create Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        // Form handling
+        document.getElementById('createRequestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            createRequest();
+        });
+
+        function createRequest() {
+            // Show loading state
+            const submitBtn = document.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating...';
+            submitBtn.disabled = true;
+
+            // Simulate API call
+            setTimeout(() => {
+                // Show success message
+                showNotification('Request created successfully!', 'success');
+                
+                // Reset form
+                document.getElementById('createRequestForm').reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                // Redirect to requests page
+                setTimeout(() => {
+                    location.href = 'requests.html';
+                }, 1500);
+            }, 2000);
+        }
+
+        function saveDraft() {
+            showNotification('Draft saved successfully!', 'info');
+        }
+
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Show/hide refinance section based on request type
+        const requestType = document.getElementById('requestType');
+        const refinanceSection = document.getElementById('refinanceSection');
+        requestType.addEventListener('change', function() {
+            if (this.value === 'refinance_request') {
+                refinanceSection.style.display = 'block';
+            } else {
+                refinanceSection.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html> 

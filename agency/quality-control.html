@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-quality-control.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Quality Control</h1>
+                    <p>Review and approve completed valuation reports</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search QC reports...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Under QC</h3>
+                            <p class="stat-value">18</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +5 today
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Approved</h3>
+                            <p class="stat-value">142</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12 this week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Rejected</h3>
+                            <p class="stat-value">8</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -2 this week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>QC Score</h3>
+                            <p class="stat-value">94.5%</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +2.1%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">QC Status</label>
+                            <select class="filter-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="pending">Pending Review</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="revision">Needs Revision</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Field Officer</label>
+                            <select class="filter-select" id="officerFilter">
+                                <option value="">All Officers</option>
+                                <option value="john-smith">John Smith</option>
+                                <option value="sarah-jones">Sarah Jones</option>
+                                <option value="mike-wilson">Mike Wilson</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Vehicle Type</label>
+                            <select class="filter-select" id="vehicleFilter">
+                                <option value="">All Vehicles</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Bike</option>
+                                <option value="truck">Truck</option>
+                                <option value="bus">Bus</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-date" id="startDate">
+                                <span class="date-separator">to</span>
+                                <input type="date" class="filter-date" id="endDate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Section -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Quality Control Reports</h3>
+                            <span class="table-count">Showing 18 reports under review</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline btn-sm" onclick="exportData()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-primary" onclick="bulkApprove()">
+                                <i class="fas fa-check"></i>
+                                Bulk Approve
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" id="selectAll">
+                                    </th>
+                                    <th>Request ID</th>
+                                    <th>Vehicle Info</th>
+                                    <th>Field Officer</th>
+                                    <th>QC Status</th>
+                                    <th>Submitted Date</th>
+                                    <th>QC Score</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ001</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Honda City</div>
+                                            <div class="vehicle-number">MH-12-AB-1234</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">John Smith</div>
+                                            <div class="contact-email">john@agency.com</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-pending">Pending Review</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Dec 15, 2024</div>
+                                            <div class="date-time">10:30 AM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Not Reviewed</div>
+                                            <div class="date-time">-</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="reviewReport('REQ001')" title="Review">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="approveReport('REQ001')" title="Approve">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="rejectReport('REQ001')" title="Reject">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="requestRevision('REQ001')" title="Request Revision">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ002</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Maruti Swift</div>
+                                            <div class="vehicle-number">MH-01-CD-5678</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">Sarah Jones</div>
+                                            <div class="contact-email">sarah@agency.com</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-in-progress">Under Review</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Dec 14, 2024</div>
+                                            <div class="date-time">2:15 PM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>85%</div>
+                                            <div class="date-time">Minor issues found</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="reviewReport('REQ002')" title="Review">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="approveReport('REQ002')" title="Approve">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="rejectReport('REQ002')" title="Reject">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="requestRevision('REQ002')" title="Request Revision">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ003</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Hyundai i20</div>
+                                            <div class="vehicle-number">MH-03-EF-9012</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">Mike Wilson</div>
+                                            <div class="contact-email">mike@agency.com</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-completed">Approved</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Dec 13, 2024</div>
+                                            <div class="date-time">9:45 AM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>95%</div>
+                                            <div class="date-time">Excellent quality</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="reviewReport('REQ003')" title="Review">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('REQ003')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="shareReport('REQ003')" title="Share">
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-10 of 18 results
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                                <button class="btn-page">2</button>
+                            </div>
+                            <button class="btn-page">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- QC Review Modal -->
+    <div class="modal-overlay" id="qcReviewModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">QC Review - REQ001</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="qc-review-content">
+                    <div class="qc-section">
+                        <h4>Vehicle Information</h4>
+                        <div class="qc-details">
+                            <p><strong>Make:</strong> Honda</p>
+                            <p><strong>Model:</strong> City</p>
+                            <p><strong>Year:</strong> 2020</p>
+                            <p><strong>Registration:</strong> MH-12-AB-1234</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qc-section">
+                        <h4>Valuation Report</h4>
+                        <div class="qc-details">
+                            <p><strong>Estimated Value:</strong> ₹8,50,000</p>
+                            <p><strong>Condition:</strong> Good</p>
+                            <p><strong>Photos:</strong> 12 images uploaded</p>
+                            <p><strong>Documents:</strong> RC, Insurance, PUC</p>
+                        </div>
+                    </div>
+                    
+                    <div class="qc-section">
+                        <h4>QC Checklist</h4>
+                        <div class="qc-checklist">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Photos are clear and complete
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Vehicle details are accurate
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Valuation is reasonable
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox"> All required documents included
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">QC Comments</label>
+                        <textarea class="input" rows="3" placeholder="Enter QC comments..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-danger" onclick="rejectReport()">Reject</button>
+                <button class="btn btn-warning" onclick="requestRevision()">Request Revision</button>
+                <button class="btn btn-primary" onclick="approveReport()">Approve</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/quality-control.js"></script>
+</body>
+</html> 

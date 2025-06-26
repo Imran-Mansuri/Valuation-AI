@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Officers - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .assign-officers-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 24px;
+            height: calc(100vh - 200px);
+        }
+        
+        .officers-list-section {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .officers-header {
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .officers-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+        }
+        
+        .officers-search {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 200px;
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .officers-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .officer-item {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.2s;
+        }
+        
+        .officer-item:hover {
+            background: #f8fafc;
+        }
+        
+        .officer-item.selected {
+            background: #dbeafe;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .officer-checkbox {
+            width: 20px;
+            height: 20px;
+            accent-color: #3b82f6;
+        }
+        
+        .officer-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .officer-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .officer-info {
+            flex: 1;
+        }
+        
+        .officer-name {
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .officer-id {
+            font-size: 12px;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+        
+        .officer-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        
+        .status-dot.online {
+            background: #10b981;
+        }
+        
+        .status-dot.offline {
+            background: #6b7280;
+        }
+        
+        .status-dot.busy {
+            background: #f59e0b;
+        }
+        
+        .officer-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: #94a3b8;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .assignment-panel {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .assignment-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .area-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .area-location {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+        }
+        
+        .current-assignments {
+            background: rgba(255,255,255,0.2);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .assignment-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .selected-officers {
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .selected-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+        
+        .selected-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .selected-officer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .selected-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        
+        .selected-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .selected-info {
+            flex: 1;
+        }
+        
+        .selected-name {
+            font-weight: 600;
+            color: #1e293b;
+            font-size: 14px;
+        }
+        
+        .selected-id {
+            font-size: 11px;
+            color: #64748b;
+        }
+        
+        .remove-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .assignment-actions {
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn-full {
+            flex: 1;
+        }
+        
+        .bulk-actions {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .bulk-select {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bulk-actions-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 1024px) {
+            .assign-officers-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .assignment-panel {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="service-areas.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Service Areas
+                        </a>
+                    </div>
+                    <h1>Assign Officers</h1>
+                    <p>Assign field officers to <span id="areaName">Mumbai Central</span> service area</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div id="requestAssignmentHeader" style="margin-bottom: 16px;"></div>
+                <div class="assign-officers-container">
+                    <!-- Officers List Section -->
+                    <div class="officers-list-section">
+                        <div class="officers-header">
+                            <div class="officers-title">Available Field Officers</div>
+                            <div class="officers-search">
+                                <input type="text" class="search-input" placeholder="Search officers..." id="searchOfficers">
+                                <select class="filter-select" id="statusFilter">
+                                    <option value="">All Status</option>
+                                    <option value="online">Online</option>
+                                    <option value="offline">Offline</option>
+                                    <option value="busy">Busy</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="bulk-actions">
+                            <div class="bulk-select">
+                                <input type="checkbox" id="selectAllOfficers" class="officer-checkbox">
+                                <label for="selectAllOfficers">Select All</label>
+                            </div>
+                            <div class="bulk-actions-buttons">
+                                <button class="btn btn-outline btn-sm" onclick="assignSelected()">
+                                    <i class="fas fa-plus"></i>
+                                    Assign Selected
+                                </button>
+                                <button class="btn btn-outline btn-sm" onclick="clearSelection()">
+                                    <i class="fas fa-times"></i>
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="officers-list" id="officersList">
+                            <!-- Officers will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Assignment Panel -->
+                    <div class="assignment-panel">
+                        <div class="assignment-header">
+                            <div class="area-name" id="areaNameHeader">Mumbai Central</div>
+                            <div class="area-location" id="areaLocation">Mumbai, Maharashtra</div>
+                            <div class="current-assignments">
+                                <i class="fas fa-users"></i>
+                                <span id="currentAssignments">2 officers currently assigned</span>
+                            </div>
+                        </div>
+                        
+                        <div class="assignment-stats">
+                            <div class="stat-item">
+                                <div class="stat-value" id="totalOfficers">12</div>
+                                <div class="stat-label">Total Officers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="availableOfficers">8</div>
+                                <div class="stat-label">Available</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="assignedOfficers">2</div>
+                                <div class="stat-label">Assigned</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value" id="selectedOfficers">0</div>
+                                <div class="stat-label">Selected</div>
+                            </div>
+                        </div>
+                        
+                        <div class="selected-officers">
+                            <div class="selected-title">Selected Officers</div>
+                            <div class="selected-list" id="selectedOfficersList">
+                                <!-- Selected officers will be shown here -->
+                            </div>
+                        </div>
+                        
+                        <div class="assignment-actions">
+                            <div class="action-buttons">
+                                <button class="btn btn-outline btn-full" onclick="cancelAssignment()">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                                <button class="btn btn-primary btn-full" onclick="saveAssignment()">
+                                    <i class="fas fa-save"></i>
+                                    Save Assignment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script>
+        // Get area ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const areaId = urlParams.get('id') || 'AR001';
+        
+        // Area data mapping
+        const areaData = {
+            'AR001': {
+                name: 'Mumbai Central',
+                location: 'Mumbai, Maharashtra',
+                currentAssignments: 2,
+                totalOfficers: 12,
+                availableOfficers: 8,
+                assignedOfficers: 2
+            },
+            'AR002': {
+                name: 'Pune Station',
+                location: 'Pune, Maharashtra',
+                currentAssignments: 1,
+                totalOfficers: 10,
+                availableOfficers: 7,
+                assignedOfficers: 1
+            },
+            'AR003': {
+                name: 'Nagpur City',
+                location: 'Nagpur, Maharashtra',
+                currentAssignments: 0,
+                totalOfficers: 8,
+                availableOfficers: 6,
+                assignedOfficers: 0
+            }
+        };
+        
+        // Officers data
+        const officersData = [
+            {
+                id: 'FO001',
+                name: 'John Smith',
+                status: 'online',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: 'AR001',
+                experience: '3 years',
+                rating: '4.8',
+                casesCompleted: 156
+            },
+            {
+                id: 'FO002',
+                name: 'Sarah Jones',
+                status: 'online',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: 'AR001',
+                experience: '2 years',
+                rating: '4.6',
+                casesCompleted: 98
+            },
+            {
+                id: 'FO003',
+                name: 'Mike Wilson',
+                status: 'busy',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: 'AR002',
+                experience: '4 years',
+                rating: '4.9',
+                casesCompleted: 203
+            },
+            {
+                id: 'FO004',
+                name: 'Lisa Brown',
+                status: 'offline',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: null,
+                experience: '1 year',
+                rating: '4.3',
+                casesCompleted: 45
+            },
+            {
+                id: 'FO005',
+                name: 'David Lee',
+                status: 'online',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: null,
+                experience: '2 years',
+                rating: '4.7',
+                casesCompleted: 87
+            },
+            {
+                id: 'FO006',
+                name: 'Emma Davis',
+                status: 'online',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: null,
+                experience: '3 years',
+                rating: '4.8',
+                casesCompleted: 134
+            },
+            {
+                id: 'FO007',
+                name: 'James Wilson',
+                status: 'busy',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: null,
+                experience: '2 years',
+                rating: '4.5',
+                casesCompleted: 76
+            },
+            {
+                id: 'FO008',
+                name: 'Maria Garcia',
+                status: 'online',
+                avatar: 'https://via.placeholder.com/48',
+                currentArea: null,
+                experience: '1 year',
+                rating: '4.4',
+                casesCompleted: 52
+            }
+        ];
+        
+        let selectedOfficers = [];
+        let filteredOfficers = [...officersData];
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAreaData();
+            renderOfficersList();
+            updateSelectedOfficers();
+            
+            // Event listeners
+            document.getElementById('searchOfficers').addEventListener('input', filterOfficers);
+            document.getElementById('statusFilter').addEventListener('change', filterOfficers);
+            document.getElementById('selectAllOfficers').addEventListener('change', toggleSelectAll);
+            
+            // Add this to read requestId from URL and display it
+            const params = new URLSearchParams(window.location.search);
+            const requestId = params.get('requestId');
+            if (requestId) {
+                const header = document.getElementById('requestAssignmentHeader');
+                header.innerHTML = `<h2>Assign Officer for Request <span style='color:#2563eb;'>${requestId}</span></h2>`;
+            }
+        });
+        
+        function updateAreaData() {
+            const data = areaData[areaId];
+            if (data) {
+                document.getElementById('areaName').textContent = data.name;
+                document.getElementById('areaNameHeader').textContent = data.name;
+                document.getElementById('areaLocation').textContent = data.location;
+                document.getElementById('currentAssignments').textContent = `${data.currentAssignments} officers currently assigned`;
+                document.getElementById('totalOfficers').textContent = data.totalOfficers;
+                document.getElementById('availableOfficers').textContent = data.availableOfficers;
+                document.getElementById('assignedOfficers').textContent = data.assignedOfficers;
+            }
+        }
+        
+        function renderOfficersList() {
+            const officersList = document.getElementById('officersList');
+            officersList.innerHTML = '';
+            
+            filteredOfficers.forEach(officer => {
+                const isAssigned = officer.currentArea === areaId;
+                const isSelected = selectedOfficers.includes(officer.id);
+                
+                const officerElement = document.createElement('div');
+                officerElement.className = `officer-item ${isSelected ? 'selected' : ''}`;
+                officerElement.innerHTML = `
+                    <input type="checkbox" class="officer-checkbox" id="officer_${officer.id}" 
+                           ${isSelected ? 'checked' : ''} ${isAssigned ? 'disabled' : ''}>
+                    <div class="officer-avatar">
+                        <img src="${officer.avatar}" alt="${officer.name}">
+                    </div>
+                    <div class="officer-info">
+                        <div class="officer-name">${officer.name}</div>
+                        <div class="officer-id">${officer.id}</div>
+                        <div class="officer-status">
+                            <div class="status-dot ${officer.status}"></div>
+                            <span>${officer.status.charAt(0).toUpperCase() + officer.status.slice(1)}</span>
+                            ${isAssigned ? '<span style="color: #3b82f6;">(Currently Assigned)</span>' : ''}
+                        </div>
+                        <div class="officer-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-star"></i>
+                                ${officer.rating}
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-briefcase"></i>
+                                ${officer.experience}
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-check-circle"></i>
+                                ${officer.casesCompleted} cases
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                const checkbox = officerElement.querySelector('.officer-checkbox');
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        selectOfficer(officer.id);
+                    } else {
+                        deselectOfficer(officer.id);
+                    }
+                });
+                
+                officersList.appendChild(officerElement);
+            });
+        }
+        
+        function filterOfficers() {
+            const searchTerm = document.getElementById('searchOfficers').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            
+            filteredOfficers = officersData.filter(officer => {
+                const matchesSearch = officer.name.toLowerCase().includes(searchTerm) || 
+                                    officer.id.toLowerCase().includes(searchTerm);
+                const matchesStatus = !statusFilter || officer.status === statusFilter;
+                
+                return matchesSearch && matchesStatus;
+            });
+            
+            renderOfficersList();
+        }
+        
+        function selectOfficer(officerId) {
+            if (!selectedOfficers.includes(officerId)) {
+                selectedOfficers.push(officerId);
+                updateSelectedOfficers();
+            }
+        }
+        
+        function deselectOfficer(officerId) {
+            selectedOfficers = selectedOfficers.filter(id => id !== officerId);
+            updateSelectedOfficers();
+        }
+        
+        function updateSelectedOfficers() {
+            document.getElementById('selectedOfficers').textContent = selectedOfficers.length;
+            
+            const selectedList = document.getElementById('selectedOfficersList');
+            selectedList.innerHTML = '';
+            
+            selectedOfficers.forEach(officerId => {
+                const officer = officersData.find(o => o.id === officerId);
+                if (officer) {
+                    const selectedElement = document.createElement('div');
+                    selectedElement.className = 'selected-officer';
+                    selectedElement.innerHTML = `
+                        <div class="selected-avatar">
+                            <img src="${officer.avatar}" alt="${officer.name}">
+                        </div>
+                        <div class="selected-info">
+                            <div class="selected-name">${officer.name}</div>
+                            <div class="selected-id">${officer.id}</div>
+                        </div>
+                        <button class="remove-btn" onclick="deselectOfficer('${officer.id}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    selectedList.appendChild(selectedElement);
+                }
+            });
+        }
+        
+        function toggleSelectAll() {
+            const selectAllCheckbox = document.getElementById('selectAllOfficers');
+            const checkboxes = document.querySelectorAll('.officer-checkbox:not(:disabled)');
+            
+            checkboxes.forEach(checkbox => {
+                const officerId = checkbox.id.replace('officer_', '');
+                if (selectAllCheckbox.checked) {
+                    checkbox.checked = true;
+                    selectOfficer(officerId);
+                } else {
+                    checkbox.checked = false;
+                    deselectOfficer(officerId);
+                }
+            });
+        }
+        
+        function assignSelected() {
+            const availableOfficers = filteredOfficers.filter(officer => 
+                !officer.currentArea || officer.currentArea !== areaId
+            );
+            
+            availableOfficers.forEach(officer => {
+                if (!selectedOfficers.includes(officer.id)) {
+                    selectOfficer(officer.id);
+                }
+            });
+            
+            renderOfficersList();
+        }
+        
+        function clearSelection() {
+            selectedOfficers = [];
+            document.getElementById('selectAllOfficers').checked = false;
+            updateSelectedOfficers();
+            renderOfficersList();
+        }
+        
+        function saveAssignment() {
+            if (selectedOfficers.length === 0) {
+                showNotification('Please select at least one officer to assign', 'error');
+                return;
+            }
+            
+            // Update officers data
+            selectedOfficers.forEach(officerId => {
+                const officer = officersData.find(o => o.id === officerId);
+                if (officer) {
+                    officer.currentArea = areaId;
+                }
+            });
+            
+            // Update area data
+            const data = areaData[areaId];
+            if (data) {
+                data.assignedOfficers += selectedOfficers.length;
+                data.currentAssignments = data.assignedOfficers;
+                data.availableOfficers = data.totalOfficers - data.assignedOfficers;
+            }
+            
+            showNotification(`${selectedOfficers.length} officer(s) assigned successfully!`, 'success');
+            
+            setTimeout(() => {
+                window.location.href = 'service-areas.html';
+            }, 2000);
+        }
+        
+        function cancelAssignment() {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                window.location.href = 'service-areas.html';
+            }
+        }
+        
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html> 

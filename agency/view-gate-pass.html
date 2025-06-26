@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Gate Pass - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="gate-passes.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Gate Passes
+                        </a>
+                    </div>
+                    <h1>Gate Pass Details</h1>
+                    <p>View complete gate pass information and access details</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Gate Pass Header -->
+                <div class="request-header">
+                    <div class="request-info">
+                        <div class="request-id-section">
+                            <h2>GP-2024-001</h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Smith (FO001)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-building"></i>
+                                    <span>ABC Motors Ltd</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-outline" onclick="editGatePass('GP-2024-001')">
+                                <i class="fas fa-edit"></i>
+                                Edit Pass
+                            </button>
+                            <button class="btn btn-primary" onclick="downloadPass('GP-2024-001')">
+                                <i class="fas fa-download"></i>
+                                Download Pass
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gate Pass Details Grid -->
+                <div class="request-details-grid">
+                    <!-- Basic Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Gate Pass ID</span>
+                                <span class="info-value">GP-2024-001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Request ID</span>
+                                <span class="info-value">REQ-2024-001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Pass Type</span>
+                                <span class="info-value">Vehicle Inspection</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Issue Date</span>
+                                <span class="info-value">12 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Valid Until</span>
+                                <span class="info-value">19 December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-active">Active</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Field Officer Details -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user"></i> Field Officer Details</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Officer Name</span>
+                                <span class="info-value">John Smith</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Officer ID</span>
+                                <span class="info-value">FO001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Phone Number</span>
+                                <span class="info-value">+91 98765 43210</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email Address</span>
+                                <span class="info-value">john@agency.com</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Service Area</span>
+                                <span class="info-value">Mumbai Central</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Designation</span>
+                                <span class="info-value">Senior Field Officer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Access Details -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-building"></i> Access Details</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Facility Name</span>
+                                <span class="info-value">ABC Motors Ltd</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Facility Address</span>
+                                <span class="info-value">123 Auto Street, Andheri West, Mumbai - 400058</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Contact Person</span>
+                                <span class="info-value">Rahul Sharma</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Contact Phone</span>
+                                <span class="info-value">+91 98765 43211</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Access Hours</span>
+                                <span class="info-value">9:00 AM - 6:00 PM</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Access Level</span>
+                                <span class="info-value">Vehicle Inspection Area</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-car"></i> Vehicle Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Vehicle Model</span>
+                                <span class="info-value">Maruti Swift VDI</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Registration Number</span>
+                                <span class="info-value">MH-12-AB-1234</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Manufacturing Year</span>
+                                <span class="info-value">2020</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Color</span>
+                                <span class="info-value">Pearl White</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Owner Name</span>
+                                <span class="info-value">ABC Motors Ltd</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Purpose</span>
+                                <span class="info-value">Valuation Inspection</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Access Log -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> Access Log</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Entry Recorded</h4>
+                                        <p>Field officer entered the facility</p>
+                                        <span class="timeline-time">Today, 2:30 PM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Exit Recorded</h4>
+                                        <p>Field officer exited the facility</p>
+                                        <span class="timeline-time">Today, 4:15 PM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Entry Recorded</h4>
+                                        <p>Field officer entered the facility</p>
+                                        <span class="timeline-time">Yesterday, 10:00 AM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Exit Recorded</h4>
+                                        <p>Field officer exited the facility</p>
+                                        <span class="timeline-time">Yesterday, 12:30 PM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Gate Pass Documents</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Gate Pass Certificate</h4>
+                                        <p>Official gate pass document</p>
+                                        <span class="document-size">1.2 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-image"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>QR Code</h4>
+                                        <p>Gate pass QR code for scanning</p>
+                                        <span class="document-size">0.5 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Access Instructions</h4>
+                                        <p>Facility access guidelines</p>
+                                        <span class="document-size">0.8 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+</body>
+</html> 

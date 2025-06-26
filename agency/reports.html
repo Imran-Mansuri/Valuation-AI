@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Reports & Analytics</h1>
+                    <p>Comprehensive insights and performance metrics</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search reports...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Requests</h3>
+                            <p class="stat-value">1,247</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12.5%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Completion Rate</h3>
+                            <p class="stat-value">94.2%</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +2.1%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Avg Response Time</h3>
+                            <p class="stat-value">15.3 min</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -8.2%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Quality Score</h3>
+                            <p class="stat-value">4.7/5</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +0.2
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Report Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-select" id="startDate" value="2024-01-01">
+                                <span class="date-separator">to</span>
+                                <input type="date" class="filter-select" id="endDate" value="2024-01-31">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Report Type</label>
+                            <select class="filter-select" id="reportType">
+                                <option value="">All Reports</option>
+                                <option value="performance">Performance Report</option>
+                                <option value="financial">Financial Report</option>
+                                <option value="operational">Operational Report</option>
+                                <option value="quality">Quality Report</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Field Officer</label>
+                            <select class="filter-select" id="officerFilter">
+                                <option value="">All Officers</option>
+                                <option value="john-smith">John Smith</option>
+                                <option value="sarah-jones">Sarah Jones</option>
+                                <option value="mike-wilson">Mike Wilson</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Service Area</label>
+                            <select class="filter-select" id="areaFilter">
+                                <option value="">All Areas</option>
+                                <option value="mumbai">Mumbai Central</option>
+                                <option value="pune">Pune Station</option>
+                                <option value="nagpur">Nagpur City</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Request Volume Trends</h3>
+                            <div class="chart-actions">
+                                <select class="chart-filter" onchange="updateRequestChart()">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly" selected>Monthly</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="requestVolumeChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Field Officer Performance</h3>
+                            <div class="chart-actions">
+                                <select class="chart-filter" onchange="updatePerformanceChart()">
+                                    <option value="completion">Completion Rate</option>
+                                    <option value="quality">Quality Score</option>
+                                    <option value="speed">Response Time</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Service Area Distribution</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="areaDistributionChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3 class="chart-title">Quality Metrics</h3>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="qualityMetricsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Actions -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Generated Reports</h3>
+                            <span class="table-count">Showing 8 recent reports</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline btn-sm" onclick="scheduleReport()">
+                                <i class="fas fa-clock"></i>
+                                Schedule
+                            </button>
+                            <button class="btn btn-primary" onclick="generateReport()">
+                                <i class="fas fa-plus"></i>
+                                Generate Report
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" id="selectAll">
+                                    </th>
+                                    <th>Report Name</th>
+                                    <th>Type</th>
+                                    <th>Generated By</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Monthly Performance Report</div>
+                                            <div class="vehicle-number">December 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge">Performance</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-name">System Admin</div>
+                                            <div class="client-email">Auto-generated</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Dec 31, 2024</div>
+                                            <div class="date-time">11:59 PM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-completed">Ready</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewReport('RPT001')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('RPT001')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="shareReport('RPT001')" title="Share">
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deleteReport('RPT001')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Quality Control Summary</div>
+                                            <div class="vehicle-number">Week 52, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge">Quality</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-name">QC Manager</div>
+                                            <div class="client-email">Manual report</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Dec 30, 2024</div>
+                                            <div class="date-time">3:45 PM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-completed">Ready</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewReport('RPT002')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('RPT002')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="shareReport('RPT002')" title="Share">
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deleteReport('RPT002')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Financial Report</div>
+                                            <div class="vehicle-number">Q4 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge">Financial</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-name">Finance Team</div>
+                                            <div class="client-email">Scheduled report</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Dec 29, 2024</div>
+                                            <div class="date-time">9:15 AM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-in-progress">Generating</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewReport('RPT003')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('RPT003')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="shareReport('RPT003')" title="Share">
+                                                <i class="fas fa-share"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deleteReport('RPT003')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-8 of 8 results
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                            </div>
+                            <button class="btn-page" disabled>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Generate Report Modal -->
+    <div class="modal-overlay" id="reportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Generate New Report</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="reportForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Report Name</label>
+                            <input type="text" class="input" placeholder="Enter report name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Report Type</label>
+                            <select class="input" required>
+                                <option value="">Select Type</option>
+                                <option value="performance">Performance Report</option>
+                                <option value="financial">Financial Report</option>
+                                <option value="operational">Operational Report</option>
+                                <option value="quality">Quality Report</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Start Date</label>
+                            <input type="date" class="input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">End Date</label>
+                            <input type="date" class="input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Include Sections</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Executive Summary
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Performance Metrics
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Charts & Graphs
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox"> Detailed Analysis
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="input" rows="3" placeholder="Enter report description"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="generateReport()">Generate Report</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/reports.js"></script>
+</body>
+</html> 

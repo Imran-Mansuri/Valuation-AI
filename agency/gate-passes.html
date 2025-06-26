@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gate Passes - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-gate-passes.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Gate Passes</h1>
+                    <p>Manage access passes for field officers</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search gate passes...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Passes</h3>
+                            <p class="stat-value">24</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Approval</h3>
+                            <p class="stat-value">5</p>
+                            <span class="stat-change neutral">
+                                <i class="fas fa-minus"></i>
+                                No change
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Approved Today</h3>
+                            <p class="stat-value">8</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +3
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Expired</h3>
+                            <p class="stat-value">3</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                +1
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="pending">Pending</option>
+                                <option value="expired">Expired</option>
+                                <option value="revoked">Revoked</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Field Officer</label>
+                            <select class="filter-select" id="officerFilter">
+                                <option value="">All Officers</option>
+                                <option value="FO-001">John Smith</option>
+                                <option value="FO-002">Sarah Johnson</option>
+                                <option value="FO-003">Mike Wilson</option>
+                                <option value="FO-004">Lisa Brown</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="filter-select" id="locationFilter">
+                                <option value="">All Locations</option>
+                                <option value="north">North Zone</option>
+                                <option value="south">South Zone</option>
+                                <option value="east">East Zone</option>
+                                <option value="west">West Zone</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-select" id="startDate">
+                                <span class="date-separator">to</span>
+                                <input type="date" class="filter-select" id="endDate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Section -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>All Gate Passes</h3>
+                            <span class="table-count">Showing 24 passes</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline btn-sm" onclick="exportPasses()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-primary" onclick="openGeneratePassModal()">
+                                <i class="fas fa-plus"></i>
+                                Generate Pass
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" id="selectAll">
+                                    </th>
+                                    <th>Pass ID</th>
+                                    <th>Field Officer</th>
+                                    <th>Location</th>
+                                    <th>Valid From</th>
+                                    <th>Valid Until</th>
+                                    <th>Status</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" name="passSelect" value="GP-001">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">GP-001</span>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">John Smith</div>
+                                            <div class="contact-email">FO-001</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">North Zone - Industrial Area</div>
+                                            <div class="vehicle-number">Industrial</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 15, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 22, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-completed">Active</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewPass('GP-001')" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="extendPass('GP-001')" title="Extend Pass">
+                                                <i class="fas fa-clock"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="revokePass('GP-001')" title="Revoke Pass">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" name="passSelect" value="GP-002">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">GP-002</span>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">Sarah Johnson</div>
+                                            <div class="contact-email">FO-002</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">South Zone - Commercial District</div>
+                                            <div class="vehicle-number">Commercial</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 16, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 23, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-in-progress">Pending</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewPass('GP-002')" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="approvePass('GP-002')" title="Approve Pass">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="rejectPass('GP-002')" title="Reject Pass">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" name="passSelect" value="GP-003">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">GP-003</span>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">Mike Wilson</div>
+                                            <div class="contact-email">FO-003</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">East Zone - Residential Area</div>
+                                            <div class="vehicle-number">Residential</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 10, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 17, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-pending">Expired</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewPass('GP-003')" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="renewPass('GP-003')" title="Renew Pass">
+                                                <i class="fas fa-redo"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deletePass('GP-003')" title="Delete Pass">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" name="passSelect" value="GP-004">
+                                    </td>
+                                    <td>
+                                        <span class="request-id">GP-004</span>
+                                    </td>
+                                    <td>
+                                        <div class="contact-info">
+                                            <div class="contact-name">Lisa Brown</div>
+                                            <div class="contact-email">FO-004</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">West Zone - Business Park</div>
+                                            <div class="vehicle-number">Business</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 14, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Jan 21, 2024</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-completed">Active</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewPass('GP-004')" title="View Details">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="extendPass('GP-004')" title="Extend Pass">
+                                                <i class="fas fa-clock"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="revokePass('GP-004')" title="Revoke Pass">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-4 of 24 results
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                                <button class="btn-page">2</button>
+                                <button class="btn-page">3</button>
+                                <span class="page-ellipsis">...</span>
+                                <button class="btn-page">6</button>
+                            </div>
+                            <button class="btn-page">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <div class="section-header">
+                        <h3>Recent Pass Activity</h3>
+                        <a href="#" class="view-all">View All</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon success">
+                                <i class="fas fa-check"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <h4 class="activity-title">GP-002 approved for Sarah Johnson</h4>
+                                    <span class="activity-time">10 minutes ago</span>
+                                </div>
+                                <p class="activity-desc">Gate pass has been approved and is now active</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon info">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <h4 class="activity-title">GP-005 generated for Alex Chen</h4>
+                                    <span class="activity-time">30 minutes ago</span>
+                                </div>
+                                <p class="activity-desc">New gate pass has been created and is pending approval</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon warning">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="activity-content">
+                                <div class="activity-header">
+                                    <h4 class="activity-title">GP-003 expired for Mike Wilson</h4>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                                <p class="activity-desc">Gate pass has expired and needs renewal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Generate Pass Modal -->
+    <div class="modal-overlay" id="generatePassModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Generate Gate Pass</h3>
+                <button class="modal-close" onclick="closeModal('generatePassModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="generatePassForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Field Officer</label>
+                            <select class="input" name="officer" required>
+                                <option value="">Select Officer</option>
+                                <option value="FO-001">John Smith</option>
+                                <option value="FO-002">Sarah Johnson</option>
+                                <option value="FO-003">Mike Wilson</option>
+                                <option value="FO-004">Lisa Brown</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Location</label>
+                            <select class="input" name="location" required>
+                                <option value="">Select Location</option>
+                                <option value="north-industrial">North Zone - Industrial Area</option>
+                                <option value="south-commercial">South Zone - Commercial District</option>
+                                <option value="east-residential">East Zone - Residential Area</option>
+                                <option value="west-business">West Zone - Business Park</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Valid From</label>
+                            <input type="date" class="input" name="validFrom" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Valid Until</label>
+                            <input type="date" class="input" name="validUntil" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Purpose</label>
+                        <textarea class="input" name="purpose" rows="3" placeholder="Describe the purpose of access..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Special Instructions</label>
+                        <textarea class="input" name="instructions" rows="2" placeholder="Any special instructions..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('generatePassModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="generatePass()">Generate Pass</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/gate-passes.js"></script>
+</body>
+</html> 

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Officer Messaging - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-tracking.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .chat-container {
+            display: flex;
+            height: calc(100vh - 200px);
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .chat-sidebar {
+            width: 300px;
+            border-right: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+        
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            background: #fff;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+        
+        .chat-input {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            background: #fff;
+        }
+        
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .message.sent {
+            justify-content: flex-end;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            position: relative;
+        }
+        
+        .message.received .message-content {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            margin-right: auto;
+        }
+        
+        .message.sent .message-content {
+            background: #3b82f6;
+            color: #fff;
+            margin-left: auto;
+        }
+        
+        .message-time {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .message.sent .message-time {
+            text-align: right;
+        }
+        
+        .template-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .template-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .template-item.active {
+            background: #dbeafe;
+            border-left: 3px solid #3b82f6;
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .quick-action-btn {
+            padding: 8px 16px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            background: #fff;
+            color: #374151;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-action-btn:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+        
+        .message-input-container {
+            display: flex;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        
+        .message-input {
+            flex: 1;
+            min-height: 40px;
+            max-height: 120px;
+            padding: 10px 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+        }
+        
+        .message-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
+        .send-btn {
+            padding: 10px 20px;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .send-btn:hover {
+            background: #2563eb;
+        }
+        
+        .send-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .officer-status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .officer-status-indicator.online {
+            background: #10b981;
+        }
+        
+        .officer-status-indicator.offline {
+            background: #6b7280;
+        }
+        
+        .typing-indicator {
+            display: none;
+            padding: 10px 20px;
+            color: #6b7280;
+            font-style: italic;
+        }
+        
+        .typing-indicator.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="tracking.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Tracking
+                        </a>
+                    </div>
+                    <h1>Officer Messaging</h1>
+                    <p>Communicate with field officers in real-time</p>
+                </div>
+                <div class="header-right">
+                    <div class="header-actions">
+                        <button class="btn btn-outline" onclick="openCallModal()">
+                            <i class="fas fa-phone"></i>
+                            Call
+                        </button>
+                        <button class="btn btn-primary" onclick="openTrackingModal()">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Track
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="chat-container">
+                    <!-- Chat Sidebar -->
+                    <div class="chat-sidebar">
+                        <div class="sidebar-header" style="padding: 20px; border-bottom: 1px solid #e5e7eb;">
+                            <h3>Message Templates</h3>
+                        </div>
+                        
+                        <div class="template-list">
+                            <div class="template-item" onclick="useTemplate('urgent')">
+                                <h4>Urgent Request</h4>
+                                <p>Please respond immediately to the urgent request...</p>
+                            </div>
+                            
+                            <div class="template-item" onclick="useTemplate('reminder')">
+                                <h4>Reminder</h4>
+                                <p>This is a reminder about your pending tasks...</p>
+                            </div>
+                            
+                            <div class="template-item" onclick="useTemplate('update')">
+                                <h4>Status Update</h4>
+                                <p>Please provide an update on your current task...</p>
+                            </div>
+                            
+                            <div class="template-item" onclick="useTemplate('location')">
+                                <h4>Location Request</h4>
+                                <p>Please share your current location...</p>
+                            </div>
+                            
+                            <div class="template-item" onclick="useTemplate('break')">
+                                <h4>Break Reminder</h4>
+                                <p>Don't forget to take your scheduled break...</p>
+                            </div>
+                            
+                            <div class="template-item" onclick="useTemplate('completion')">
+                                <h4>Task Completion</h4>
+                                <p>Please confirm when you complete the current task...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Main Area -->
+                    <div class="chat-main">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="officer-info">
+                                <div class="officer-avatar">
+                                    <img src="https://via.placeholder.com/40" alt="Officer" id="officerAvatar">
+                                    <div class="officer-status-indicator online" id="statusIndicator"></div>
+                                </div>
+                                <div class="officer-details">
+                                    <h3 id="officerName">John Smith</h3>
+                                    <p id="officerStatus">Online - Last seen 2 minutes ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages -->
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message received">
+                                <div class="message-content">
+                                    <p>Good morning! I'm starting my shift now.</p>
+                                    <div class="message-time">9:00 AM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="message sent">
+                                <div class="message-content">
+                                    <p>Good morning! Please check your assigned tasks for today.</p>
+                                    <div class="message-time">9:02 AM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="message received">
+                                <div class="message-content">
+                                    <p>I have 3 vehicle inspections scheduled. Starting with REQ001 at Mumbai Central.</p>
+                                    <div class="message-time">9:05 AM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="message sent">
+                                <div class="message-content">
+                                    <p>Perfect! Please keep me updated on the progress.</p>
+                                    <div class="message-time">9:06 AM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="message received">
+                                <div class="message-content">
+                                    <p>Currently at Mumbai Central. Starting inspection of Honda City (REQ001).</p>
+                                    <div class="message-time">10:30 AM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="typing-indicator" id="typingIndicator">
+                                <span id="officerNameTyping">John Smith</span> is typing...
+                            </div>
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="chat-input">
+                            <div class="quick-actions">
+                                <button class="quick-action-btn" onclick="sendQuickMessage('Please share your location')">
+                                    📍 Location
+                                </button>
+                                <button class="quick-action-btn" onclick="sendQuickMessage('How is the inspection going?')">
+                                    ❓ Status
+                                </button>
+                                <button class="quick-action-btn" onclick="sendQuickMessage('Take a break when needed')">
+                                    ☕ Break
+                                </button>
+                                <button class="quick-action-btn" onclick="sendQuickMessage('Stay safe!')">
+                                    🛡️ Safety
+                                </button>
+                            </div>
+                            
+                            <div class="message-input-container">
+                                <textarea 
+                                    class="message-input" 
+                                    id="messageInput" 
+                                    placeholder="Type your message..."
+                                    rows="1"
+                                    onkeydown="handleKeyDown(event)"
+                                    oninput="autoResize(this)"
+                                ></textarea>
+                                <button class="send-btn" id="sendBtn" onclick="sendMessage()" disabled>
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Call Modal -->
+    <div class="modal-overlay" id="callModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Call Officer</h3>
+                <button class="modal-close" onclick="closeCallModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="call-info">
+                    <div class="officer-avatar-large">
+                        <img src="https://via.placeholder.com/80" alt="Officer" id="callOfficerAvatar">
+                    </div>
+                    <h3 id="callOfficerName">John Smith</h3>
+                    <p id="callOfficerId">FO001</p>
+                    <div class="call-status" id="callStatus">
+                        <span class="status-badge status-active">Online</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeCallModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="initiateCall()">
+                    <i class="fas fa-phone"></i>
+                    Call Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tracking Modal -->
+    <div class="modal-overlay" id="trackingModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Track Officer</h3>
+                <button class="modal-close" onclick="closeTrackingModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tracking-info">
+                    <div class="officer-avatar-large">
+                        <img src="https://via.placeholder.com/80" alt="Officer" id="trackOfficerAvatar">
+                    </div>
+                    <h3 id="trackOfficerName">John Smith</h3>
+                    <p id="trackOfficerId">FO001</p>
+                    <div class="tracking-status" id="trackingStatus">
+                        <span class="status-badge status-active">Online</span>
+                    </div>
+                    <div class="tracking-location" id="trackingLocation">
+                        <p>Mumbai Central, Maharashtra</p>
+                        <p class="coordinates">19.0760° N, 72.8777° E</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeTrackingModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="openTrackingPage()">
+                    <i class="fas fa-map-marker-alt"></i>
+                    View on Map
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script>
+        // Get officer ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const officerId = urlParams.get('id') || 'FO001';
+        
+        // Officer data mapping
+        const officerData = {
+            'FO001': {
+                name: 'John Smith',
+                status: 'Online',
+                lastSeen: '2 minutes ago',
+                location: 'Mumbai Central, Maharashtra',
+                coordinates: '19.0760° N, 72.8777° E',
+                avatar: 'https://via.placeholder.com/80'
+            },
+            'FO002': {
+                name: 'Sarah Jones',
+                status: 'Online',
+                lastSeen: '5 minutes ago',
+                location: 'Pune Station, Maharashtra',
+                coordinates: '18.5204° N, 73.8567° E',
+                avatar: 'https://via.placeholder.com/80'
+            },
+            'FO003': {
+                name: 'Mike Wilson',
+                status: 'Offline',
+                lastSeen: '1 hour ago',
+                location: 'Nagpur City, Maharashtra',
+                coordinates: '21.1458° N, 79.0882° E',
+                avatar: 'https://via.placeholder.com/80'
+            }
+        };
+        
+        // Update page with officer data
+        function updateOfficerData() {
+            const data = officerData[officerId];
+            if (data) {
+                document.getElementById('officerName').textContent = data.name;
+                document.getElementById('officerStatus').textContent = `${data.status} - Last seen ${data.lastSeen}`;
+                document.getElementById('officerAvatar').src = data.avatar;
+                document.getElementById('callOfficerName').textContent = data.name;
+                document.getElementById('callOfficerId').textContent = officerId;
+                document.getElementById('callOfficerAvatar').src = data.avatar;
+                document.getElementById('trackOfficerName').textContent = data.name;
+                document.getElementById('trackOfficerId').textContent = officerId;
+                document.getElementById('trackOfficerAvatar').src = data.avatar;
+                document.getElementById('trackingLocation').innerHTML = `
+                    <p>${data.location}</p>
+                    <p class="coordinates">${data.coordinates}</p>
+                `;
+                document.getElementById('officerNameTyping').textContent = data.name;
+                
+                // Update status indicators
+                const statusIndicator = document.getElementById('statusIndicator');
+                const callStatus = document.getElementById('callStatus');
+                const trackingStatus = document.getElementById('trackingStatus');
+                
+                statusIndicator.className = `officer-status-indicator ${data.status.toLowerCase()}`;
+                callStatus.innerHTML = `<span class="status-badge status-${data.status.toLowerCase()}">${data.status}</span>`;
+                trackingStatus.innerHTML = `<span class="status-badge status-${data.status.toLowerCase()}">${data.status}</span>`;
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateOfficerData();
+            scrollToBottom();
+        });
+        
+        // Message functions
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message) {
+                addMessage(message, 'sent');
+                input.value = '';
+                autoResize(input);
+                updateSendButton();
+                
+                // Simulate typing indicator
+                showTypingIndicator();
+                setTimeout(() => {
+                    hideTypingIndicator();
+                    // Simulate response
+                    setTimeout(() => {
+                        addMessage('Message received. I will respond shortly.', 'received');
+                    }, 1000);
+                }, 2000);
+            }
+        }
+        
+        function addMessage(text, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-content">
+                    <p>${text}</p>
+                    <div class="message-time">${timeString}</div>
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+        
+        function sendQuickMessage(text) {
+            addMessage(text, 'sent');
+        }
+        
+        function useTemplate(type) {
+            const templates = {
+                'urgent': 'URGENT: Please respond immediately to the urgent request. This requires your immediate attention.',
+                'reminder': 'REMINDER: This is a reminder about your pending tasks. Please check your task list.',
+                'update': 'Please provide an update on your current task status and estimated completion time.',
+                'location': 'Please share your current location and confirm your whereabouts.',
+                'break': 'Don\'t forget to take your scheduled break. Your safety and well-being are important.',
+                'completion': 'Please confirm when you complete the current task and provide a brief summary.'
+            };
+            
+            const messageInput = document.getElementById('messageInput');
+            messageInput.value = templates[type] || '';
+            messageInput.focus();
+            autoResize(messageInput);
+            updateSendButton();
+        }
+        
+        function handleKeyDown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+            updateSendButton();
+        }
+        
+        function updateSendButton() {
+            const input = document.getElementById('messageInput');
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = !input.value.trim();
+        }
+        
+        function scrollToBottom() {
+            const messagesContainer = document.getElementById('chatMessages');
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function showTypingIndicator() {
+            document.getElementById('typingIndicator').classList.add('show');
+            scrollToBottom();
+        }
+        
+        function hideTypingIndicator() {
+            document.getElementById('typingIndicator').classList.remove('show');
+        }
+        
+        // Modal functions
+        function openCallModal() {
+            document.getElementById('callModal').style.display = 'flex';
+        }
+        
+        function closeCallModal() {
+            document.getElementById('callModal').style.display = 'none';
+        }
+        
+        function openTrackingModal() {
+            document.getElementById('trackingModal').style.display = 'flex';
+        }
+        
+        function closeTrackingModal() {
+            document.getElementById('trackingModal').style.display = 'none';
+        }
+        
+        function initiateCall() {
+            console.log('Initiating call to', officerId);
+            closeCallModal();
+        }
+        
+        function openTrackingPage() {
+            window.location.href = `officer-track.html?id=${officerId}`;
+        }
+    </script>
+</body>
+</html> 

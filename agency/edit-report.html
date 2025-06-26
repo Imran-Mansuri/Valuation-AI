@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Report - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="reports.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Reports
+                        </a>
+                    </div>
+                    <h1>Edit Report</h1>
+                    <p>Update report configuration and parameters</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2>Edit Report - Monthly Performance Report</h2>
+                        <p>Update the report configuration and generation parameters</p>
+                    </div>
+
+                    <form class="modern-form" id="editReportForm">
+                        <!-- Basic Information Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                <h3>Basic Information</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Report ID</label>
+                                    <input type="text" value="REP-2024-001" readonly>
+                                    <small>Report ID cannot be changed</small>
+                                </div>
+                                <div class="form-group">
+                                    <label>Report Type</label>
+                                    <select required>
+                                        <option value="monthly-performance" selected>Monthly Performance Report</option>
+                                        <option value="quarterly-performance">Quarterly Performance Report</option>
+                                        <option value="annual-performance">Annual Performance Report</option>
+                                        <option value="field-officer-performance">Field Officer Performance Report</option>
+                                        <option value="quality-control-report">Quality Control Report</option>
+                                        <option value="financial-report">Financial Report</option>
+                                        <option value="custom-report">Custom Report</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Report Title</label>
+                                    <input type="text" value="Monthly Performance Report - December 2024" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select required>
+                                        <option value="draft">Draft</option>
+                                        <option value="in-progress">In Progress</option>
+                                        <option value="completed" selected>Completed</option>
+                                        <option value="published">Published</option>
+                                        <option value="archived">Archived</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Report Period Start</label>
+                                    <input type="date" value="2024-12-01" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Report Period End</label>
+                                    <input type="date" value="2024-12-31" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Generated Date</label>
+                                    <input type="date" value="2025-01-01" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Generated By</label>
+                                    <input type="text" value="Admin User" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Report Configuration Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Report Configuration</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Report Format</label>
+                                    <select required>
+                                        <option value="pdf" selected>PDF</option>
+                                        <option value="excel">Excel</option>
+                                        <option value="word">Word</option>
+                                        <option value="html">HTML</option>
+                                        <option value="csv">CSV</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Report Template</label>
+                                    <select required>
+                                        <option value="standard" selected>Standard Template</option>
+                                        <option value="executive">Executive Summary</option>
+                                        <option value="detailed">Detailed Analysis</option>
+                                        <option value="custom">Custom Template</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Include Charts</label>
+                                    <select required>
+                                        <option value="yes" selected>Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Include Tables</label>
+                                    <select required>
+                                        <option value="yes" selected>Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Include Executive Summary</label>
+                                    <select required>
+                                        <option value="yes" selected>Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Include Recommendations</label>
+                                    <select required>
+                                        <option value="yes" selected>Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Selection Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-database"></i>
+                                <h3>Data Selection</h3>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Include Data Categories</label>
+                                <div class="data-categories-list">
+                                    <div class="category-item">
+                                        <input type="checkbox" id="performance-metrics" checked>
+                                        <label for="performance-metrics">Performance Metrics</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="financial-data" checked>
+                                        <label for="financial-data">Financial Data</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="field-officer-stats" checked>
+                                        <label for="field-officer-stats">Field Officer Statistics</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="quality-control" checked>
+                                        <label for="quality-control">Quality Control Metrics</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="service-area-performance" checked>
+                                        <label for="service-area-performance">Service Area Performance</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="customer-satisfaction" checked>
+                                        <label for="customer-satisfaction">Customer Satisfaction</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="comparative-analysis">
+                                        <label for="comparative-analysis">Comparative Analysis</label>
+                                    </div>
+                                    <div class="category-item">
+                                        <input type="checkbox" id="trends-analysis">
+                                        <label for="trends-analysis">Trends Analysis</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Service Areas to Include</label>
+                                    <select multiple>
+                                        <option value="mumbai-central" selected>Mumbai Central</option>
+                                        <option value="andheri-west" selected>Andheri West</option>
+                                        <option value="pune-station" selected>Pune Station</option>
+                                        <option value="nagpur-city" selected>Nagpur City</option>
+                                        <option value="nashik" selected>Nashik</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Field Officers to Include</label>
+                                    <select multiple>
+                                        <option value="all" selected>All Officers</option>
+                                        <option value="top-performers">Top Performers Only</option>
+                                        <option value="specific">Specific Officers</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Report Sections Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-list"></i>
+                                <h3>Report Sections</h3>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Include Report Sections</label>
+                                <div class="sections-list">
+                                    <div class="section-item">
+                                        <input type="checkbox" id="executive-summary" checked>
+                                        <label for="executive-summary">Executive Summary</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="performance-overview" checked>
+                                        <label for="performance-overview">Performance Overview</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="financial-summary" checked>
+                                        <label for="financial-summary">Financial Summary</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="field-officer-analysis" checked>
+                                        <label for="field-officer-analysis">Field Officer Analysis</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="quality-control-report" checked>
+                                        <label for="quality-control-report">Quality Control Report</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="service-area-breakdown" checked>
+                                        <label for="service-area-breakdown">Service Area Breakdown</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="recommendations" checked>
+                                        <label for="recommendations">Recommendations</label>
+                                    </div>
+                                    <div class="section-item">
+                                        <input type="checkbox" id="appendix">
+                                        <label for="appendix">Appendix</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Custom Sections</label>
+                                <textarea rows="3" placeholder="Enter any custom sections to include in the report">1. Market Analysis
+2. Competitor Comparison
+3. Future Projections</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Distribution Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-share"></i>
+                                <h3>Report Distribution</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Auto-Generate</label>
+                                    <select required>
+                                        <option value="manual">Manual</option>
+                                        <option value="daily">Daily</option>
+                                        <option value="weekly">Weekly</option>
+                                        <option value="monthly" selected>Monthly</option>
+                                        <option value="quarterly">Quarterly</option>
+                                        <option value="annually">Annually</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Distribution Method</label>
+                                    <select required>
+                                        <option value="email" selected>Email</option>
+                                        <option value="download">Download Only</option>
+                                        <option value="both">Both</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Recipients</label>
+                                <textarea rows="3" placeholder="Enter email addresses of report recipients">admin@abcagency.com
+manager@abcagency.com
+finance@abcagency.com</textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email Subject</label>
+                                <input type="text" value="Monthly Performance Report - December 2024" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Email Message</label>
+                                <textarea rows="4" placeholder="Enter email message to accompany the report">Please find attached the monthly performance report for December 2024. This report contains comprehensive analysis of our operations, performance metrics, and recommendations for improvement.
+
+Best regards,
+ABC Agency Team</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="cancelEdit()">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="viewReport('REP-2024-001')">
+                                <i class="fas fa-eye"></i>
+                                View Report
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script>
+        // Form submission handler
+        document.getElementById('editReportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Handle form submission
+            showNotification('Report configuration updated successfully!', 'success');
+            setTimeout(() => {
+                window.location.href = 'reports.html';
+            }, 2000);
+        });
+
+        function cancelEdit() {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                window.location.href = 'reports.html';
+            }
+        }
+
+        function viewReport(reportId) {
+            window.location.href = `view-report.html?id=${reportId}`;
+        }
+
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html> 

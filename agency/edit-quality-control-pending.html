@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quality Control - Pending Review - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-quality-control.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="quality-control.html">Quality Control</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="view-quality-control-pending.html">REQ001</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Edit QC</span>
+                    </div>
+                    <h1>Edit Quality Control Review</h1>
+                    <p>Update QC assessment for REQ001</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Edit Form -->
+                <div class="form-container">
+                    <form id="editQCForm" class="modern-form">
+                        <!-- Basic Information Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                <h3>Basic Information</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Request ID</label>
+                                    <input type="text" class="input" value="REQ001" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Vehicle Model</label>
+                                    <input type="text" class="input" value="Honda City" readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Registration Number</label>
+                                    <input type="text" class="input" value="MH-12-AB-1234" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Field Officer</label>
+                                    <input type="text" class="input" value="John Smith (FO001)" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QC Assessment Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-clipboard-check"></i>
+                                <h3>QC Assessment</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">QC Status</label>
+                                    <select class="input" id="qcStatus" required>
+                                        <option value="pending" selected>Pending Review</option>
+                                        <option value="under-review">Under Review</option>
+                                        <option value="approved">Approved</option>
+                                        <option value="rejected">Rejected</option>
+                                        <option value="revision">Needs Revision</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Priority Level</label>
+                                    <select class="input" id="priorityLevel">
+                                        <option value="low">Low</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="high">High</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- QC Checklist Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-tasks"></i>
+                                <h3>QC Checklist</h3>
+                            </div>
+                            <div class="qc-checklist">
+                                <div class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="photosComplete" checked>
+                                        <span>All required photos are present and clear</span>
+                                    </label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="vehicleDetails" checked>
+                                        <span>Vehicle details match with RC book</span>
+                                    </label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="valuationAccurate" checked>
+                                        <span>Valuation calculation is accurate</span>
+                                    </label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="documentsScanned">
+                                        <span>All documents are properly scanned</span>
+                                    </label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="reportFormat">
+                                        <span>Report format follows standards</span>
+                                    </label>
+                                </div>
+                                <div class="checklist-item">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="noDiscrepancies">
+                                        <span>No discrepancies in information</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quality Metrics Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-chart-bar"></i>
+                                <h3>Quality Metrics</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Documentation Quality (0-100)</label>
+                                    <input type="number" class="input" id="docQuality" value="85" min="0" max="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Photo Quality (0-100)</label>
+                                    <input type="number" class="input" id="photoQuality" value="90" min="0" max="100">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Data Accuracy (0-100)</label>
+                                    <input type="number" class="input" id="dataAccuracy" value="88" min="0" max="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Completeness (0-100)</label>
+                                    <input type="number" class="input" id="completeness" value="92" min="0" max="100">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Issues & Recommendations Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Issues & Recommendations</h3>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Critical Issues</label>
+                                <textarea class="input" id="criticalIssues" rows="3" placeholder="Describe any critical issues found..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Minor Issues</label>
+                                <textarea class="input" id="minorIssues" rows="3" placeholder="Describe any minor issues found..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Suggestions for Improvement</label>
+                                <textarea class="input" id="suggestions" rows="3" placeholder="Provide suggestions for improvement..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- QC Comments Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-comment"></i>
+                                <h3>QC Comments</h3>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Review Comments</label>
+                                <textarea class="input" id="qcComments" rows="4" placeholder="Enter detailed QC review comments..."></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Action Required</label>
+                                    <select class="input" id="actionRequired">
+                                        <option value="">Select Action</option>
+                                        <option value="approve">Approve</option>
+                                        <option value="reject">Reject</option>
+                                        <option value="revision" selected>Request Revision</option>
+                                        <option value="hold">Put on Hold</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Due Date for Revision</label>
+                                    <input type="date" class="input" id="revisionDueDate">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="cancelEdit()">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="saveAsDraft()">
+                                <i class="fas fa-save"></i>
+                                Save as Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check"></i>
+                                Update QC Review
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/quality-control.js"></script>
+    <script>
+        // Form submission handler
+        document.getElementById('editQCForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            updateQCReview();
+        });
+
+        function updateQCReview() {
+            // Collect form data
+            const formData = {
+                requestId: 'REQ001',
+                qcStatus: document.getElementById('qcStatus').value,
+                priorityLevel: document.getElementById('priorityLevel').value,
+                docQuality: document.getElementById('docQuality').value,
+                photoQuality: document.getElementById('photoQuality').value,
+                dataAccuracy: document.getElementById('dataAccuracy').value,
+                completeness: document.getElementById('completeness').value,
+                criticalIssues: document.getElementById('criticalIssues').value,
+                minorIssues: document.getElementById('minorIssues').value,
+                suggestions: document.getElementById('suggestions').value,
+                qcComments: document.getElementById('qcComments').value,
+                actionRequired: document.getElementById('actionRequired').value,
+                revisionDueDate: document.getElementById('revisionDueDate').value
+            };
+
+            console.log('Updating QC Review:', formData);
+            
+            // Show success message
+            showNotification('QC Review updated successfully!', 'success');
+            
+            // Redirect back to view page
+            setTimeout(() => {
+                window.location.href = 'view-quality-control-pending.html';
+            }, 1500);
+        }
+
+        function saveAsDraft() {
+            console.log('Saving as draft...');
+            showNotification('Draft saved successfully!', 'info');
+        }
+
+        function cancelEdit() {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                window.location.href = 'view-quality-control-pending.html';
+            }
+        }
+    </script>
+</body>
+</html> 

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Pricing Management</h1>
+                    <p>Manage pricing rates and billing configuration</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search pricing, vehicle types...">
+                    </div>
+                    <button class="btn btn-primary" onclick="showCreatePricingModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Pricing
+                    </button>
+                    <button class="btn btn-secondary" onclick="showBulkUpdateModal()">
+                        <i class="fas fa-edit"></i>
+                        Bulk Update
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Revenue</h3>
+                            <p class="stat-value">₹2.4M</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12.3%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Avg Order Value</h3>
+                            <p class="stat-value">₹1,250</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +8.1%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Pricing</h3>
+                            <p class="stat-value">24</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +14.3%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Profit Margin</h3>
+                            <p class="stat-value">35.2%</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +2.1%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Categories -->
+                <div class="pricing-categories">
+                    <div class="categories-header">
+                        <h3>Pricing Categories</h3>
+                        <p>Select a category to view and manage pricing rules</p>
+                    </div>
+                    
+                    <div class="category-cards">
+                        <div class="category-card active" onclick="showCategory('standard')">
+                            <div class="category-icon">
+                                <i class="fas fa-car"></i>
+                            </div>
+                            <div class="category-content">
+                                <h4>Standard Valuation</h4>
+                                <p>Basic vehicle valuation services with standard turnaround time</p>
+                                <div class="category-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        24-48 hours
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-list"></i>
+                                        8 rules
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="category-indicator">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card" onclick="showCategory('premium')">
+                            <div class="category-icon premium">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="category-content">
+                                <h4>Premium Valuation</h4>
+                                <p>Enhanced valuation services with detailed reports and analysis</p>
+                                <div class="category-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        12-24 hours
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-list"></i>
+                                        6 rules
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="category-indicator">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card" onclick="showCategory('express')">
+                            <div class="category-icon express">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="category-content">
+                                <h4>Express Service</h4>
+                                <p>Fast-track valuation services for urgent requirements</p>
+                                <div class="category-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        2-6 hours
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-list"></i>
+                                        4 rules
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="category-indicator">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="category-card" onclick="showCategory('bulk')">
+                            <div class="category-icon bulk">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="category-content">
+                                <h4>Bulk Orders</h4>
+                                <p>Special pricing for multiple vehicle valuations</p>
+                                <div class="category-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-clock"></i>
+                                        48-72 hours
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-list"></i>
+                                        6 rules
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="category-indicator">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Vehicle Type</label>
+                            <select class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Bike</option>
+                                <option value="truck">Truck</option>
+                                <option value="bus">Bus</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Client Type</label>
+                            <select class="filter-select">
+                                <option value="">All Clients</option>
+                                <option value="bank">Bank</option>
+                                <option value="finance">Finance Company</option>
+                                <option value="dealer">Dealer</option>
+                                <option value="individual">Individual</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="filter-select">
+                                <option value="">All Locations</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="pune">Pune</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="thane">Thane</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">&nbsp;</label>
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Standard Valuation Pricing</h3>
+                            <span class="table-count">Showing 1-10 of 24 pricing rules</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="exportPricing()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="refreshTable()">
+                                <i class="fas fa-refresh"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" id="selectAll" class="checkbox-input">
+                                    </th>
+                                    <th>Pricing ID</th>
+                                    <th>Vehicle Type</th>
+                                    <th>Client Type</th>
+                                    <th>Location</th>
+                                    <th>Base Price</th>
+                                    <th>Additional Charges</th>
+                                    <th>Total Price</th>
+                                    <th>Status</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="pricing-id">PRC001</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-type">
+                                            <i class="fas fa-car"></i>
+                                            <span>Car</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-bank">Bank</span>
+                                    </td>
+                                    <td>
+                                        <div class="location-info">
+                                            <span class="location-text">Mumbai</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="base-price">₹800</span>
+                                    </td>
+                                    <td>
+                                        <span class="additional-charges">₹200</span>
+                                    </td>
+                                    <td>
+                                        <div class="price-display">
+                                            <strong>₹1,000</strong>
+                                            <span class="price-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="window.location.href='view-pricing.html?id=PRC001'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="window.location.href='edit-pricing.html?id=PRC001'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="duplicatePricing('PRC001')" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deletePricing('PRC001')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="pricing-id">PRC002</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-type">
+                                            <i class="fas fa-motorcycle"></i>
+                                            <span>Bike</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-finance">Finance</span>
+                                    </td>
+                                    <td>
+                                        <div class="location-info">
+                                            <span class="location-text">Pune</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="base-price">₹500</span>
+                                    </td>
+                                    <td>
+                                        <span class="additional-charges">₹100</span>
+                                    </td>
+                                    <td>
+                                        <div class="price-display">
+                                            <strong>₹600</strong>
+                                            <span class="price-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="window.location.href='view-pricing.html?id=PRC002'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="window.location.href='edit-pricing.html?id=PRC002'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="duplicatePricing('PRC002')" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deletePricing('PRC002')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="pricing-id">PRC003</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-type">
+                                            <i class="fas fa-truck"></i>
+                                            <span>Truck</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-dealer">Dealer</span>
+                                    </td>
+                                    <td>
+                                        <div class="location-info">
+                                            <span class="location-text">Nagpur</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="base-price">₹1,200</span>
+                                    </td>
+                                    <td>
+                                        <span class="additional-charges">₹300</span>
+                                    </td>
+                                    <td>
+                                        <div class="price-display">
+                                            <strong>₹1,500</strong>
+                                            <span class="price-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="window.location.href='view-pricing.html?id=PRC003'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="window.location.href='edit-pricing.html?id=PRC003'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="duplicatePricing('PRC003')" title="Duplicate">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deletePricing('PRC003')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            <span>Showing 1-10 of 24 results</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" onclick="previousPage()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                                <button class="btn-page">2</button>
+                                <button class="btn-page">3</button>
+                            </div>
+                            <button class="btn-page" onclick="nextPage()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Pricing Modal -->
+    <div class="modal-overlay" id="createPricingModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New Pricing</h2>
+                <button class="modal-close" onclick="closeModal('createPricingModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createPricingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Vehicle Type *</label>
+                            <select class="input" required>
+                                <option value="">Select Vehicle Type</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Bike</option>
+                                <option value="truck">Truck</option>
+                                <option value="bus">Bus</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Client Type *</label>
+                            <select class="input" required>
+                                <option value="">Select Client Type</option>
+                                <option value="bank">Bank</option>
+                                <option value="finance">Finance Company</option>
+                                <option value="dealer">Dealer</option>
+                                <option value="individual">Individual</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Location *</label>
+                            <select class="input" required>
+                                <option value="">Select Location</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="pune">Pune</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="thane">Thane</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Service Type *</label>
+                            <select class="input" required>
+                                <option value="">Select Service Type</option>
+                                <option value="standard">Standard Valuation</option>
+                                <option value="premium">Premium Valuation</option>
+                                <option value="express">Express Service</option>
+                                <option value="bulk">Bulk Orders</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Base Price (₹) *</label>
+                            <input type="number" class="input" required placeholder="Enter base price">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Additional Charges (₹)</label>
+                            <input type="number" class="input" placeholder="Enter additional charges">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">GST Rate (%)</label>
+                            <select class="input">
+                                <option value="18" selected>18%</option>
+                                <option value="12">12%</option>
+                                <option value="5">5%</option>
+                                <option value="0">0%</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="input">
+                                <option value="active" selected>Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="draft">Draft</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="input" placeholder="Enter pricing description..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createPricingModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="createPricing()">Create Pricing</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Update Modal -->
+    <div class="modal-overlay" id="bulkUpdateModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Bulk Update Pricing</h2>
+                <button class="modal-close" onclick="closeModal('bulkUpdateModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="bulkUpdateForm">
+                    <div class="form-group">
+                        <label class="form-label">Update Type</label>
+                        <select class="input" required>
+                            <option value="">Select Update Type</option>
+                            <option value="percentage">Percentage Increase/Decrease</option>
+                            <option value="fixed">Fixed Amount Increase/Decrease</option>
+                            <option value="status">Status Change</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Update Value</label>
+                        <input type="number" class="input" placeholder="Enter value (use negative for decrease)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Apply To</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> All Selected Items
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> By Vehicle Type
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> By Client Type
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> By Location
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Effective Date</label>
+                        <input type="date" class="input" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('bulkUpdateModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="bulkUpdatePricing()">Update Pricing</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/pricing.js"></script>
+</body>
+</html> 

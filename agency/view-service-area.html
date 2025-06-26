@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Service Area - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="service-areas.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Service Areas
+                        </a>
+                    </div>
+                    <h1>Service Area Details</h1>
+                    <p>View complete service area information and coverage</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Service Area Header -->
+                <div class="request-header">
+                    <div class="request-info">
+                        <div class="request-id-section">
+                            <h2 id="areaName">Mumbai Central</h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span id="areaLocation">Mumbai, Maharashtra</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-users"></i>
+                                    <span id="officersCount">8 Field Officers</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="status-badge status-active" id="areaStatus">Active</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-outline" onclick="editServiceArea()">
+                                <i class="fas fa-edit"></i>
+                                Edit Area
+                            </button>
+                            <button class="btn btn-primary" onclick="assignOfficers()">
+                                <i class="fas fa-users"></i>
+                                Assign Officers
+                            </button>
+                            <button class="btn btn-primary" onclick="viewMap()">
+                                <i class="fas fa-map"></i>
+                                View Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Area Details Grid -->
+                <div class="request-details-grid">
+                    <!-- Basic Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Area Name</span>
+                                <span class="info-value" id="basicAreaName">Mumbai Central</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Area Code</span>
+                                <span class="info-value" id="areaCode">AR001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">City</span>
+                                <span class="info-value" id="areaCity">Mumbai</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">State</span>
+                                <span class="info-value" id="areaState">Maharashtra</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Pincode Range</span>
+                                <span class="info-value" id="pincodeRange">400001 - 400099</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-active" id="basicStatus">Active</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coverage Details -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-map"></i> Coverage Details</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Coverage Area (sq km)</span>
+                                <span class="info-value" id="coverageArea">45.2</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Population</span>
+                                <span class="info-value" id="population">2.5 Lakhs</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Major Landmarks</span>
+                                <span class="info-value" id="landmarks">Mumbai Central Station, Crawford Market, Marine Drive</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Business Districts</span>
+                                <span class="info-value" id="businessDistricts">Fort, Nariman Point, Colaba</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Transport Hubs</span>
+                                <span class="info-value" id="transportHubs">Mumbai Central Station, CST Station</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Service Hours</span>
+                                <span class="info-value" id="serviceHours">8:00 AM - 8:00 PM (7 days)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Field Officers -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-users"></i> Assigned Field Officers</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Total Officers</span>
+                                <span class="info-value" id="totalOfficers">8</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Active Officers</span>
+                                <span class="info-value" id="activeOfficers">6</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">On Duty</span>
+                                <span class="info-value" id="onDutyOfficers">4</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Response Time</span>
+                                <span class="info-value" id="responseTime">15 minutes</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Monthly Cases</span>
+                                <span class="info-value" id="monthlyCases">156</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Success Rate</span>
+                                <span class="info-value" id="successRate">94%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Monthly Requests</span>
+                                <span class="info-value" id="monthlyRequests">156</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Completed Requests</span>
+                                <span class="info-value" id="completedRequests">148</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Pending Requests</span>
+                                <span class="info-value" id="pendingRequests">8</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Completion Time</span>
+                                <span class="info-value" id="completionTime">2.5 days</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Customer Satisfaction</span>
+                                <span class="info-value" id="satisfaction">4.8/5.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Revenue Generated</span>
+                                <span class="info-value" id="revenue">₹2,45,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Area Documents</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Area Coverage Map</h4>
+                                        <p>Detailed coverage area map</p>
+                                        <span class="document-size">3.2 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-excel"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Officer Assignment</h4>
+                                        <p>Field officer assignment details</p>
+                                        <span class="document-size">1.8 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Service Agreement</h4>
+                                        <p>Area service agreement document</p>
+                                        <span class="document-size">2.5 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Area Timeline -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> Area Timeline</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Area Activated</h4>
+                                        <p>Service area activated and operational</p>
+                                        <span class="timeline-time">1 month ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Officers Assigned</h4>
+                                        <p id="timelineOfficers">8 field officers assigned to the area</p>
+                                        <span class="timeline-time">1 month ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-map"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Coverage Mapped</h4>
+                                        <p>Area coverage boundaries defined</p>
+                                        <span class="timeline-time">2 months ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-plus"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Area Created</h4>
+                                        <p>New service area created in system</p>
+                                        <span class="timeline-time">2 months ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script>
+        // Get area ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const areaId = urlParams.get('id') || 'AR001';
+        
+        // Area data mapping
+        const areaData = {
+            'AR001': {
+                name: 'Mumbai Central',
+                location: 'Mumbai, Maharashtra',
+                code: 'AR001',
+                city: 'Mumbai',
+                state: 'Maharashtra',
+                pincodeRange: '400001 - 400099',
+                status: 'Active',
+                coverageArea: '45.2',
+                population: '2.5 Lakhs',
+                landmarks: 'Mumbai Central Station, Crawford Market, Marine Drive',
+                businessDistricts: 'Fort, Nariman Point, Colaba',
+                transportHubs: 'Mumbai Central Station, CST Station',
+                serviceHours: '8:00 AM - 8:00 PM (7 days)',
+                totalOfficers: 8,
+                activeOfficers: 6,
+                onDutyOfficers: 4,
+                responseTime: '15 minutes',
+                monthlyCases: 156,
+                successRate: '94%',
+                monthlyRequests: 156,
+                completedRequests: 148,
+                pendingRequests: 8,
+                completionTime: '2.5 days',
+                satisfaction: '4.8/5.0',
+                revenue: '₹2,45,000'
+            },
+            'AR002': {
+                name: 'Pune Station',
+                location: 'Pune, Maharashtra',
+                code: 'AR002',
+                city: 'Pune',
+                state: 'Maharashtra',
+                pincodeRange: '411001 - 411099',
+                status: 'Active',
+                coverageArea: '38.5',
+                population: '1.8 Lakhs',
+                landmarks: 'Pune Station, FC Road, Koregaon Park',
+                businessDistricts: 'Camp, Deccan, Kalyani Nagar',
+                transportHubs: 'Pune Station, Shivajinagar Station',
+                serviceHours: '8:00 AM - 8:00 PM (7 days)',
+                totalOfficers: 6,
+                activeOfficers: 5,
+                onDutyOfficers: 3,
+                responseTime: '18 minutes',
+                monthlyCases: 98,
+                successRate: '91%',
+                monthlyRequests: 98,
+                completedRequests: 89,
+                pendingRequests: 9,
+                completionTime: '2.8 days',
+                satisfaction: '4.6/5.0',
+                revenue: '₹1,85,000'
+            },
+            'AR003': {
+                name: 'Nagpur City',
+                location: 'Nagpur, Maharashtra',
+                code: 'AR003',
+                city: 'Nagpur',
+                state: 'Maharashtra',
+                pincodeRange: '440001 - 440099',
+                status: 'Pending',
+                coverageArea: '42.1',
+                population: '2.1 Lakhs',
+                landmarks: 'Nagpur Station, Seminary Hills, Dragon Palace',
+                businessDistricts: 'Sitabuldi, Dharampeth, Civil Lines',
+                transportHubs: 'Nagpur Station, Ajni Station',
+                serviceHours: '8:00 AM - 8:00 PM (7 days)',
+                totalOfficers: 0,
+                activeOfficers: 0,
+                onDutyOfficers: 0,
+                responseTime: 'N/A',
+                monthlyCases: 0,
+                successRate: 'N/A',
+                monthlyRequests: 0,
+                completedRequests: 0,
+                pendingRequests: 0,
+                completionTime: 'N/A',
+                satisfaction: 'N/A',
+                revenue: '₹0'
+            }
+        };
+        
+        // Update page with area data
+        function updateAreaData() {
+            const data = areaData[areaId];
+            if (data) {
+                // Update header
+                document.getElementById('areaName').textContent = data.name;
+                document.getElementById('areaLocation').textContent = data.location;
+                document.getElementById('officersCount').textContent = `${data.totalOfficers} Field Officers`;
+                document.getElementById('areaStatus').textContent = data.status;
+                document.getElementById('areaStatus').className = `status-badge status-${data.status.toLowerCase()}`;
+                
+                // Update basic information
+                document.getElementById('basicAreaName').textContent = data.name;
+                document.getElementById('areaCode').textContent = data.code;
+                document.getElementById('areaCity').textContent = data.city;
+                document.getElementById('areaState').textContent = data.state;
+                document.getElementById('pincodeRange').textContent = data.pincodeRange;
+                document.getElementById('basicStatus').textContent = data.status;
+                document.getElementById('basicStatus').className = `status-badge status-${data.status.toLowerCase()}`;
+                
+                // Update coverage details
+                document.getElementById('coverageArea').textContent = data.coverageArea;
+                document.getElementById('population').textContent = data.population;
+                document.getElementById('landmarks').textContent = data.landmarks;
+                document.getElementById('businessDistricts').textContent = data.businessDistricts;
+                document.getElementById('transportHubs').textContent = data.transportHubs;
+                document.getElementById('serviceHours').textContent = data.serviceHours;
+                
+                // Update field officers
+                document.getElementById('totalOfficers').textContent = data.totalOfficers;
+                document.getElementById('activeOfficers').textContent = data.activeOfficers;
+                document.getElementById('onDutyOfficers').textContent = data.onDutyOfficers;
+                document.getElementById('responseTime').textContent = data.responseTime;
+                document.getElementById('monthlyCases').textContent = data.monthlyCases;
+                document.getElementById('successRate').textContent = data.successRate;
+                
+                // Update performance metrics
+                document.getElementById('monthlyRequests').textContent = data.monthlyRequests;
+                document.getElementById('completedRequests').textContent = data.completedRequests;
+                document.getElementById('pendingRequests').textContent = data.pendingRequests;
+                document.getElementById('completionTime').textContent = data.completionTime;
+                document.getElementById('satisfaction').textContent = data.satisfaction;
+                document.getElementById('revenue').textContent = data.revenue;
+                
+                // Update timeline
+                document.getElementById('timelineOfficers').textContent = `${data.totalOfficers} field officers assigned to the area`;
+            }
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAreaData();
+        });
+        
+        // Action functions
+        function editServiceArea() {
+            window.location.href = `edit-service-area.html?id=${areaId}`;
+        }
+        
+        function assignOfficers() {
+            window.location.href = `assign-officers.html?id=${areaId}`;
+        }
+        
+        function viewMap() {
+            showNotification('Map view functionality coming soon!', 'info');
+        }
+        
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <div class="notification-content">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="notification-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 5000);
+        }
+    </script>
+</body>
+</html> 

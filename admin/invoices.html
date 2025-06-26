@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Invoice Management</h1>
+                    <p>Manage billing and payment tracking for all valuation services</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search invoices, clients, request IDs...">
+                    </div>
+                    <button class="btn btn-primary" onclick="window.location.href='create-invoice.html'">
+                        <i class="fas fa-plus"></i>
+                        Create Invoice
+                    </button>
+                    <button class="btn btn-secondary" onclick="showBulkInvoiceModal()">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        Bulk Invoice
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Invoices</h3>
+                            <p class="stat-value">1,234</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +45 this month
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Amount</h3>
+                            <p class="stat-value">₹2.4M</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12% this month
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Paid Invoices</h3>
+                            <p class="stat-value">1,156</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +38 this month
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Amount</h3>
+                            <p class="stat-value">₹284K</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-up"></i>
+                                +8% this month
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="draft">Draft</option>
+                                <option value="sent">Sent</option>
+                                <option value="paid">Paid</option>
+                                <option value="overdue">Overdue</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Client</label>
+                            <select class="filter-select">
+                                <option value="">All Clients</option>
+                                <option value="abc-bank">ABC Bank</option>
+                                <option value="xyz-finance">XYZ Finance</option>
+                                <option value="premium-motors">Premium Motors</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-date" id="startDate">
+                                <span>to</span>
+                                <input type="date" class="filter-date" id="endDate">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Amount Range</label>
+                            <div class="amount-range">
+                                <input type="number" class="filter-input" placeholder="Min" id="minAmount">
+                                <span>to</span>
+                                <input type="number" class="filter-input" placeholder="Max" id="maxAmount">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">&nbsp;</label>
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoices Table -->
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>All Invoices</h3>
+                            <p>Manage and track all billing invoices</p>
+                        </div>
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search invoices...">
+                            </div>
+                            <button class="btn btn-secondary" onclick="exportInvoices()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-secondary" onclick="refreshTable()">
+                                <i class="fas fa-refresh"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                                    </th>
+                                    <th>Invoice #</th>
+                                    <th>Client Details</th>
+                                    <th>Request ID</th>
+                                    <th>Issue Date</th>
+                                    <th>Due Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="invoice-id">INV-2024-001</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-avatar">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div class="client-details">
+                                                <strong>ABC Bank</strong>
+                                                <span>abc@bank.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>REQ001</td>
+                                    <td>2024-01-15</td>
+                                    <td>2024-02-15</td>
+                                    <td>
+                                        <div class="amount-info">
+                                            <strong>₹1,000</strong>
+                                            <span class="amount-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge paid">Paid</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-invoice.html?id=INV-2024-001'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-invoice.html?id=INV-2024-001'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="downloadInvoice('INV-2024-001')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="sendInvoice('INV-2024-001')" title="Send">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="invoice-id">INV-2024-002</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-avatar">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div class="client-details">
+                                                <strong>XYZ Finance</strong>
+                                                <span>contact@xyzfinance.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>REQ002</td>
+                                    <td>2024-01-20</td>
+                                    <td>2024-02-20</td>
+                                    <td>
+                                        <div class="amount-info">
+                                            <strong>₹800</strong>
+                                            <span class="amount-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge sent">Sent</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-invoice.html?id=INV-2024-002'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-invoice.html?id=INV-2024-002'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="downloadInvoice('INV-2024-002')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="sendInvoice('INV-2024-002')" title="Send">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="invoice-id">INV-2024-003</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-avatar">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div class="client-details">
+                                                <strong>Premium Motors</strong>
+                                                <span>info@premiummotors.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>REQ003</td>
+                                    <td>2024-01-10</td>
+                                    <td>2024-02-10</td>
+                                    <td>
+                                        <div class="amount-info">
+                                            <strong>₹1,500</strong>
+                                            <span class="amount-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge overdue">Overdue</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-invoice.html?id=INV-2024-003'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-invoice.html?id=INV-2024-003'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="downloadInvoice('INV-2024-003')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="sendReminder('INV-2024-003')" title="Send Reminder">
+                                                <i class="fas fa-bell"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="invoice-id">INV-2024-004</span>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-avatar">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                            <div class="client-details">
+                                                <strong>Metro Finance</strong>
+                                                <span>accounts@metrofinance.com</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>REQ004</td>
+                                    <td>2024-01-25</td>
+                                    <td>2024-02-25</td>
+                                    <td>
+                                        <div class="amount-info">
+                                            <strong>₹2,200</strong>
+                                            <span class="amount-note">+GST</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge draft">Draft</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-invoice.html?id=INV-2024-004'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-invoice.html?id=INV-2024-004'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="sendInvoice('INV-2024-004')" title="Send">
+                                                <i class="fas fa-paper-plane"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="deleteInvoice('INV-2024-004')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-4 of 1,234 invoices
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" onclick="previousPage()" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn" onclick="goToPage(2)">2</button>
+                            <button class="pagination-btn" onclick="goToPage(3)">3</button>
+                            <span class="pagination-ellipsis">...</span>
+                            <button class="pagination-btn" onclick="goToPage(15)">15</button>
+                            <button class="pagination-btn" onclick="nextPage()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Invoice Modal -->
+    <div class="modal" id="createInvoiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Invoice</h2>
+                <button class="close-modal" onclick="closeModal('createInvoiceModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createInvoiceForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Client *</label>
+                            <select required>
+                                <option value="">Select Client</option>
+                                <option value="abc-bank">ABC Bank</option>
+                                <option value="xyz-finance">XYZ Finance</option>
+                                <option value="premium-motors">Premium Motors</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Request ID *</label>
+                            <input type="text" required placeholder="Enter request ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Issue Date *</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Due Date *</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Service Type *</label>
+                            <select required>
+                                <option value="">Select Service</option>
+                                <option value="standard">Standard Valuation</option>
+                                <option value="premium">Premium Valuation</option>
+                                <option value="express">Express Service</option>
+                                <option value="bulk">Bulk Orders</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Vehicle Type</label>
+                            <select>
+                                <option value="">Select Vehicle Type</option>
+                                <option value="car">Car</option>
+                                <option value="bike">Bike</option>
+                                <option value="truck">Truck</option>
+                                <option value="bus">Bus</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Base Amount (₹) *</label>
+                            <input type="number" required placeholder="Enter base amount">
+                        </div>
+                        <div class="form-group">
+                            <label>Additional Charges (₹)</label>
+                            <input type="number" placeholder="Enter additional charges">
+                        </div>
+                        <div class="form-group">
+                            <label>GST Rate (%)</label>
+                            <select>
+                                <option value="18" selected>18%</option>
+                                <option value="12">12%</option>
+                                <option value="5">5%</option>
+                                <option value="0">0%</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Discount (₹)</label>
+                            <input type="number" placeholder="Enter discount amount">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea placeholder="Enter invoice description..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Terms & Conditions</label>
+                        <textarea placeholder="Enter terms and conditions..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createInvoiceModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="createInvoice()">Create Invoice</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Invoice Modal -->
+    <div class="modal" id="bulkInvoiceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Bulk Invoice Generation</h2>
+                <button class="close-modal" onclick="closeModal('bulkInvoiceModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="bulk-invoice-summary">
+                    <h3>Selected Requests: <span id="selectedCount">0</span></h3>
+                    <div class="request-selection">
+                        <div class="request-item">
+                            <input type="checkbox" id="req1" checked>
+                            <label for="req1">REQ001 - Honda City (ABC Bank)</label>
+                            <span class="amount">₹1,000</span>
+                        </div>
+                        <div class="request-item">
+                            <input type="checkbox" id="req2" checked>
+                            <label for="req2">REQ002 - Maruti Swift (XYZ Finance)</label>
+                            <span class="amount">₹800</span>
+                        </div>
+                        <div class="request-item">
+                            <input type="checkbox" id="req3">
+                            <label for="req3">REQ003 - Toyota Innova (Premium Motors)</label>
+                            <span class="amount">₹1,500</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bulk-options">
+                        <div class="option-group">
+                            <label>Invoice Type:</label>
+                            <select>
+                                <option value="individual">Individual Invoices</option>
+                                <option value="consolidated">Consolidated Invoice</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Due Date:</label>
+                            <input type="date" value="2024-02-15">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('bulkInvoiceModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="generateBulkInvoices()">Generate Invoices</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/invoices.js"></script>
+</body>
+</html> 

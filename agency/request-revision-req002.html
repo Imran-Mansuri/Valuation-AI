@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Revision - REQ002 - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-quality-control.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="quality-control.html">Quality Control</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="view-quality-control-under-review.html">REQ002</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Request Revision</span>
+                    </div>
+                    <h1>Request Revision</h1>
+                    <p>Send revision request to field officer for REQ002</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Request Info Card -->
+                <div class="detail-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-info-circle"></i> Request Information</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="info-row">
+                            <span class="info-label">Request ID</span>
+                            <span class="info-value">REQ002</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Vehicle Model</span>
+                            <span class="info-value">Maruti Swift</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Registration Number</span>
+                            <span class="info-value">MH-01-CD-5678</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Field Officer</span>
+                            <span class="info-value">Sarah Jones (FO002)</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Current Status</span>
+                            <span class="info-value">
+                                <span class="status-badge status-in-progress">Under Review</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Issues Summary -->
+                <div class="detail-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Current Issues Summary</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="issues-list">
+                            <div class="issue-item">
+                                <div class="issue-icon" style="background: #f59e0b;">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="issue-content">
+                                    <h4>Missing Interior Photos</h4>
+                                    <p>Dashboard and rear seat photos are not clear enough for assessment</p>
+                                    <span class="issue-severity minor">Minor Issue</span>
+                                </div>
+                            </div>
+                            
+                            <div class="issue-item">
+                                <div class="issue-icon" style="background: #f59e0b;">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <div class="issue-content">
+                                    <h4>Valuation Calculation</h4>
+                                    <p>Depreciation calculation needs verification based on current market rates</p>
+                                    <span class="issue-severity minor">Minor Issue</span>
+                                </div>
+                            </div>
+                            
+                            <div class="issue-item">
+                                <div class="issue-icon" style="background: #10b981;">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="issue-content">
+                                    <h4>Document Quality</h4>
+                                    <p>RC book scan could be improved for better clarity</p>
+                                    <span class="issue-severity suggestion">Suggestion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revision Form -->
+                <div class="form-container">
+                    <form id="revisionForm" class="modern-form">
+                        <!-- Revision Type Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-edit"></i>
+                                <h3>Revision Type</h3>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Revision Category</label>
+                                    <select class="input" id="revisionCategory" required>
+                                        <option value="">Select Revision Category</option>
+                                        <option value="documentation">Documentation Issues</option>
+                                        <option value="photography" selected>Photography Issues</option>
+                                        <option value="valuation">Valuation Issues</option>
+                                        <option value="compliance">Compliance Issues</option>
+                                        <option value="comprehensive">Comprehensive Revision</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Priority Level</label>
+                                    <select class="input" id="revisionPriority" required>
+                                        <option value="">Select Priority</option>
+                                        <option value="low">Low Priority</option>
+                                        <option value="medium">Medium Priority</option>
+                                        <option value="high" selected>High Priority</option>
+                                        <option value="urgent">Urgent</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Issues Found Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <h3>Issues Found</h3>
+                            </div>
+                            <div class="issues-checklist">
+                                <div class="issue-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="missingPhotos" checked>
+                                        <span>Missing or unclear interior photos</span>
+                                    </label>
+                                </div>
+                                <div class="issue-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="documentsIncomplete" checked>
+                                        <span>Incomplete document scans</span>
+                                    </label>
+                                </div>
+                                <div class="issue-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="valuationInaccurate" checked>
+                                        <span>Valuation calculation needs verification</span>
+                                    </label>
+                                </div>
+                                <div class="issue-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="reportFormat">
+                                        <span>Report format doesn't follow standards</span>
+                                    </label>
+                                </div>
+                                <div class="issue-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="dataDiscrepancies">
+                                        <span>Data discrepancies found</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin-top: 1rem;">
+                                <label class="form-label">Additional Issues</label>
+                                <textarea class="input" id="additionalIssues" rows="3" placeholder="Describe any additional issues found..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Required Actions Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-tasks"></i>
+                                <h3>Required Actions</h3>
+                            </div>
+                            <div class="actions-checklist">
+                                <div class="action-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="retakePhotos" checked>
+                                        <span>Retake interior photos (dashboard, rear seats)</span>
+                                    </label>
+                                </div>
+                                <div class="action-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="improveScans" checked>
+                                        <span>Improve document scan quality</span>
+                                    </label>
+                                </div>
+                                <div class="action-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="verifyValuation" checked>
+                                        <span>Verify valuation calculation with current market rates</span>
+                                    </label>
+                                </div>
+                                <div class="action-checkbox">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="updateReport">
+                                        <span>Update report format to follow standards</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" style="margin-top: 1rem;">
+                                <label class="form-label">Additional Actions Required</label>
+                                <textarea class="input" id="additionalActions" rows="3" placeholder="Specify any additional actions required..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Revision Details Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-comment"></i>
+                                <h3>Revision Details</h3>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Detailed Feedback</label>
+                                <textarea class="input" id="detailedFeedback" rows="4" placeholder="Provide detailed feedback explaining why revision is needed...">Minor issues found in photo documentation. Interior photos need improvement. Valuation calculation appears reasonable but needs final verification.</textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Due Date for Revision</label>
+                                    <input type="date" class="input" id="revisionDueDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Expected Completion Time</label>
+                                    <select class="input" id="expectedTime">
+                                        <option value="">Select Time</option>
+                                        <option value="1-day">1 Day</option>
+                                        <option value="2-days" selected>2 Days</option>
+                                        <option value="3-days">3 Days</option>
+                                        <option value="1-week">1 Week</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Follow-up Instructions Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-clipboard-list"></i>
+                                <h3>Follow-up Instructions</h3>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Specific Instructions for Field Officer</label>
+                                <textarea class="input" id="fieldOfficerInstructions" rows="4" placeholder="Provide specific instructions for the field officer...">Please ensure all interior photos are taken from multiple angles with good lighting. Verify the depreciation calculation against current market data. Improve the quality of RC book scans for better clarity.</textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">QC Officer Contact</label>
+                                    <input type="text" class="input" value="QC Officer - ABC Agency" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Contact Number</label>
+                                    <input type="text" class="input" value="+91 98765 43210" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notification Section -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-bell"></i>
+                                <h3>Notification Settings</h3>
+                            </div>
+                            <div class="notification-options">
+                                <div class="notification-option">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="emailNotification" checked>
+                                        <span>Send email notification to field officer</span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="smsNotification" checked>
+                                        <span>Send SMS notification</span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="appNotification" checked>
+                                        <span>Send in-app notification</span>
+                                    </label>
+                                </div>
+                                <div class="notification-option">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" id="reminderNotification" checked>
+                                        <span>Send reminder notifications</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" onclick="cancelRevision()">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-warning" onclick="saveAsDraft()">
+                                <i class="fas fa-save"></i>
+                                Save as Draft
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Revision Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/quality-control.js"></script>
+    <script>
+        // Set default due date to 2 days from now
+        document.getElementById('revisionDueDate').value = new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+
+        // Form submission handler
+        document.getElementById('revisionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            sendRevisionRequest();
+        });
+
+        function sendRevisionRequest() {
+            // Collect form data
+            const formData = {
+                requestId: 'REQ002',
+                revisionCategory: document.getElementById('revisionCategory').value,
+                revisionPriority: document.getElementById('revisionPriority').value,
+                issues: {
+                    missingPhotos: document.getElementById('missingPhotos').checked,
+                    documentsIncomplete: document.getElementById('documentsIncomplete').checked,
+                    valuationInaccurate: document.getElementById('valuationInaccurate').checked,
+                    reportFormat: document.getElementById('reportFormat').checked,
+                    dataDiscrepancies: document.getElementById('dataDiscrepancies').checked
+                },
+                actions: {
+                    retakePhotos: document.getElementById('retakePhotos').checked,
+                    improveScans: document.getElementById('improveScans').checked,
+                    verifyValuation: document.getElementById('verifyValuation').checked,
+                    updateReport: document.getElementById('updateReport').checked
+                },
+                additionalIssues: document.getElementById('additionalIssues').value,
+                additionalActions: document.getElementById('additionalActions').value,
+                detailedFeedback: document.getElementById('detailedFeedback').value,
+                fieldOfficerInstructions: document.getElementById('fieldOfficerInstructions').value,
+                revisionDueDate: document.getElementById('revisionDueDate').value,
+                expectedTime: document.getElementById('expectedTime').value,
+                notifications: {
+                    email: document.getElementById('emailNotification').checked,
+                    sms: document.getElementById('smsNotification').checked,
+                    app: document.getElementById('appNotification').checked,
+                    reminder: document.getElementById('reminderNotification').checked
+                }
+            };
+
+            console.log('Sending revision request:', formData);
+            
+            // Show success message
+            showNotification('Revision request sent successfully!', 'success');
+            
+            // Redirect back to view page
+            setTimeout(() => {
+                window.location.href = 'view-quality-control-under-review.html';
+            }, 1500);
+        }
+
+        function saveAsDraft() {
+            console.log('Saving revision request as draft...');
+            showNotification('Draft saved successfully!', 'info');
+        }
+
+        function cancelRevision() {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                window.location.href = 'view-quality-control-under-review.html';
+            }
+        }
+    </script>
+</body>
+</html> 

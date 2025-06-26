@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Field Officer - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="field-officers.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Field Officers
+                        </a>
+                    </div>
+                    <h1>Field Officer Details</h1>
+                    <p>View complete information about the field officer</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Officer Header -->
+                <div class="request-header">
+                    <div class="request-info">
+                        <div class="request-id-section">
+                            <h2>FO001</h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>John Smith</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Mumbai Central</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="status-badge status-active">On Duty</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-outline" onclick="editOfficer('FO001')">
+                                <i class="fas fa-edit"></i>
+                                Edit Officer
+                            </button>
+                            <button class="btn btn-primary" onclick="trackOfficer('FO001')">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Live Track
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Officer Details Grid -->
+                <div class="request-details-grid">
+                    <!-- Personal Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-user"></i> Personal Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Full Name</span>
+                                <span class="info-value">John Smith</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Date of Birth</span>
+                                <span class="info-value">15 March 1985</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Gender</span>
+                                <span class="info-value">Male</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Blood Group</span>
+                                <span class="info-value">O+</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Address</span>
+                                <span class="info-value">123 Main Street, Andheri West, Mumbai - 400058</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-phone"></i> Contact Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Phone Number</span>
+                                <span class="info-value">+91 98765 43210</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Email Address</span>
+                                <span class="info-value">john@agency.com</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Emergency Contact</span>
+                                <span class="info-value">+91 98765 43211 (Sarah Smith - Wife)</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Alternate Phone</span>
+                                <span class="info-value">+91 98765 43212</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-briefcase"></i> Professional Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Employee ID</span>
+                                <span class="info-value">FO001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Joining Date</span>
+                                <span class="info-value">15 January 2021</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Experience</span>
+                                <span class="info-value">3 years</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Service Area</span>
+                                <span class="info-value">Mumbai Central</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Designation</span>
+                                <span class="info-value">Senior Field Officer</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Current Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-active">On Duty</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Statistics -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Performance Statistics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Total Cases Completed</span>
+                                <span class="info-value">156</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Success Rate</span>
+                                <span class="info-value">95%</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Rating</span>
+                                <span class="info-value">4.8/5.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Cases This Month</span>
+                                <span class="info-value">23</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Response Time</span>
+                                <span class="info-value">15 minutes</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Last Active</span>
+                                <span class="info-value">2 minutes ago</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Documents</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-id-card"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Aadhar Card</h4>
+                                        <p>Government ID Proof</p>
+                                        <span class="document-size">2.1 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>PAN Card</h4>
+                                        <p>Tax Identification</p>
+                                        <span class="document-size">1.8 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-image"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Profile Photo</h4>
+                                        <p>Official Photo</p>
+                                        <span class="document-size">3.2 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Case Completed</h4>
+                                        <p>Successfully completed valuation for REQ-2024-001</p>
+                                        <span class="timeline-time">2 hours ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Location Updated</h4>
+                                        <p>Updated current location to Andheri West</p>
+                                        <span class="timeline-time">4 hours ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Started Duty</h4>
+                                        <p>Officer started duty for the day</p>
+                                        <span class="timeline-time">8 hours ago</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Off Duty</h4>
+                                        <p>Officer will go off duty at 6:00 PM</p>
+                                        <span class="timeline-time">Scheduled</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+</body>
+</html> 

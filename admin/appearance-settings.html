@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appearance Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Appearance Settings</h1>
+                    <p>Customize theme, colors, and layout preferences</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="saveAppearanceSettings()" style="display: none;">
+                        <i class="fas fa-save"></i>
+                        Save Appearance Settings
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='settings.html'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Settings
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Theme Preview -->
+                <div class="theme-preview">
+                    <div class="preview-header">
+                        <h3>Theme Preview</h3>
+                        <p>See how your changes will look in real-time</p>
+                    </div>
+                    <div class="preview-container">
+                        <div class="preview-sidebar">
+                            <div class="preview-logo">
+                                <i class="fas fa-car"></i>
+                                <span>Valuation System</span>
+                            </div>
+                            <div class="preview-nav">
+                                <div class="preview-nav-item active">
+                                    <i class="fas fa-tachometer-alt"></i>
+                                    <span>Dashboard</span>
+                                </div>
+                                <div class="preview-nav-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>Users</span>
+                                </div>
+                                <div class="preview-nav-item">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-header-bar">
+                                <h4>Sample Content</h4>
+                                <button class="preview-btn">Action</button>
+                            </div>
+                            <div class="preview-card">
+                                <h5>Sample Card</h5>
+                                <p>This is how your content will look with the selected theme.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appearance Settings Grid -->
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fas fa-palette"></i> Theme Settings</h3>
+                        <div class="setting-item">
+                            <label>Theme Mode</label>
+                            <select name="themeMode" class="setting-select" onchange="changeTheme(this.value)">
+                                <option value="light" selected>Light</option>
+                                <option value="dark">Dark</option>
+                                <option value="auto">Auto (System)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Primary Color</label>
+                            <div class="color-picker-container">
+                                <input type="color" name="primaryColor" value="#3b82f6" class="setting-color" data-property="--primary-color" onchange="changePrimaryColor(this.value)">
+                                <span class="color-preview" style="background-color: #3b82f6;"></span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Accent Color</label>
+                            <div class="color-picker-container">
+                                <input type="color" name="accentColor" value="#10b981" class="setting-color" data-property="--accent-color" onchange="changeAccentColor(this.value)">
+                                <span class="color-preview" style="background-color: #10b981;"></span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Background Color</label>
+                            <div class="color-picker-container">
+                                <input type="color" name="backgroundColor" value="#f8fafc" class="setting-color" data-property="--background-color" onchange="changeBackgroundColor(this.value)">
+                                <span class="color-preview" style="background-color: #f8fafc;"></span>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Text Color</label>
+                            <div class="color-picker-container">
+                                <input type="color" name="textColor" value="#1a1a1a" class="setting-color" data-property="--text-color" onchange="changeTextColor(this.value)">
+                                <span class="color-preview" style="background-color: #1a1a1a;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-font"></i> Typography</h3>
+                        <div class="setting-item">
+                            <label>Font Family</label>
+                            <select name="fontFamily" class="setting-select" onchange="changeFontFamily(this.value)">
+                                <option value="Inter" selected>Inter</option>
+                                <option value="Roboto">Roboto</option>
+                                <option value="Open Sans">Open Sans</option>
+                                <option value="Poppins">Poppins</option>
+                                <option value="Montserrat">Montserrat</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Font Size</label>
+                            <select name="fontSize" class="setting-select" onchange="changeFontSize(this.value)">
+                                <option value="small">Small (14px)</option>
+                                <option value="medium" selected>Medium (16px)</option>
+                                <option value="large">Large (18px)</option>
+                                <option value="xlarge">Extra Large (20px)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Font Weight</label>
+                            <select name="fontWeight" class="setting-select" onchange="changeFontWeight(this.value)">
+                                <option value="300">Light (300)</option>
+                                <option value="400" selected>Regular (400)</option>
+                                <option value="500">Medium (500)</option>
+                                <option value="600">Semi Bold (600)</option>
+                                <option value="700">Bold (700)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Line Height</label>
+                            <select name="lineHeight" class="setting-select" onchange="changeLineHeight(this.value)">
+                                <option value="1.2">Tight (1.2)</option>
+                                <option value="1.4">Normal (1.4)</option>
+                                <option value="1.6" selected>Relaxed (1.6)</option>
+                                <option value="1.8">Loose (1.8)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Letter Spacing</label>
+                            <select name="letterSpacing" class="setting-select" onchange="changeLetterSpacing(this.value)">
+                                <option value="-0.025em">Tight</option>
+                                <option value="0" selected>Normal</option>
+                                <option value="0.025em">Wide</option>
+                                <option value="0.05em">Extra Wide</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-columns"></i> Layout Settings</h3>
+                        <div class="setting-item">
+                            <label>Sidebar Position</label>
+                            <select name="sidebarPosition" class="setting-select" onchange="changeSidebarPosition(this.value)">
+                                <option value="left" selected>Left</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Sidebar Width</label>
+                            <select name="sidebarWidth" class="setting-select" onchange="changeSidebarWidth(this.value)">
+                                <option value="narrow">Narrow (200px)</option>
+                                <option value="normal" selected>Normal (250px)</option>
+                                <option value="wide">Wide (300px)</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Compact Mode</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="compactMode" name="compactMode" onchange="toggleCompactMode(this.checked)">
+                                <label for="compactMode"></label>
+                            </div>
+                            <small>Reduce spacing and padding</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Auto-hide Sidebar</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoHideSidebar" name="autoHideSidebar" onchange="toggleAutoHideSidebar(this.checked)">
+                                <label for="autoHideSidebar"></label>
+                            </div>
+                            <small>Hide sidebar on smaller screens</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Fixed Header</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="fixedHeader" name="fixedHeader" checked onchange="toggleFixedHeader(this.checked)">
+                                <label for="fixedHeader"></label>
+                            </div>
+                            <small>Keep header visible when scrolling</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Content Max Width</label>
+                            <select name="contentMaxWidth" class="setting-select" onchange="changeContentMaxWidth(this.value)">
+                                <option value="1200px">Narrow (1200px)</option>
+                                <option value="1400px" selected>Normal (1400px)</option>
+                                <option value="1600px">Wide (1600px)</option>
+                                <option value="none">Full Width</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-magic"></i> Visual Effects</h3>
+                        <div class="setting-item">
+                            <label>Show Animations</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showAnimations" name="showAnimations" checked onchange="toggleAnimations(this.checked)">
+                                <label for="showAnimations"></label>
+                            </div>
+                            <small>Enable smooth transitions and animations</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Animation Speed</label>
+                            <select name="animationSpeed" class="setting-select" onchange="changeAnimationSpeed(this.value)">
+                                <option value="slow">Slow</option>
+                                <option value="normal" selected>Normal</option>
+                                <option value="fast">Fast</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Hover Effects</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="hoverEffects" name="hoverEffects" checked onchange="toggleHoverEffects(this.checked)">
+                                <label for="hoverEffects"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Shadow Effects</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="shadowEffects" name="shadowEffects" checked onchange="toggleShadowEffects(this.checked)">
+                                <label for="shadowEffects"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Border Radius</label>
+                            <select name="borderRadius" class="setting-select" onchange="changeBorderRadius(this.value)">
+                                <option value="0px">None</option>
+                                <option value="4px">Small</option>
+                                <option value="8px" selected>Medium</option>
+                                <option value="12px">Large</option>
+                                <option value="16px">Extra Large</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Blur Effects</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="blurEffects" name="blurEffects" checked onchange="toggleBlurEffects(this.checked)">
+                                <label for="blurEffects"></label>
+                            </div>
+                            <small>Enable backdrop blur effects</small>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-tachometer-alt"></i> Dashboard Settings</h3>
+                        <div class="setting-item">
+                            <label>Default Dashboard</label>
+                            <select name="defaultDashboard" class="setting-select">
+                                <option value="overview" selected>Overview</option>
+                                <option value="requests">Requests</option>
+                                <option value="reports">Reports</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>Show Quick Actions</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showQuickActions" name="showQuickActions" checked>
+                                <label for="showQuickActions"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Show Recent Activity</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showRecentActivity" name="showRecentActivity" checked>
+                                <label for="showRecentActivity"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Show Statistics</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showStatistics" name="showStatistics" checked>
+                                <label for="showStatistics"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Show Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="showNotifications" name="showNotifications" checked>
+                                <label for="showNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Dashboard Layout</label>
+                            <select name="dashboardLayout" class="setting-select" onchange="changeDashboardLayout(this.value)">
+                                <option value="grid" selected>Grid</option>
+                                <option value="list">List</option>
+                                <option value="compact">Compact</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-cog"></i> Appearance Tools</h3>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="resetToDefaults()">
+                                <i class="fas fa-undo"></i>
+                                Reset to Defaults
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="exportTheme()">
+                                <i class="fas fa-download"></i>
+                                Export Theme
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="importTheme()">
+                                <i class="fas fa-upload"></i>
+                                Import Theme
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="previewTheme()">
+                                <i class="fas fa-eye"></i>
+                                Preview Theme
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="shareTheme()">
+                                <i class="fas fa-share"></i>
+                                Share Theme
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <style>
+        .theme-preview {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .preview-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-header p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .preview-container {
+            display: flex;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .preview-sidebar {
+            width: 200px;
+            background: #f8fafc;
+            padding: 1rem;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .preview-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .preview-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            margin-bottom: 0.25rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .preview-nav-item.active {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .preview-content {
+            flex: 1;
+            padding: 1rem;
+        }
+
+        .preview-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .preview-header-bar h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .preview-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .preview-card {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .preview-card h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .preview-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .color-picker-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .color-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/settings.js"></script>
+    <script>
+        // Appearance-specific functions
+        function saveAppearanceSettings() {
+            // Collect all appearance settings
+            const appearanceSettings = {};
+            
+            const inputs = document.querySelectorAll('.setting-input, .setting-select, .setting-textarea');
+            inputs.forEach(input => {
+                if (input.name) {
+                    appearanceSettings[input.name] = input.value;
+                }
+            });
+            
+            const toggles = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                if (toggle.name) {
+                    appearanceSettings[toggle.name] = toggle.checked;
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('appearanceSettings', JSON.stringify(appearanceSettings));
+            
+            showNotification('Appearance settings saved successfully!', 'success');
+            
+            // Hide save button
+            const saveBtn = document.querySelector('.btn-primary');
+            if (saveBtn) {
+                saveBtn.style.display = 'none';
+            }
+        }
+
+        function changeBackgroundColor(color) {
+            document.documentElement.style.setProperty('--background-color', color);
+            updateColorPreview('backgroundColor', color);
+        }
+
+        function changeTextColor(color) {
+            document.documentElement.style.setProperty('--text-color', color);
+            updateColorPreview('textColor', color);
+        }
+
+        function changeFontFamily(family) {
+            document.documentElement.style.setProperty('--font-family', family);
+            showNotification(`Font family changed to ${family}`, 'success');
+        }
+
+        function changeFontWeight(weight) {
+            document.documentElement.style.setProperty('--font-weight', weight);
+            showNotification(`Font weight changed to ${weight}`, 'success');
+        }
+
+        function changeLineHeight(height) {
+            document.documentElement.style.setProperty('--line-height', height);
+            showNotification(`Line height changed to ${height}`, 'success');
+        }
+
+        function changeLetterSpacing(spacing) {
+            document.documentElement.style.setProperty('--letter-spacing', spacing);
+            showNotification(`Letter spacing changed to ${spacing}`, 'success');
+        }
+
+        function changeSidebarWidth(width) {
+            const widths = {
+                narrow: '200px',
+                normal: '250px',
+                wide: '300px'
+            };
+            document.documentElement.style.setProperty('--sidebar-width', widths[width]);
+            showNotification(`Sidebar width changed to ${width}`, 'success');
+        }
+
+        function toggleFixedHeader(enabled) {
+            document.body.classList.toggle('fixed-header', enabled);
+            showNotification(`Fixed header ${enabled ? 'enabled' : 'disabled'}`, 'success');
+        }
+
+        function changeContentMaxWidth(width) {
+            document.documentElement.style.setProperty('--content-max-width', width);
+            showNotification(`Content max width changed to ${width}`, 'success');
+        }
+
+        function changeAnimationSpeed(speed) {
+            const speeds = {
+                slow: '0.5s',
+                normal: '0.3s',
+                fast: '0.15s'
+            };
+            document.documentElement.style.setProperty('--animation-duration', speeds[speed]);
+            showNotification(`Animation speed changed to ${speed}`, 'success');
+        }
+
+        function toggleHoverEffects(enabled) {
+            document.body.classList.toggle('no-hover-effects', !enabled);
+            showNotification(`Hover effects ${enabled ? 'enabled' : 'disabled'}`, 'success');
+        }
+
+        function toggleShadowEffects(enabled) {
+            document.body.classList.toggle('no-shadow-effects', !enabled);
+            showNotification(`Shadow effects ${enabled ? 'enabled' : 'disabled'}`, 'success');
+        }
+
+        function changeBorderRadius(radius) {
+            document.documentElement.style.setProperty('--border-radius', radius);
+            showNotification(`Border radius changed to ${radius}`, 'success');
+        }
+
+        function toggleBlurEffects(enabled) {
+            document.body.classList.toggle('no-blur-effects', !enabled);
+            showNotification(`Blur effects ${enabled ? 'enabled' : 'disabled'}`, 'success');
+        }
+
+        function changeDashboardLayout(layout) {
+            document.body.setAttribute('data-dashboard-layout', layout);
+            showNotification(`Dashboard layout changed to ${layout}`, 'success');
+        }
+
+        function updateColorPreview(property, color) {
+            const preview = document.querySelector(`[name="${property}"] + .color-preview`);
+            if (preview) {
+                preview.style.backgroundColor = color;
+            }
+        }
+
+        function exportTheme() {
+            const theme = localStorage.getItem('appearanceSettings');
+            if (theme) {
+                const blob = new Blob([theme], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'theme-settings.json';
+                a.click();
+                URL.revokeObjectURL(url);
+                showNotification('Theme exported successfully!', 'success');
+            } else {
+                showNotification('No theme settings to export', 'warning');
+            }
+        }
+
+        function importTheme() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const theme = JSON.parse(e.target.result);
+                            localStorage.setItem('appearanceSettings', JSON.stringify(theme));
+                            applyAppearanceSettings(theme);
+                            showNotification('Theme imported successfully!', 'success');
+                        } catch (error) {
+                            showNotification('Invalid theme file', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        function previewTheme() {
+            showNotification('Theme preview mode activated', 'info');
+            // This would typically open a preview window or modal
+        }
+
+        function shareTheme() {
+            const theme = localStorage.getItem('appearanceSettings');
+            if (theme) {
+                navigator.clipboard.writeText(theme).then(() => {
+                    showNotification('Theme settings copied to clipboard!', 'success');
+                });
+            } else {
+                showNotification('No theme settings to share', 'warning');
+            }
+        }
+
+        function applyAppearanceSettings(settings) {
+            Object.keys(settings).forEach(key => {
+                const element = document.querySelector(`[name="${key}"]`);
+                if (element) {
+                    if (element.type === 'checkbox') {
+                        element.checked = settings[key];
+                    } else {
+                        element.value = settings[key];
+                    }
+                }
+            });
+        }
+
+        // Load appearance settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSettings = localStorage.getItem('appearanceSettings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                applyAppearanceSettings(settings);
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control - Approved - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-quality-control.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="quality-control.html">Quality Control</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Approved</span>
+                    </div>
+                    <h1>Quality Control Review</h1>
+                    <p>Successfully approved valuation report</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- QC Header -->
+                <div class="request-header">
+                    <div class="request-info">
+                        <div class="request-id-section">
+                            <h2>REQ003</h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-car"></i>
+                                    <span>Hyundai i20</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Mike Wilson (FO003)</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="status-badge status-completed">Approved</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-outline" onclick="downloadReport('REQ003')">
+                                <i class="fas fa-download"></i>
+                                Download Report
+                            </button>
+                            <button class="btn btn-outline" onclick="shareReport('REQ003')">
+                                <i class="fas fa-share"></i>
+                                Share Report
+                            </button>
+                            <button class="btn btn-primary" onclick="viewCertificate('REQ003')">
+                                <i class="fas fa-certificate"></i>
+                                View Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QC Details Grid -->
+                <div class="request-details-grid">
+                    <!-- Basic Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Request ID</span>
+                                <span class="info-value">REQ003</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Vehicle Model</span>
+                                <span class="info-value">Hyundai i20</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Registration Number</span>
+                                <span class="info-value">MH-03-EF-9012</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Field Officer</span>
+                                <span class="info-value">Mike Wilson (FO003)</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">QC Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-completed">Approved</span>
+                                </span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Approved Date</span>
+                                <span class="info-value">Dec 13, 2024 - 9:45 AM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Information -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-car"></i> Vehicle Information</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Make</span>
+                                <span class="info-value">Hyundai</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Model</span>
+                                <span class="info-value">i20</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Year</span>
+                                <span class="info-value">2021</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Engine Capacity</span>
+                                <span class="info-value">1197 cc</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Fuel Type</span>
+                                <span class="info-value">Petrol</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Color</span>
+                                <span class="info-value">Phantom Black</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Valuation Details -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calculator"></i> Valuation Details</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Final Value</span>
+                                <span class="info-value">₹7,85,000</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Market Value</span>
+                                <span class="info-value">₹8,00,000</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Depreciation</span>
+                                <span class="info-value">12%</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Condition</span>
+                                <span class="info-value">Excellent</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Mileage</span>
+                                <span class="info-value">28,000 km</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Valuation Method</span>
+                                <span class="info-value">Market Comparison</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Metrics -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-bar"></i> Quality Metrics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="quality-metrics">
+                                <div class="metric-item">
+                                    <span class="metric-label">Documentation Quality</span>
+                                    <div class="metric-score">
+                                        <span class="score">95/100</span>
+                                        <div class="score-bar">
+                                            <div class="score-fill" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Photo Quality</span>
+                                    <div class="metric-score">
+                                        <span class="score">90/100</span>
+                                        <div class="score-bar">
+                                            <div class="score-fill" style="width: 90%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Data Accuracy</span>
+                                    <div class="metric-score">
+                                        <span class="score">98/100</span>
+                                        <div class="score-bar">
+                                            <div class="score-fill" style="width: 98%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Completeness</span>
+                                    <div class="metric-score">
+                                        <span class="score">96/100</span>
+                                        <div class="score-bar">
+                                            <div class="score-fill" style="width: 96%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Overall Score</span>
+                                    <div class="metric-score">
+                                        <span class="score">95/100</span>
+                                        <div class="score-bar">
+                                            <div class="score-fill" style="width: 95%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents & Photos -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Documents & Photos</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-image"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Vehicle Photos</h4>
+                                        <p>Front, Rear, Left, Right, Engine, Interior, Dashboard</p>
+                                        <span class="document-size">15.8 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>RC Book</h4>
+                                        <p>Vehicle Registration Certificate</p>
+                                        <span class="document-size">2.5 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Insurance Policy</h4>
+                                        <p>Current Insurance Document</p>
+                                        <span class="document-size">2.1 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Valuation Certificate</h4>
+                                        <p>Approved Valuation Report</p>
+                                        <span class="document-size">1.2 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QC Timeline -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> QC Timeline</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>QC Approved</h4>
+                                        <p>Quality control assessment completed and approved</p>
+                                        <span class="timeline-time">Dec 13, 2024 - 9:45 AM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>QC Review</h4>
+                                        <p>Quality control review in progress</p>
+                                        <span class="timeline-time">Dec 13, 2024 - 8:30 AM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Report Submitted</h4>
+                                        <p>Field officer submitted valuation report</p>
+                                        <span class="timeline-time">Dec 12, 2024 - 4:15 PM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Field Officer Assigned</h4>
+                                        <p>Mike Wilson assigned to conduct valuation</p>
+                                        <span class="timeline-time">Dec 10, 2024 - 10:00 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QC Comments -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-comment"></i> QC Comments</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="qc-comments">
+                                <div class="comment-item">
+                                    <div class="comment-header">
+                                        <span class="comment-author">QC Officer</span>
+                                        <span class="comment-date">Dec 13, 2024 - 9:45 AM</span>
+                                    </div>
+                                    <div class="comment-content">
+                                        <p>Excellent work! All documentation is complete and accurate. Photos are clear and comprehensive. Valuation calculation is well-justified and within market range. No issues found.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/quality-control.js"></script>
+</body>
+</html> 

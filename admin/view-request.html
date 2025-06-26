@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Request - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="requests.html">Requests</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>View Request</span>
+                    </div>
+                    <h1>Request Details</h1>
+                    <p>View and manage request information</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">System Administrator</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="page-content">
+                <!-- Request Header Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3 style="font-size:1.3rem;">Request #<span id="requestId">REQ001</span></h3>
+                        <span class="status-badge status-pending" id="requestStatus">Pending</span>
+                        <div style="margin-top:0.5rem;">
+                            <span class="meta-item"><i class="fas fa-calendar"></i> Created: 15 Jan 2024</span>
+                            <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-clock"></i> Last Updated: 2 hours ago</span>
+                            <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-user"></i> Created by: Admin User</span>
+                        </div>
+                    </div>
+                    <div class="stat-actions" style="margin-top:1rem;">
+                        <button class="btn btn-outline" onclick="window.location.href='edit-request.html?id='+requestId"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-primary" onclick="assignRequest()"><i class="fas fa-user-plus"></i> Assign</button>
+                        <button class="btn btn-secondary" onclick="generateReport()"><i class="fas fa-file-pdf"></i> Generate Report</button>
+                    </div>
+                </div>
+
+                <!-- Details Grid -->
+                <div class="stats-grid" style="margin-bottom:2rem;">
+                    <!-- Client Info -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Client Information</h3>
+                            <div class="info-row"><span class="info-label">Client Name:</span> <span class="info-value">ABC Motors</span></div>
+                            <div class="info-row"><span class="info-label">Contact Person:</span> <span class="info-value">John Smith</span></div>
+                            <div class="info-row"><span class="info-label">Phone:</span> <span class="info-value">+91 98765 43210</span></div>
+                            <div class="info-row"><span class="info-label">Email:</span> <span class="info-value">john.smith@abcmotors.com</span></div>
+                            <div class="info-row"><span class="info-label">Address:</span> <span class="info-value">123 Main Street, Mumbai, Maharashtra 400001</span></div>
+                            <div class="info-row"><span class="info-label">Client Type:</span> <span class="badge badge-dealer">Dealer</span></div>
+                        </div>
+                    </div>
+                    <!-- Vehicle Info -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Vehicle Information</h3>
+                            <div class="info-row"><span class="info-label">Make:</span> <span class="info-value">Honda</span></div>
+                            <div class="info-row"><span class="info-label">Model:</span> <span class="info-value">City</span></div>
+                            <div class="info-row"><span class="info-label">Year:</span> <span class="info-value">2020</span></div>
+                            <div class="info-row"><span class="info-label">Registration Number:</span> <span class="info-value">MH01AB1234</span></div>
+                            <div class="info-row"><span class="info-label">Chassis Number:</span> <span class="info-value">MAK12345678901234</span></div>
+                            <div class="info-row"><span class="info-label">Engine Number:</span> <span class="info-value">ENG98765432109876</span></div>
+                            <div class="info-row"><span class="info-label">Fuel Type:</span> <span class="info-value">Petrol</span></div>
+                            <div class="info-row"><span class="info-label">Color:</span> <span class="info-value">White</span></div>
+                            <div class="info-row"><span class="info-label">KMs Driven:</span> <span class="info-value">45,000</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Request Details Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3>Request Details</h3>
+                        <div class="info-row"><span class="info-label">Request Type:</span> <span class="badge badge-re-finance">Re-finance</span></div>
+                        <div class="info-row"><span class="info-label">Priority:</span> <span class="badge badge-priority-high">High</span></div>
+                        <div class="info-row"><span class="info-label">Expected Completion:</span> <span class="info-value">20 Jan 2024</span></div>
+                        <div class="info-row"><span class="info-label">Assigned Agency:</span> <span class="info-value">ABC Agency</span></div>
+                        <div class="info-row"><span class="info-label">Field Officer:</span> <span class="info-value">Not Assigned</span></div>
+                        <div class="info-row"><span class="info-label">Valuation Amount:</span> <span class="info-value">₹8,50,000</span></div>
+                        <div class="info-row"><span class="info-label">Notes:</span> <span class="info-value">Client requested urgent valuation for loan processing. Vehicle is in good condition with regular maintenance history.</span></div>
+                    </div>
+                </div>
+
+                <!-- Documents Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3>Documents</h3>
+                        <div class="info-row"><span class="info-label">RC Book:</span> <span class="info-value">Vehicle Registration Certificate <span class="badge badge-re-finance">PDF</span></span></div>
+                        <div class="info-row"><span class="info-label">Vehicle Photos:</span> <span class="info-value">Front, Side, and Interior views <span class="badge badge-can-do">Images</span></span></div>
+                        <div class="info-row"><span class="info-label">Insurance Certificate:</span> <span class="info-value">Current insurance policy <span class="badge badge-re-finance">PDF</span></span></div>
+                    </div>
+                </div>
+
+                <!-- Comments Card -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Comments & Notes</h3>
+                        <div class="info-row"><span class="info-label">Admin User (15 Jan 2024, 10:30 AM):</span> <span class="info-value">Request created for Honda City 2020. Client needs urgent valuation for loan processing.</span></div>
+                        <div class="info-row"><span class="info-label">QC Manager (15 Jan 2024, 11:15 AM):</span> <span class="info-value">Request approved. All documents verified. Ready for agency assignment.</span></div>
+                        <div class="add-comment" style="margin-top:1.2em;">
+                            <textarea placeholder="Add a comment..." id="newComment" class="input"></textarea>
+                            <button class="btn btn-primary" onclick="addComment()" style="margin-top:0.5em;"><i class="fas fa-paper-plane"></i> Add Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        // Get request ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestId = urlParams.get('id') || 'REQ001';
+        document.title = `View Request ${requestId} - Admin Dashboard`;
+        document.getElementById('requestId').textContent = requestId;
+
+        function editRequest() {
+            // Navigate to edit page or show edit modal
+            showNotification('Edit functionality will be implemented', 'info');
+        }
+
+        function assignRequest() {
+            // Show assignment modal
+            showNotification('Assignment modal will open', 'info');
+        }
+
+        function generateReport() {
+            // Generate and download report
+            showNotification('Report generation started...', 'info');
+            setTimeout(() => {
+                showNotification('Report generated successfully!', 'success');
+            }, 2000);
+        }
+
+        function viewDocument(documentType) {
+            showNotification(`Opening ${documentType} document...`, 'info');
+        }
+
+        function downloadDocument(documentType) {
+            showNotification(`Downloading ${documentType}...`, 'info');
+            setTimeout(() => {
+                showNotification('Document downloaded successfully!', 'success');
+            }, 1500);
+        }
+
+        function addComment() {
+            const commentText = document.getElementById('newComment').value.trim();
+            if (!commentText) {
+                showNotification('Please enter a comment', 'error');
+                return;
+            }
+
+            // Add comment to the list
+            const commentsSection = document.querySelector('.comments-section');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-item';
+            newComment.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-avatar">A</span>
+                    <span class="comment-author">Admin User</span>
+                    <span class="comment-time">${new Date().toLocaleString()}</span>
+                </div>
+                <div class="comment-content">
+                    <p>${commentText}</p>
+                </div>
+            `;
+            
+            commentsSection.appendChild(newComment);
+            document.getElementById('newComment').value = '';
+            showNotification('Comment added successfully!', 'success');
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

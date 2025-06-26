@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employee - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="employees.html">Employees</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>View Employee</span>
+                    </div>
+                    <h1>Employee Details</h1>
+                    <p>Viewing employee profile and information</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">System Administrator</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="page-content">
+                <!-- Employee Card -->
+                <div class="stat-card employee-profile-card" style="max-width:600px;margin:auto;margin-bottom:2rem;box-shadow:0 4px 24px 0 rgba(60,72,100,.12);border-radius:18px;padding:2.5rem 2rem 2rem 2rem;background:#fff;">
+                    <div style="display:flex;flex-direction:column;align-items:center;gap:1.2rem;">
+                        <div style="position:relative;">
+                            <div class="employee-avatar" style="width:120px;height:120px;border-radius:50%;background:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:3.5rem;color:#888;box-shadow:0 2px 8px 0 rgba(60,72,100,.10);border:4px solid #e0e7ef;overflow:hidden;">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <div style="text-align:center;width:100%;">
+                            <h2 style="margin-bottom:0.2em;font-size:2rem;font-weight:600;letter-spacing:-1px;">Rajesh Kumar</h2>
+                            <div style="margin-bottom:0.5em;color:#666;font-size:1.1rem;display:flex;align-items:center;justify-content:center;gap:0.5em;"><i class="fas fa-envelope" style="color:#3b82f6;"></i> <span>rajesh.kumar@company.com</span></div>
+                            <div style="margin-bottom:0.5em;">
+                                <span class="badge badge-field-officer" style="font-size:1em;padding:0.4em 1.2em;">Field Officer</span>
+                                <span class="status-badge status-active" style="margin-left:1em;font-size:1em;padding:0.4em 1.2em;">Active</span>
+                            </div>
+                        </div>
+                        <div style="width:100%;height:1px;background:#e5e7eb;margin:1.2em 0 0.8em 0;"></div>
+                        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:1.5em;width:100%;font-size:1.08em;">
+                            <div style="display:flex;align-items:center;gap:0.5em;"><i class="fas fa-briefcase" style="color:#6366f1;"></i> <strong>Department:</strong> <span>Operations</span></div>
+                            <div style="display:flex;align-items:center;gap:0.5em;"><i class="fas fa-map-marker-alt" style="color:#f59e42;"></i> <strong>Location:</strong> <span>Mumbai, Maharashtra</span></div>
+                            <div style="display:flex;align-items:center;gap:0.5em;"><i class="fas fa-phone" style="color:#10b981;"></i> <strong>Phone:</strong> <span>+91 98765 43210</span></div>
+                            <div style="display:flex;align-items:center;gap:0.5em;"><i class="fas fa-calendar-alt" style="color:#f43f5e;"></i> <strong>Joining Date:</strong> <span>10 Feb 2022</span></div>
+                        </div>
+                        <div style="width:100%;height:1px;background:#e5e7eb;margin:1.2em 0 0.8em 0;"></div>
+                        <div style="display:flex;align-items:center;justify-content:center;gap:0.7em;font-size:1.1em;">
+                            <strong>Performance:</strong>
+                            <span class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span class="rating-text">4.8</span>
+                        </div>
+                        <div style="width:100%;margin-top:1.5em;display:flex;justify-content:center;gap:1em;flex-wrap:wrap;">
+                            <button class="btn btn-secondary" onclick="window.location.href='employees.html'" style="min-width:110px;"><i class="fas fa-arrow-left"></i> Back</button>
+                            <button class="btn btn-primary" onclick="window.location.href='edit-employee.html?id='+employeeId" style="min-width:110px;"><i class="fas fa-edit"></i> Edit</button>
+                            <button class="btn btn-secondary" onclick="assignRole(employeeId)" style="min-width:110px;"><i class="fas fa-user-tag"></i> Assign Role</button>
+                            <button class="btn btn-danger" onclick="deleteEmployee(employeeId)" style="min-width:110px;"><i class="fas fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Log Card -->
+                <div class="stat-card" style="max-width:600px;margin:auto;background:#fff;box-shadow:0 4px 24px 0 rgba(60,72,100,.10);border-radius:18px;padding:2rem 2rem 1.5rem 2rem;">
+                    <div class="stat-info">
+                        <h3 style="margin-bottom:1.2em;font-size:1.3em;font-weight:600;">Activity Log</h3>
+                        <div class="activity-timeline" style="position:relative;margin-left:1.2em;">
+                            <!-- Timeline items will be injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/employees.js"></script>
+    <script>
+        // Sample employee data (in real app, fetch from server)
+        const employees = {
+            'EMP001': {
+                name: 'Rajesh Kumar',
+                email: 'rajesh.kumar@company.com',
+                role: 'Field Officer',
+                roleBadge: 'badge-field-officer',
+                status: 'Active',
+                statusBadge: 'status-active',
+                department: 'Operations',
+                location: 'Mumbai, Maharashtra',
+                phone: '+91 98765 43210',
+                joiningDate: '10 Feb 2022',
+                performance: 4.8,
+                activity: [
+                    { date: '10 Feb 2022', desc: 'Joined as Field Officer.' },
+                    { date: '15 Mar 2022', desc: 'Completed onboarding training.' },
+                    { date: '20 Jun 2022', desc: 'Promoted to Senior Field Officer.' },
+                    { date: '05 Jan 2023', desc: 'Awarded Employee of the Month.' },
+                    { date: '12 Dec 2023', desc: 'Performance review: 4.8/5' }
+                ]
+            },
+            'EMP002': {
+                name: 'Priya Sharma',
+                email: 'priya.sharma@company.com',
+                role: 'Quality Control',
+                roleBadge: 'badge-quality-control',
+                status: 'Active',
+                statusBadge: 'status-active',
+                department: 'Quality',
+                location: 'Pune, Maharashtra',
+                phone: '+91 91234 56789',
+                joiningDate: '12 Mar 2021',
+                performance: 4.2,
+                activity: [
+                    { date: '12 Mar 2021', desc: 'Joined as Quality Control.' },
+                    { date: '20 Apr 2021', desc: 'Completed onboarding training.' },
+                    { date: '10 Oct 2021', desc: 'Handled 100+ QC reviews.' },
+                    { date: '15 Feb 2022', desc: 'Promoted to Senior QC.' },
+                    { date: '10 Dec 2023', desc: 'Performance review: 4.2/5' }
+                ]
+            },
+            'EMP003': {
+                name: 'Amit Patel',
+                email: 'amit.patel@company.com',
+                role: 'Admin',
+                roleBadge: 'badge-admin',
+                status: 'Active',
+                statusBadge: 'status-active',
+                department: 'Management',
+                location: 'Nagpur, Maharashtra',
+                phone: '+91 99887 66554',
+                joiningDate: '01 Jan 2020',
+                performance: 4.9,
+                activity: [
+                    { date: '01 Jan 2020', desc: 'Joined as Admin.' },
+                    { date: '10 Feb 2020', desc: 'Completed onboarding training.' },
+                    { date: '01 Jan 2021', desc: 'Promoted to Senior Admin.' },
+                    { date: '01 Jan 2022', desc: 'Awarded Best Admin.' },
+                    { date: '10 Dec 2023', desc: 'Performance review: 4.9/5' }
+                ]
+            }
+        };
+
+        // Get employee ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const employeeId = urlParams.get('id') || 'EMP001';
+        const emp = employees[employeeId];
+
+        // Update page content
+        window.addEventListener('DOMContentLoaded', function() {
+            if (!emp) {
+                document.querySelector('.page-content').innerHTML = `<div class='stat-card' style='max-width:600px;margin:auto;text-align:center;'><h2>Employee Not Found</h2></div>`;
+                return;
+            }
+            // Employee Card
+            document.querySelector('.employee-profile-card .employee-avatar i').className = 'fas fa-user';
+            document.querySelector('.employee-profile-card h2').textContent = emp.name;
+            document.querySelector('.employee-profile-card div[style*="color:#666;"] span').textContent = emp.email;
+            document.querySelector('.employee-profile-card .badge').textContent = emp.role;
+            document.querySelector('.employee-profile-card .badge').className = `badge ${emp.roleBadge}`;
+            document.querySelector('.employee-profile-card .status-badge').textContent = emp.status;
+            document.querySelector('.employee-profile-card .status-badge').className = `status-badge ${emp.statusBadge}`;
+            document.querySelectorAll('.employee-profile-card strong')[0].nextSibling.textContent = ' ' + emp.department;
+            document.querySelectorAll('.employee-profile-card strong')[1].nextSibling.textContent = ' ' + emp.location;
+            document.querySelectorAll('.employee-profile-card strong')[2].nextSibling.textContent = ' ' + emp.phone;
+            document.querySelectorAll('.employee-profile-card strong')[3].nextSibling.textContent = ' ' + emp.joiningDate;
+            // Performance
+            const perf = emp.performance;
+            const stars = document.querySelectorAll('.employee-profile-card .rating-stars i');
+            stars.forEach((star, idx) => {
+                if (idx < Math.floor(perf)) {
+                    star.className = 'fas fa-star';
+                    star.style.opacity = '1';
+                } else if (idx === Math.floor(perf) && perf % 1 !== 0) {
+                    star.className = 'fas fa-star';
+                    star.style.opacity = '0.5';
+                } else {
+                    star.className = 'far fa-star';
+                    star.style.opacity = '1';
+                }
+            });
+            document.querySelector('.employee-profile-card .rating-text').textContent = perf;
+            // Activity Log Timeline
+            const timelineDiv = document.querySelector('.activity-timeline');
+            timelineDiv.innerHTML = emp.activity.map((a, idx) => `
+                <div style="display:flex;align-items:flex-start;position:relative;margin-bottom:1.2em;">
+                    <div style="width:16px;display:flex;flex-direction:column;align-items:center;">
+                        <div style="width:12px;height:12px;border-radius:50%;background:${idx===0?'#3b82f6':'#e5e7eb'};border:2px solid #3b82f6;z-index:1;"></div>
+                        ${idx < emp.activity.length-1 ? '<div style=\'width:2px;height:32px;background:#e5e7eb;margin:0 auto;\'></div>' : ''}
+                    </div>
+                    <div style="margin-left:0.7em;">
+                        <div style="font-weight:500;color:#222;font-size:1em;">${a.date}</div>
+                        <div style="color:#555;font-size:0.98em;">${a.desc}</div>
+                    </div>
+                </div>
+            `).join('');
+        });
+        // Dummy functions for action buttons
+        function editEmployee(id) {
+            alert('Edit Employee: ' + id);
+        }
+        function assignRole(id) {
+            alert('Assign Role to: ' + id);
+        }
+        function deleteEmployee(id) {
+            if(confirm('Are you sure you want to delete this employee?')) {
+                alert('Employee deleted: ' + id);
+            }
+        }
+    </script>
+</body>
+</html> 

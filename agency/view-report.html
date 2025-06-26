@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Report - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="reports.html" class="breadcrumb-link">
+                            <i class="fas fa-arrow-left"></i>
+                            Back to Reports
+                        </a>
+                    </div>
+                    <h1>Report Details</h1>
+                    <p>View complete report information and analytics</p>
+                </div>
+                <div class="header-right">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Report Header -->
+                <div class="request-header">
+                    <div class="request-info">
+                        <div class="request-id-section">
+                            <h2>Monthly Performance Report - December 2024</h2>
+                            <div class="request-meta">
+                                <div class="meta-item">
+                                    <i class="fas fa-calendar"></i>
+                                    <span>December 2024</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-user"></i>
+                                    <span>Generated by Admin</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="status-badge status-completed">Completed</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="request-actions">
+                            <button class="btn btn-outline" onclick="editReport('REP-2024-001')">
+                                <i class="fas fa-edit"></i>
+                                Edit Report
+                            </button>
+                            <button class="btn btn-primary" onclick="downloadReport('REP-2024-001')">
+                                <i class="fas fa-download"></i>
+                                Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Report Details Grid -->
+                <div class="request-details-grid">
+                    <!-- Report Summary -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-pie"></i> Report Summary</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Report ID</span>
+                                <span class="info-value">REP-2024-001</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Report Type</span>
+                                <span class="info-value">Monthly Performance Report</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Period</span>
+                                <span class="info-value">December 2024</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Generated Date</span>
+                                <span class="info-value">1 January 2025</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Generated By</span>
+                                <span class="info-value">Admin User</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Status</span>
+                                <span class="info-value">
+                                    <span class="status-badge status-completed">Completed</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance Metrics -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line"></i> Performance Metrics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Total Requests</span>
+                                <span class="info-value">1,245</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Completed Requests</span>
+                                <span class="info-value">1,180</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Success Rate</span>
+                                <span class="info-value">94.8%</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Response Time</span>
+                                <span class="info-value">2.3 days</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Customer Satisfaction</span>
+                                <span class="info-value">4.7/5.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Revenue Generated</span>
+                                <span class="info-value">₹18,45,000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Field Officer Performance -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-users"></i> Field Officer Performance</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Total Officers</span>
+                                <span class="info-value">12</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Active Officers</span>
+                                <span class="info-value">10</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Cases per Officer</span>
+                                <span class="info-value">118</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Top Performer</span>
+                                <span class="info-value">John Smith (156 cases)</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Rating</span>
+                                <span class="info-value">4.6/5.0</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Training Required</span>
+                                <span class="info-value">2 officers</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality Control Metrics -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-shield-alt"></i> Quality Control Metrics</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">QC Reviews</span>
+                                <span class="info-value">1,180</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Approved Cases</span>
+                                <span class="info-value">1,125</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Rejected Cases</span>
+                                <span class="info-value">55</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average QC Score</span>
+                                <span class="info-value">92.5/100</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">QC Response Time</span>
+                                <span class="info-value">4.2 hours</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Quality Grade</span>
+                                <span class="info-value">A+</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Area Performance -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-map"></i> Service Area Performance</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Active Areas</span>
+                                <span class="info-value">8</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Top Performing Area</span>
+                                <span class="info-value">Mumbai Central (456 cases)</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Cases per Area</span>
+                                <span class="info-value">155</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Coverage Efficiency</span>
+                                <span class="info-value">96.2%</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Response Time by Area</span>
+                                <span class="info-value">1.8 days average</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Area Satisfaction</span>
+                                <span class="info-value">4.8/5.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Financial Summary -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-dollar-sign"></i> Financial Summary</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="info-row">
+                                <span class="info-label">Total Revenue</span>
+                                <span class="info-value">₹18,45,000</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Operating Costs</span>
+                                <span class="info-value">₹8,25,000</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Net Profit</span>
+                                <span class="info-value">₹10,20,000</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Profit Margin</span>
+                                <span class="info-value">55.3%</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Average Revenue per Case</span>
+                                <span class="info-value">₹1,563</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Payment Collection Rate</span>
+                                <span class="info-value">98.5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Documents -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Report Documents</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Executive Summary</h4>
+                                        <p>Monthly performance executive summary</p>
+                                        <span class="document-size">2.1 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-excel"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Detailed Analytics</h4>
+                                        <p>Comprehensive performance analytics</p>
+                                        <span class="document-size">4.5 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Financial Report</h4>
+                                        <p>Detailed financial analysis and projections</p>
+                                        <span class="document-size">3.2 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div class="document-item">
+                                    <div class="document-icon">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="document-info">
+                                        <h4>Quality Report</h4>
+                                        <p>Quality control performance analysis</p>
+                                        <span class="document-size">2.8 MB</span>
+                                    </div>
+                                    <div class="document-actions">
+                                        <button class="btn-icon" title="View">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-icon" title="Download">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Timeline -->
+                    <div class="detail-card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-history"></i> Report Timeline</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="timeline">
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Report Generated</h4>
+                                        <p>Monthly performance report completed and ready</p>
+                                        <span class="timeline-time">1 January 2025, 9:00 AM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-chart-bar"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Analytics Processed</h4>
+                                        <p>All performance data analyzed and compiled</p>
+                                        <span class="timeline-time">1 January 2025, 8:30 AM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Data Collected</h4>
+                                        <p>All December 2024 data collected and verified</p>
+                                        <span class="timeline-time">1 January 2025, 8:00 AM</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="timeline-item completed">
+                                    <div class="timeline-icon">
+                                        <i class="fas fa-play"></i>
+                                    </div>
+                                    <div class="timeline-content">
+                                        <h4>Report Initiated</h4>
+                                        <p>Monthly report generation process started</p>
+                                        <span class="timeline-time">1 January 2025, 7:30 AM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/agency.js"></script>
+</body>
+</html> 

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Notifications Settings</h1>
+                    <p>Configure email, SMS, and in-app notifications</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="saveNotificationSettings()" style="display: none;">
+                        <i class="fas fa-save"></i>
+                        Save Notification Settings
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='settings.html'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Settings
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Notification Overview -->
+                <div class="notification-overview">
+                    <div class="notification-stats">
+                        <div class="notification-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Email Notifications</h3>
+                                <div class="stat-number">Enabled</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-check"></i>
+                                    Active
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-sms"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>SMS Notifications</h3>
+                                <div class="stat-number">Disabled</div>
+                                <div class="stat-change">
+                                    <i class="fas fa-times"></i>
+                                    Inactive
+                                </div>
+                            </div>
+                        </div>
+                        <div class="notification-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-bell"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>In-App Notifications</h3>
+                                <div class="stat-number">Enabled</div>
+                                <div class="stat-change positive">
+                                    <i class="fas fa-check"></i>
+                                    Active
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notification Settings Grid -->
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3><i class="fas fa-envelope"></i> Email Notifications</h3>
+                        <div class="setting-item">
+                            <label>Enable Email Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="emailNotifications" name="emailNotifications" checked>
+                                <label for="emailNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>SMTP Server</label>
+                            <input type="text" name="smtpServer" value="smtp.gmail.com" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>SMTP Port</label>
+                            <input type="number" name="smtpPort" value="587" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>SMTP Username</label>
+                            <input type="email" name="smtpUsername" value="noreply@valuationservices.com" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>SMTP Password</label>
+                            <input type="password" name="smtpPassword" value="********" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>From Name</label>
+                            <input type="text" name="fromName" value="Valuation Services" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Reply To Email</label>
+                            <input type="email" name="replyToEmail" value="support@valuationservices.com" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="testEmailConnection()">
+                                <i class="fas fa-paper-plane"></i>
+                                Test Email Connection
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-sms"></i> SMS Notifications</h3>
+                        <div class="setting-item">
+                            <label>Enable SMS Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="smsNotifications" name="smsNotifications">
+                                <label for="smsNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>SMS Provider</label>
+                            <select name="smsProvider" class="setting-select">
+                                <option value="twilio" selected>Twilio</option>
+                                <option value="msg91">MSG91</option>
+                                <option value="aws-sns">AWS SNS</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label>API Key</label>
+                            <input type="text" name="smsApiKey" value="****************" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>API Secret</label>
+                            <input type="password" name="smsApiSecret" value="****************" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Sender ID</label>
+                            <input type="text" name="smsSenderId" value="VALSRV" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Default Country Code</label>
+                            <input type="text" name="defaultCountryCode" value="+91" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="testSMSConnection()">
+                                <i class="fas fa-mobile-alt"></i>
+                                Test SMS Connection
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <h3><i class="fas fa-bell"></i> Notification Preferences</h3>
+                        <div class="setting-item">
+                            <label>New Request Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="newRequestNotifications" name="newRequestNotifications" checked>
+                                <label for="newRequestNotifications"></label>
+                            </div>
+                            <small>Notify when new valuation requests are received</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Payment Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="paymentNotifications" name="paymentNotifications" checked>
+                                <label for="paymentNotifications"></label>
+                            </div>
+                            <small>Notify about payment confirmations and failures</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>System Alerts</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="systemAlerts" name="systemAlerts" checked>
+                                <label for="systemAlerts"></label>
+                            </div>
+                            <small>Important system maintenance and security alerts</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Daily Reports</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="dailyReports" name="dailyReports">
+                                <label for="dailyReports"></label>
+                            </div>
+                            <small>Daily summary reports of activities</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Quality Control Alerts</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="qualityControlAlerts" name="qualityControlAlerts" checked>
+                                <label for="qualityControlAlerts"></label>
+                            </div>
+                            <small>Notifications about quality control issues</small>
+                        </div>
+                        <div class="setting-item">
+                            <label>Assignment Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="assignmentNotifications" name="assignmentNotifications" checked>
+                                <label for="assignmentNotifications"></label>
+                            </div>
+                            <small>Notify when tasks are assigned or reassigned</small>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-clock"></i> Notification Schedule</h3>
+                        <div class="setting-item">
+                            <label>Business Hours Only</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="businessHoursOnly" name="businessHoursOnly">
+                                <label for="businessHoursOnly"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Business Hours Start</label>
+                            <input type="time" name="businessHoursStart" value="09:00" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Business Hours End</label>
+                            <input type="time" name="businessHoursEnd" value="18:00" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Weekend Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="weekendNotifications" name="weekendNotifications">
+                                <label for="weekendNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Holiday Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="holidayNotifications" name="holidayNotifications">
+                                <label for="holidayNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Quiet Hours Start</label>
+                            <input type="time" name="quietHoursStart" value="22:00" class="setting-input">
+                        </div>
+                        <div class="setting-item">
+                            <label>Quiet Hours End</label>
+                            <input type="time" name="quietHoursEnd" value="07:00" class="setting-input">
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-users"></i> Recipient Management</h3>
+                        <div class="setting-item">
+                            <label>Admin Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="adminNotifications" name="adminNotifications" checked>
+                                <label for="adminNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Field Officer Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="fieldOfficerNotifications" name="fieldOfficerNotifications" checked>
+                                <label for="fieldOfficerNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Client Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="clientNotifications" name="clientNotifications" checked>
+                                <label for="clientNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Agency Notifications</label>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="agencyNotifications" name="agencyNotifications" checked>
+                                <label for="agencyNotifications"></label>
+                            </div>
+                        </div>
+                        <div class="setting-item">
+                            <label>Custom Recipients</label>
+                            <textarea name="customRecipients" class="setting-textarea" placeholder="Enter email addresses (one per line)">support@valuationservices.com
+admin@valuationservices.com</textarea>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3><i class="fas fa-cog"></i> Notification Tools</h3>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="sendTestNotification()">
+                                <i class="fas fa-paper-plane"></i>
+                                Send Test Notification
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="viewNotificationHistory()">
+                                <i class="fas fa-history"></i>
+                                View Notification History
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="exportNotificationLogs()">
+                                <i class="fas fa-download"></i>
+                                Export Notification Logs
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="clearNotificationHistory()">
+                                <i class="fas fa-trash"></i>
+                                Clear Notification History
+                            </button>
+                        </div>
+                        <div class="setting-item">
+                            <button class="btn btn-secondary" onclick="notificationAnalytics()">
+                                <i class="fas fa-chart-line"></i>
+                                Notification Analytics
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/settings.js"></script>
+    <script>
+        // Notification-specific functions
+        function saveNotificationSettings() {
+            // Collect all notification settings
+            const notificationSettings = {};
+            
+            const inputs = document.querySelectorAll('.setting-input, .setting-select, .setting-textarea');
+            inputs.forEach(input => {
+                if (input.name) {
+                    notificationSettings[input.name] = input.value;
+                }
+            });
+            
+            const toggles = document.querySelectorAll('.toggle-switch input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                if (toggle.name) {
+                    notificationSettings[toggle.name] = toggle.checked;
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('notificationSettings', JSON.stringify(notificationSettings));
+            
+            showNotification('Notification settings saved successfully!', 'success');
+            
+            // Hide save button
+            const saveBtn = document.querySelector('.btn-primary');
+            if (saveBtn) {
+                saveBtn.style.display = 'none';
+            }
+        }
+
+        function testEmailConnection() {
+            showNotification('Testing email connection...', 'info');
+            setTimeout(() => {
+                showNotification('Email connection test successful!', 'success');
+            }, 2000);
+        }
+
+        function testSMSConnection() {
+            showNotification('Testing SMS connection...', 'info');
+            setTimeout(() => {
+                showNotification('SMS connection test successful!', 'success');
+            }, 2000);
+        }
+
+        function sendTestNotification() {
+            showNotification('Sending test notification...', 'info');
+            setTimeout(() => {
+                showNotification('Test notification sent successfully!', 'success');
+            }, 1500);
+        }
+
+        function viewNotificationHistory() {
+            showNotification('Opening notification history...', 'info');
+            // This would typically open a modal or navigate to a history page
+        }
+
+        function exportNotificationLogs() {
+            showNotification('Exporting notification logs...', 'info');
+            setTimeout(() => {
+                showNotification('Notification logs exported successfully.', 'success');
+            }, 1500);
+        }
+
+        function clearNotificationHistory() {
+            if (confirm('Are you sure you want to clear notification history? This action cannot be undone.')) {
+                showNotification('Clearing notification history...', 'info');
+                setTimeout(() => {
+                    showNotification('Notification history cleared successfully.', 'success');
+                }, 1000);
+            }
+        }
+
+        function notificationAnalytics() {
+            showNotification('Opening notification analytics...', 'info');
+            // This would typically open analytics dashboard
+        }
+
+        // Load notification settings on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedSettings = localStorage.getItem('notificationSettings');
+            if (savedSettings) {
+                const settings = JSON.parse(savedSettings);
+                Object.keys(settings).forEach(key => {
+                    const element = document.querySelector(`[name="${key}"]`);
+                    if (element) {
+                        if (element.type === 'checkbox') {
+                            element.checked = settings[key];
+                        } else {
+                            element.value = settings[key];
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

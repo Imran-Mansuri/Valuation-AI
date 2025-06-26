@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>System Settings</h1>
+                    <p>Configure system preferences and security</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" onclick="saveAllSettings()" style="display: none;">
+                        <i class="fas fa-save"></i>
+                        Save All Changes
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetToDefaults()">
+                        <i class="fas fa-undo"></i>
+                        Reset to Defaults
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Settings Categories -->
+                <div class="settings-categories">
+                    <div class="category-tabs">
+                        <button class="tab-btn active" onclick="showSettingsCategory('general')">
+                            <i class="fas fa-cog"></i>
+                            General
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsCategory('security')">
+                            <i class="fas fa-shield-alt"></i>
+                            Security
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsCategory('notifications')">
+                            <i class="fas fa-bell"></i>
+                            Notifications
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsCategory('appearance')">
+                            <i class="fas fa-palette"></i>
+                            Appearance
+                        </button>
+                        <button class="tab-btn" onclick="showSettingsCategory('backup')">
+                            <i class="fas fa-database"></i>
+                            Backup & Restore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- General Settings Section -->
+                <div class="settings-section active" id="general-section">
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>System Information</h3>
+                            <div class="setting-item">
+                                <label>System Name</label>
+                                <input type="text" name="systemName" value="Vehicle Valuation System" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>System Version</label>
+                                <input type="text" name="systemVersion" value="v2.1.0" class="setting-input" readonly>
+                            </div>
+                            <div class="setting-item">
+                                <label>Default Currency</label>
+                                <select name="defaultCurrency" class="setting-select">
+                                    <option value="INR" selected>Indian Rupee (₹)</option>
+                                    <option value="USD">US Dollar ($)</option>
+                                    <option value="EUR">Euro (€)</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Time Zone</label>
+                                <select name="timeZone" class="setting-select">
+                                    <option value="IST" selected>India Standard Time (IST)</option>
+                                    <option value="UTC">UTC</option>
+                                    <option value="GMT">GMT</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Business Settings</h3>
+                            <div class="setting-item">
+                                <label>Company Name</label>
+                                <input type="text" name="companyName" value="Valuation Services Ltd." class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Business Email</label>
+                                <input type="email" name="businessEmail" value="contact@valuationservices.com" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Business Phone</label>
+                                <input type="tel" name="businessPhone" value="+91 22 1234 5678" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Business Address</label>
+                                <textarea name="businessAddress" class="setting-textarea">123 Business Park, Mumbai, Maharashtra, India</textarea>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>System Limits</h3>
+                            <div class="setting-item">
+                                <label>Max File Upload Size (MB)</label>
+                                <input type="number" name="maxFileSize" value="10" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Session Timeout (minutes)</label>
+                                <input type="number" name="sessionTimeout" value="30" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Max Login Attempts</label>
+                                <input type="number" name="maxLoginAttempts" value="5" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Password Expiry (days)</label>
+                                <input type="number" name="passwordExpiry" value="90" class="setting-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Settings Section -->
+                <div class="settings-section" id="security-section">
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>Authentication</h3>
+                            <div class="setting-item">
+                                <label>Two-Factor Authentication</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="twoFactorAuth" name="twoFactorAuth">
+                                    <label for="twoFactorAuth"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Password Policy</label>
+                                <select name="passwordPolicy" class="setting-select">
+                                    <option value="strong" selected>Strong (8+ chars, special chars)</option>
+                                    <option value="medium">Medium (6+ chars)</option>
+                                    <option value="weak">Weak (4+ chars)</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Account Lockout Duration (minutes)</label>
+                                <input type="number" name="lockoutDuration" value="15" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Remember Login Sessions</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="rememberSessions" name="rememberSessions" checked>
+                                    <label for="rememberSessions"></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Data Protection</h3>
+                            <div class="setting-item">
+                                <label>Data Encryption</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="dataEncryption" name="dataEncryption" checked>
+                                    <label for="dataEncryption"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Auto Backup</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="autoBackup" name="autoBackup" checked>
+                                    <label for="autoBackup"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Backup Frequency</label>
+                                <select name="backupFrequency" class="setting-select">
+                                    <option value="daily" selected>Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Data Retention (days)</label>
+                                <input type="number" name="dataRetention" value="365" class="setting-input">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Access Control</h3>
+                            <div class="setting-item">
+                                <label>IP Whitelist</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="ipWhitelist" name="ipWhitelist">
+                                    <label for="ipWhitelist"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Allowed IP Addresses</label>
+                                <textarea name="allowedIPs" class="setting-textarea" placeholder="Enter IP addresses (one per line)">192.168.1.1
+10.0.0.1</textarea>
+                            </div>
+                            <div class="setting-item">
+                                <label>Force HTTPS</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="forceHttps" name="forceHttps" checked>
+                                    <label for="forceHttps"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Security Headers</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="securityHeaders" name="securityHeaders" checked>
+                                    <label for="securityHeaders"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Settings Section -->
+                <div class="settings-section" id="notifications-section">
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>Email Notifications</h3>
+                            <div class="setting-item">
+                                <label>Enable Email Notifications</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="emailNotifications" name="emailNotifications" checked>
+                                    <label for="emailNotifications"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>SMTP Server</label>
+                                <input type="text" name="smtpServer" value="smtp.gmail.com" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>SMTP Port</label>
+                                <input type="number" name="smtpPort" value="587" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>SMTP Username</label>
+                                <input type="email" name="smtpUsername" value="noreply@valuationservices.com" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>SMTP Password</label>
+                                <input type="password" name="smtpPassword" value="********" class="setting-input">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>SMS Notifications</h3>
+                            <div class="setting-item">
+                                <label>Enable SMS Notifications</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="smsNotifications" name="smsNotifications">
+                                    <label for="smsNotifications"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>SMS Provider</label>
+                                <select name="smsProvider" class="setting-select">
+                                    <option value="twilio" selected>Twilio</option>
+                                    <option value="msg91">MSG91</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>API Key</label>
+                                <input type="text" name="smsApiKey" value="****************" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Sender ID</label>
+                                <input type="text" name="smsSenderId" value="VALSRV" class="setting-input">
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Notification Preferences</h3>
+                            <div class="setting-item">
+                                <label>New Request Notifications</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="newRequestNotifications" name="newRequestNotifications" checked>
+                                    <label for="newRequestNotifications"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Payment Notifications</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="paymentNotifications" name="paymentNotifications" checked>
+                                    <label for="paymentNotifications"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>System Alerts</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="systemAlerts" name="systemAlerts" checked>
+                                    <label for="systemAlerts"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Daily Reports</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="dailyReports" name="dailyReports">
+                                    <label for="dailyReports"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appearance Settings Section -->
+                <div class="settings-section" id="appearance-section">
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>Theme Settings</h3>
+                            <div class="setting-item">
+                                <label>Theme Mode</label>
+                                <select name="themeMode" class="setting-select" onchange="changeTheme(this.value)">
+                                    <option value="light" selected>Light</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="auto">Auto</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Primary Color</label>
+                                <input type="color" name="primaryColor" value="#3b82f6" class="setting-color" data-property="--primary-color" onchange="changePrimaryColor(this.value)">
+                            </div>
+                            <div class="setting-item">
+                                <label>Accent Color</label>
+                                <input type="color" name="accentColor" value="#10b981" class="setting-color" data-property="--accent-color" onchange="changeAccentColor(this.value)">
+                            </div>
+                            <div class="setting-item">
+                                <label>Font Size</label>
+                                <select name="fontSize" class="setting-select" onchange="changeFontSize(this.value)">
+                                    <option value="small">Small</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="large">Large</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Layout Settings</h3>
+                            <div class="setting-item">
+                                <label>Sidebar Position</label>
+                                <select name="sidebarPosition" class="setting-select" onchange="changeSidebarPosition(this.value)">
+                                    <option value="left" selected>Left</option>
+                                    <option value="right">Right</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Compact Mode</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="compactMode" name="compactMode" onchange="toggleCompactMode(this.checked)">
+                                    <label for="compactMode"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Show Animations</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="showAnimations" name="showAnimations" checked onchange="toggleAnimations(this.checked)">
+                                    <label for="showAnimations"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Auto-hide Sidebar</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="autoHideSidebar" name="autoHideSidebar" onchange="toggleAutoHideSidebar(this.checked)">
+                                    <label for="autoHideSidebar"></label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Dashboard Settings</h3>
+                            <div class="setting-item">
+                                <label>Default Dashboard</label>
+                                <select name="defaultDashboard" class="setting-select">
+                                    <option value="overview" selected>Overview</option>
+                                    <option value="requests">Requests</option>
+                                    <option value="reports">Reports</option>
+                                    <option value="custom">Custom</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Show Quick Actions</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="showQuickActions" name="showQuickActions" checked>
+                                    <label for="showQuickActions"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Show Recent Activity</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="showRecentActivity" name="showRecentActivity" checked>
+                                    <label for="showRecentActivity"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Show Statistics</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="showStatistics" name="showStatistics" checked>
+                                    <label for="showStatistics"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backup & Restore Settings Section -->
+                <div class="settings-section" id="backup-section">
+                    <div class="settings-grid">
+                        <div class="settings-card">
+                            <h3>Backup Settings</h3>
+                            <div class="setting-item">
+                                <label>Auto Backup</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="autoBackupSetting" name="autoBackupSetting" checked>
+                                    <label for="autoBackupSetting"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Backup Frequency</label>
+                                <select name="backupFrequencySetting" class="setting-select">
+                                    <option value="daily" selected>Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>Backup Time</label>
+                                <input type="time" name="backupTime" value="02:00" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <label>Retention Period (days)</label>
+                                <input type="number" name="backupRetention" value="30" class="setting-input">
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn btn-secondary" onclick="createBackup()">
+                                    <i class="fas fa-download"></i>
+                                    Create Backup Now
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>Restore Settings</h3>
+                            <div class="setting-item">
+                                <label>Last Backup</label>
+                                <input type="text" name="lastBackup" value="2024-01-15 02:00:00" class="setting-input" readonly>
+                            </div>
+                            <div class="setting-item">
+                                <label>Backup Size</label>
+                                <input type="text" name="backupSize" value="256 MB" class="setting-input" readonly>
+                            </div>
+                            <div class="setting-item">
+                                <label>Upload Backup File</label>
+                                <input type="file" name="backupFile" accept=".zip,.sql" class="setting-file">
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn btn-secondary" onclick="restoreBackup()">
+                                    <i class="fas fa-upload"></i>
+                                    Restore from Backup
+                                </button>
+                            </div>
+                            <div class="setting-item">
+                                <button class="btn btn-secondary" onclick="downloadBackup()">
+                                    <i class="fas fa-download"></i>
+                                    Download Latest Backup
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-card">
+                            <h3>System Maintenance</h3>
+                            <div class="setting-item">
+                                <label>Maintenance Mode</label>
+                                <div class="toggle-switch">
+                                    <input type="checkbox" id="maintenanceMode" name="maintenanceMode" onchange="toggleMaintenanceMode(this.checked)">
+                                    <label for="maintenanceMode"></label>
+                                </div>
+                            </div>
+                            <div class="setting-item">
+                                <label>Clear Cache</label>
+                                <button class="btn btn-secondary" onclick="clearCache()">
+                                    <i class="fas fa-broom"></i>
+                                    Clear Cache
+                                </button>
+                            </div>
+                            <div class="setting-item">
+                                <label>Optimize Database</label>
+                                <button class="btn btn-secondary" onclick="optimizeDatabase()">
+                                    <i class="fas fa-database"></i>
+                                    Optimize Database
+                                </button>
+                            </div>
+                            <div class="setting-item">
+                                <label>System Health Check</label>
+                                <button class="btn btn-secondary" onclick="runHealthCheck()">
+                                    <i class="fas fa-heartbeat"></i>
+                                    Run Health Check
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/settings.js"></script>
+</body>
+</html> 

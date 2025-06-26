@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Check Details - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional status badge styles for this page */
+        .status-badge.status-passed {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+        .status-badge.status-failed {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+        .status-badge.status-pending {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+        .status-badge.status-under-review {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            font-weight: 500;
+            color: #64748b;
+            min-width: 120px;
+        }
+        .info-value {
+            color: #1e293b;
+            text-align: right;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a href="requests.html"><i class="fas fa-clipboard-list"></i><span>Requests</span></a></li>
+                    <li class="nav-item"><a href="clients.html"><i class="fas fa-users"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a href="agencies.html"><i class="fas fa-building"></i><span>Agencies</span></a></li>
+                    <li class="nav-item"><a href="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a></li>
+                    <li class="nav-item active"><a href="quality-control.html"><i class="fas fa-shield-alt"></i><span>Quality Control</span></a></li>
+                    <li class="nav-item"><a href="pricing.html"><i class="fas fa-rupee-sign"></i><span>Pricing</span></a></li>
+                    <li class="nav-item"><a href="reports.html"><i class="fas fa-chart-bar"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="master-data.html"><i class="fas fa-database"></i><span>Master Data</span></a></li>
+                    <li class="nav-item"><a href="gate-passes.html"><i class="fas fa-id-card"></i><span>Gate Passes</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a></li>
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="quality-control.html">Quality Control</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>View Quality Check</span>
+                    </div>
+                    <h1>Quality Check Details</h1>
+                    <p>View and manage quality check information</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">System Administrator</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <!-- Content -->
+            <div class="page-content">
+                <!-- Quality Check Header Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3 style="font-size:1.3rem;">Quality Check #<span id="checkId">QC001</span></h3>
+                        <span class="status-badge status-passed" id="checkStatus">Passed</span>
+                        <div style="margin-top:0.5rem;">
+                            <span class="meta-item"><i class="fas fa-calendar"></i> Date: <span id="checkDate">2024-01-15</span></span>
+                            <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-user"></i> Officer: <span id="officerName">Priya Sharma</span></span>
+                        </div>
+                    </div>
+                    <div class="stat-actions" style="margin-top:1rem;">
+                        <button class="btn btn-outline" onclick="editQualityCheck()"><i class="fas fa-edit"></i> Edit</button>
+                        <button class="btn btn-secondary" onclick="downloadReport()"><i class="fas fa-file-pdf"></i> Download Report</button>
+                    </div>
+                </div>
+                <!-- Details Grid -->
+                <div class="stats-grid" style="margin-bottom:2rem;">
+                    <!-- Vehicle Info -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Vehicle Information</h3>
+                            <div class="info-row"><span class="info-label">Make:</span> <span class="info-value">Honda</span></div>
+                            <div class="info-row"><span class="info-label">Model:</span> <span class="info-value">City</span></div>
+                            <div class="info-row"><span class="info-label">Year:</span> <span class="info-value">2020</span></div>
+                            <div class="info-row"><span class="info-label">Registration Number:</span> <span class="info-value">MH12AB1234</span></div>
+                            <div class="info-row"><span class="info-label">Color:</span> <span class="info-value">White</span></div>
+                        </div>
+                    </div>
+                    <!-- Quality Check Info -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Quality Check Information</h3>
+                            <div class="info-row"><span class="info-label">Check ID:</span> <span class="info-value" id="checkIdInfo">QC001</span></div>
+                            <div class="info-row"><span class="info-label">Request ID:</span> <span class="info-value" id="requestId">REQ001</span></div>
+                            <div class="info-row"><span class="info-label">Check Type:</span> <span class="badge badge-documentation" id="checkType">Documentation</span></div>
+                            <div class="info-row"><span class="info-label">Status:</span> <span class="status-badge status-passed" id="status">Passed</span></div>
+                            <div class="info-row"><span class="info-label">Score:</span> <span class="info-value" id="score">95%</span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Documents/Photos Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3>Documents & Photos</h3>
+                        <div class="info-row"><span class="info-label">RC Book:</span> <span class="info-value">Available <span class="badge badge-documentation">PDF</span></span></div>
+                        <div class="info-row"><span class="info-label">Vehicle Photos:</span> <span class="info-value">Front, Engine, Left, Rear, Insurance Damage <span class="badge badge-photography">Images</span></span></div>
+                    </div>
+                </div>
+                <!-- Comments Card -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Comments & Notes</h3>
+                        <div class="info-row"><span class="info-label">Priya Sharma (15 Jan 2024, 12:00 PM):</span> <span class="info-value">All documents verified. Quality check passed with high score.</span></div>
+                        <div class="info-row"><span class="info-label">Amit Patel (15 Jan 2024, 1:00 PM):</span> <span class="info-value">Vehicle photos are clear and complete.</span></div>
+                        <div class="add-comment" style="margin-top:1.2em;">
+                            <textarea placeholder="Add a comment..." id="newComment" class="input"></textarea>
+                            <button class="btn btn-primary" onclick="addComment()" style="margin-top:0.5em;"><i class="fas fa-paper-plane"></i> Add Comment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script src="../js/quality-control.js"></script>
+    <script>
+        // Get check ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkId = urlParams.get('id') || 'QC001';
+        const statusParam = urlParams.get('status'); // Get status parameter
+        document.title = `Quality Check ${checkId} - Admin Dashboard`;
+        document.getElementById('checkId').textContent = checkId;
+        document.getElementById('checkIdInfo').textContent = checkId;
+
+        // --- DYNAMIC DATA POPULATION ---
+        // Mock data (replace with API call in production)
+        const mockQualityChecks = {
+            'QC001': {
+                checkId: 'QC001',
+                requestId: 'REQ001',
+                vehicle: {
+                    make: 'Honda',
+                    model: 'City',
+                    year: '2020',
+                    regNo: 'MH12AB1234',
+                    color: 'White'
+                },
+                officer: 'Priya Sharma',
+                checkType: 'Documentation',
+                status: 'Passed',
+                score: '95%',
+                date: '2024-01-15',
+                documents: {
+                    rcBook: 'Available',
+                    photos: 'Front, Engine, Left, Rear, Insurance Damage'
+                },
+                comments: [
+                    { author: 'Priya Sharma', time: '15 Jan 2024, 12:00 PM', text: 'All documents verified. Quality check passed with high score.' },
+                    { author: 'Amit Patel', time: '15 Jan 2024, 1:00 PM', text: 'Vehicle photos are clear and complete.' }
+                ]
+            },
+            'QC002': {
+                checkId: 'QC002',
+                requestId: 'REQ002',
+                vehicle: {
+                    make: 'Maruti',
+                    model: 'Swift',
+                    year: '2019',
+                    regNo: 'MH01CD5678',
+                    color: 'Red'
+                },
+                officer: 'Amit Patel',
+                checkType: 'Photography',
+                status: 'Failed',
+                score: '72%',
+                date: '2024-01-14',
+                documents: {
+                    rcBook: 'Available',
+                    photos: 'Front, Rear, Left, Right, Interior'
+                },
+                comments: [
+                    { author: 'Amit Patel', time: '14 Jan 2024, 10:00 AM', text: 'Rear photo missing. Quality check failed.' },
+                    { author: 'Rajesh Kumar', time: '14 Jan 2024, 11:00 AM', text: 'Need to retake rear photo for proper assessment.' }
+                ]
+            },
+            'QC003': {
+                checkId: 'QC003',
+                requestId: 'REQ003',
+                vehicle: {
+                    make: 'Toyota',
+                    model: 'Innova',
+                    year: '2021',
+                    regNo: 'MH03EF9012',
+                    color: 'Silver'
+                },
+                officer: 'Rajesh Kumar',
+                checkType: 'Assessment',
+                status: 'Pending',
+                score: '--',
+                date: '2024-01-13',
+                documents: {
+                    rcBook: 'Pending',
+                    photos: 'Front, Engine, Left, Rear'
+                },
+                comments: [
+                    { author: 'Rajesh Kumar', time: '13 Jan 2024, 9:00 AM', text: 'Assessment in progress. Waiting for final evaluation.' }
+                ]
+            },
+            'QC004': {
+                checkId: 'QC004',
+                requestId: 'REQ004',
+                vehicle: {
+                    make: 'Hyundai',
+                    model: 'Creta',
+                    year: '2022',
+                    regNo: 'MH04GH3456',
+                    color: 'Blue'
+                },
+                officer: 'Priya Sharma',
+                checkType: 'Compliance',
+                status: 'Under Review',
+                score: '85%',
+                date: '2024-01-12',
+                documents: {
+                    rcBook: 'Available',
+                    photos: 'Front, Engine, Left, Rear, Interior, Damage'
+                },
+                comments: [
+                    { author: 'Priya Sharma', time: '12 Jan 2024, 2:00 PM', text: 'Compliance check completed. Under review for final approval.' },
+                    { author: 'Amit Patel', time: '12 Jan 2024, 3:00 PM', text: 'Minor compliance issues found. Reviewing documentation.' }
+                ]
+            }
+        };
+
+        function populateQualityCheckDetails(data) {
+            // Status-specific message
+            const statusMessages = {
+                'Passed': {
+                    msg: '✅ This quality check has passed all criteria.',
+                    color: '#10b981',
+                    icon: 'fa-check-circle'
+                },
+                'Failed': {
+                    msg: '❌ This quality check has failed. Please review the issues below.',
+                    color: '#ef4444',
+                    icon: 'fa-times-circle'
+                },
+                'Pending': {
+                    msg: '⏳ This quality check is pending review.',
+                    color: '#f59e42',
+                    icon: 'fa-hourglass-half'
+                },
+                'Under Review': {
+                    msg: '🔎 This quality check is currently under review.',
+                    color: '#3b82f6',
+                    icon: 'fa-search'
+                }
+            };
+            let statusSection = document.getElementById('status-section');
+            if (!statusSection) {
+                statusSection = document.createElement('div');
+                statusSection.id = 'status-section';
+                statusSection.style.marginBottom = '1.5rem';
+                statusSection.style.padding = '1rem';
+                statusSection.style.borderRadius = '8px';
+                statusSection.style.display = 'flex';
+                statusSection.style.alignItems = 'center';
+                document.querySelector('.page-content').insertBefore(statusSection, document.querySelector('.page-content').firstChild);
+            }
+            const statusInfo = statusMessages[data.status] || statusMessages['Pending'];
+            statusSection.innerHTML = `<i class="fas ${statusInfo.icon}" style="font-size:1.5rem;color:${statusInfo.color};margin-right:0.7em;"></i> <span style="font-size:1.1rem;color:${statusInfo.color};font-weight:500;">${statusInfo.msg}</span>`;
+
+            // Vehicle Info
+            document.querySelector('.stat-card .info-value:nth-child(2)').textContent = data.vehicle.make;
+            document.querySelector('.stat-card .info-value:nth-child(4)').textContent = data.vehicle.model;
+            document.querySelector('.stat-card .info-value:nth-child(6)').textContent = data.vehicle.year;
+            document.querySelector('.stat-card .info-value:nth-child(8)').textContent = data.vehicle.regNo;
+            document.querySelector('.stat-card .info-value:nth-child(10)').textContent = data.vehicle.color;
+            // Quality Check Info
+            document.getElementById('requestId').textContent = data.requestId;
+            document.getElementById('checkType').textContent = data.checkType;
+            document.getElementById('status').textContent = data.status;
+            document.getElementById('status').className = 'status-badge ' + (data.status === 'Passed' ? 'status-passed' : data.status === 'Failed' ? 'status-failed' : data.status === 'Pending' ? 'status-pending' : 'status-under-review');
+            document.getElementById('score').textContent = data.score;
+            document.getElementById('checkStatus').textContent = data.status;
+            document.getElementById('checkStatus').className = 'status-badge ' + (data.status === 'Passed' ? 'status-passed' : data.status === 'Failed' ? 'status-failed' : data.status === 'Pending' ? 'status-pending' : 'status-under-review');
+            document.getElementById('officerName').textContent = data.officer;
+            document.getElementById('checkDate').textContent = data.date;
+            // Documents
+            document.querySelectorAll('.stat-card')[2].querySelector('.info-row:nth-child(2) .info-value').textContent = data.documents.rcBook + ' ';
+            document.querySelectorAll('.stat-card')[2].querySelector('.info-row:nth-child(3) .info-value').textContent = data.documents.photos + ' ';
+            // Comments
+            const commentsSection = document.querySelectorAll('.stat-card')[3].querySelector('.stat-info');
+            commentsSection.querySelectorAll('.info-row').forEach(e => e.remove());
+            data.comments.forEach(comment => {
+                const div = document.createElement('div');
+                div.className = 'info-row';
+                div.innerHTML = `<span class=\"info-label\">${comment.author} (${comment.time}):</span> <span class=\"info-value\">${comment.text}</span>`;
+                commentsSection.insertBefore(div, commentsSection.querySelector('.add-comment'));
+            });
+        }
+
+        // Simulate fetch (replace with real API call)
+        let data = mockQualityChecks[checkId] || mockQualityChecks['QC001'];
+        
+        // If status parameter is provided, override the status
+        if (statusParam && data) {
+            data = { ...data, status: statusParam.charAt(0).toUpperCase() + statusParam.slice(1) };
+        }
+        
+        // If the check ID doesn't exist, create a default entry
+        if (!mockQualityChecks[checkId]) {
+            console.warn(`Quality check data not found for ID: ${checkId}. Using default data.`);
+            // You could also show a notification to the user here
+        }
+        
+        populateQualityCheckDetails(data);
+
+        // --- END DYNAMIC DATA POPULATION ---
+        function editQualityCheck() {
+            showNotification('Edit functionality will be implemented', 'info');
+        }
+        function downloadReport() {
+            showNotification('Report download started...', 'info');
+            setTimeout(() => {
+                showNotification('Report downloaded successfully!', 'success');
+            }, 2000);
+        }
+        function addComment() {
+            const commentText = document.getElementById('newComment').value.trim();
+            if (!commentText) {
+                showNotification('Please enter a comment', 'error');
+                return;
+            }
+            showNotification('Comment added successfully!', 'success');
+            document.getElementById('newComment').value = '';
+        }
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

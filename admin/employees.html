@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Employee Management</h1>
+                    <p>Manage system employees and their roles</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search employees, names, roles...">
+                    </div>
+                    <button class="btn btn-primary" onclick="showCreateEmployeeModal()">
+                        <i class="fas fa-plus"></i>
+                        Add Employee
+                    </button>
+                    <button class="btn btn-secondary" onclick="showBulkImportModal()">
+                        <i class="fas fa-upload"></i>
+                        Bulk Import
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Employees</h3>
+                            <p class="stat-value">45</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +11.1%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Employees</h3>
+                            <p class="stat-value">42</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +7.7%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Field Officers</h3>
+                            <p class="stat-value">28</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +16.7%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Avg Performance</h3>
+                            <p class="stat-value">4.6</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +4.5%
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Role</label>
+                            <select class="filter-select">
+                                <option value="">All Roles</option>
+                                <option value="admin">Admin</option>
+                                <option value="field-officer">Field Officer</option>
+                                <option value="quality-control">Quality Control</option>
+                                <option value="support">Support</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="on-leave">On Leave</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Department</label>
+                            <select class="filter-select">
+                                <option value="">All Departments</option>
+                                <option value="operations">Operations</option>
+                                <option value="quality">Quality Control</option>
+                                <option value="support">Support</option>
+                                <option value="management">Management</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="filter-select">
+                                <option value="">All Locations</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="pune">Pune</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="thane">Thane</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">&nbsp;</label>
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Employees Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>All Employees</h3>
+                            <span class="table-count">Showing 1-10 of 45 employees</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="exportEmployees()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="refreshTable()">
+                                <i class="fas fa-refresh"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" id="selectAll" class="checkbox-input">
+                                    </th>
+                                    <th>Employee ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Role</th>
+                                    <th>Department</th>
+                                    <th>Location</th>
+                                    <th>Status</th>
+                                    <th>Performance</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="employee-id">EMP001</span>
+                                    </td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="employee-details">
+                                                <div class="employee-name">Rajesh Kumar</div>
+                                                <div class="employee-email">rajesh.kumar@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-field-officer">Field Officer</span>
+                                    </td>
+                                    <td>
+                                        <div class="department-info">
+                                            <span class="department-text">Operations</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="location-info">
+                                            <span class="location-text">Mumbai, Maharashtra</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td>
+                                        <div class="performance-rating">
+                                            <span class="rating-stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <span class="rating-text">4.8</span>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="window.location.href='view-employee.html?id=EMP001'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="window.location.href='edit-employee.html?id=EMP001'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="assignRole('EMP001')" title="Assign Role">
+                                                <i class="fas fa-user-tag"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deleteEmployee('EMP001')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="employee-id">EMP002</span>
+                                    </td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="employee-details">
+                                                <div class="employee-name">Priya Sharma</div>
+                                                <div class="employee-email">priya.sharma@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-quality-control">Quality Control</span>
+                                    </td>
+                                    <td>
+                                        <div class="department-info">
+                                            <span class="department-text">Quality</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="location-info">
+                                            <span class="location-text">Pune, Maharashtra</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td>
+                                        <div class="performance-rating">
+                                            <span class="rating-stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </span>
+                                            <span class="rating-text">4.2</span>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="window.location.href='view-employee.html?id=EMP002'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="window.location.href='edit-employee.html?id=EMP002'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="assignRole('EMP002')" title="Assign Role">
+                                                <i class="fas fa-user-tag"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deleteEmployee('EMP002')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="employee-id">EMP003</span>
+                                    </td>
+                                    <td>
+                                        <div class="employee-info">
+                                            <div class="employee-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="employee-details">
+                                                <div class="employee-name">Amit Patel</div>
+                                                <div class="employee-email">amit.patel@company.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-admin">Admin</span>
+                                    </td>
+                                    <td>
+                                        <div class="department-info">
+                                            <span class="department-text">Management</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="location-info">
+                                            <span class="location-text">Nagpur, Maharashtra</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Active</span>
+                                    </td>
+                                    <td>
+                                        <div class="performance-rating">
+                                            <span class="rating-stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </span>
+                                            <span class="rating-text">4.9</span>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="window.location.href='view-employee.html?id=EMP003'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="window.location.href='edit-employee.html?id=EMP003'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="assignRole('EMP003')" title="Assign Role">
+                                                <i class="fas fa-user-tag"></i>
+                                            </button>
+                                            <button class="btn-icon btn-danger" onclick="deleteEmployee('EMP003')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            <span>Showing 1-10 of 45 results</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" onclick="previousPage()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                                <button class="btn-page">2</button>
+                                <button class="btn-page">3</button>
+                                <button class="btn-page">4</button>
+                                <button class="btn-page">5</button>
+                            </div>
+                            <button class="btn-page" onclick="nextPage()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Employee Modal -->
+    <div class="modal-overlay" id="createEmployeeModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New Employee</h2>
+                <button class="modal-close" onclick="closeModal('createEmployeeModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createEmployeeForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input type="text" class="input" required placeholder="Enter first name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input type="text" class="input" required placeholder="Enter last name">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="input" required placeholder="employee@company.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone *</label>
+                            <input type="tel" class="input" required placeholder="+91 98765 43210">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Role *</label>
+                            <select class="input" required>
+                                <option value="">Select Role</option>
+                                <option value="admin">Admin</option>
+                                <option value="field-officer">Field Officer</option>
+                                <option value="quality-control">Quality Control</option>
+                                <option value="support">Support</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Department *</label>
+                            <select class="input" required>
+                                <option value="">Select Department</option>
+                                <option value="operations">Operations</option>
+                                <option value="quality">Quality Control</option>
+                                <option value="support">Support</option>
+                                <option value="management">Management</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="input" placeholder="Enter location">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Joining Date</label>
+                            <input type="date" class="input">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="input">
+                                <option value="active" selected>Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="on-leave">On Leave</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea class="input" placeholder="Any additional notes..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createEmployeeModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="createEmployee()">Create Employee</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Import Modal -->
+    <div class="modal-overlay" id="bulkImportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Bulk Import Employees</h2>
+                <button class="modal-close" onclick="closeModal('bulkImportModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload-section">
+                    <div class="upload-area">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <h3>Upload Excel/CSV File</h3>
+                        <p>Drag and drop your file here or click to browse</p>
+                        <input type="file" id="bulkImportFile" accept=".xlsx,.xls,.csv" style="display: none;">
+                        <button class="btn btn-secondary" onclick="document.getElementById('bulkImportFile').click()">
+                            Choose File
+                        </button>
+                    </div>
+                    
+                    <div class="template-download">
+                        <h4>Download Template</h4>
+                        <p>Use our template to ensure correct format</p>
+                        <button class="btn btn-secondary" onclick="downloadEmployeeTemplate()">
+                            <i class="fas fa-download"></i>
+                            Download Template
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('bulkImportModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="importEmployees()">Import Employees</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/employees.js"></script>
+</body>
+</html> 

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Completed Request - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="requests.html">Requests</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>View Completed Request</span>
+                    </div>
+                    <h1>Request Details</h1>
+                    <p>Viewing a completed valuation request</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">System Administrator</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                    <button class="btn btn-outline" onclick="window.location.href='edit-request.html?id='+requestId"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="page-content">
+                <!-- Request Header Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3 style="font-size:1.3rem;">Request #<span id="requestId">REQ003</span></h3>
+                        <span class="status-badge status-completed" id="requestStatus">Completed</span>
+                        <div style="margin-top:0.5rem;">
+                            <span class="meta-item"><i class="fas fa-calendar-check"></i> Completed on: 18 Jan 2024</span>
+                            <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-user-check"></i> Completed by: QC Manager</span>
+                        </div>
+                    </div>
+                    <div class="stat-actions" style="margin-top:1rem;">
+                        <button class="btn btn-primary" onclick="downloadReport()"><i class="fas fa-download"></i> Download Report</button>
+                        <button class="btn btn-secondary" onclick="generateInvoice()"><i class="fas fa-file-invoice"></i> Generate Invoice</button>
+                    </div>
+                </div>
+
+                <!-- Final Valuation Report Card -->
+                <div class="stat-card" style="margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3>Final Valuation Report</h3>
+                        <div class="info-row"><span class="info-label">Valuation ID:</span> <span class="info-value">VAL-2024-003</span></div>
+                        <div class="info-row"><span class="info-label">Final Assessed Value:</span> <span class="info-value" style="font-weight: bold; color: #2E7D32;">₹8,45,000</span></div>
+                        <div class="info-row"><span class="info-label">Market Value:</span> <span class="info-value">₹8,60,000</span></div>
+                        <div class="info-row"><span class="info-label">Forced Sale Value:</span> <span class="info-value">₹7,90,000</span></div>
+                        <div class="info-row"><span class="info-label">Valuation Method:</span> <span class="info-value">Market Comparison Approach</span></div>
+                        <div class="info-row"><span class="info-label">Overall Condition:</span> <span class="info-value">Good</span></div>
+                        <div class="info-row"><span class="info-label">QC Remarks:</span> <span class="info-value">Vehicle condition verified. All parameters are within acceptable limits. Report approved.</span></div>
+                    </div>
+                </div>
+                
+                <!-- Details Grid -->
+                <div class="stats-grid" style="margin-bottom:2rem;">
+                    <!-- Client Info -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Client Information</h3>
+                            <div class="info-row"><span class="info-label">Client Name:</span> <span class="info-value">Premium Bank</span></div>
+                            <div class="info-row"><span class="info-label">Contact Person:</span> <span class="info-value">Priya Sharma</span></div>
+                            <div class="info-row"><span class="info-label">Phone:</span> <span class="info-value">+91 91234 56789</span></div>
+                            <div class="info-row"><span class="info-label">Email:</span> <span class="info-value">priya.sharma@premiumbank.com</span></div>
+                        </div>
+                    </div>
+                    <!-- Vehicle Info -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Vehicle Information</h3>
+                            <div class="info-row"><span class="info-label">Make:</span> <span class="info-value">Maruti</span></div>
+                            <div class="info-row"><span class="info-label">Model:</span> <span class="info-value">Swift</span></div>
+                            <div class="info-row"><span class="info-label">Year:</span> <span class="info-value">2021</span></div>
+                            <div class="info-row"><span class="info-label">Registration Number:</span> <span class="info-value">MH03EF9012</span></div>
+                            <div class="info-row"><span class="info-label">KMs Driven:</span> <span class="info-value">32,000</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exterior Details -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Exterior Details</h3>
+                        <div class="info-row"><span class="info-label">Body Type:</span> <span class="info-value">Hatchback</span></div>
+                        <div class="info-row"><span class="info-label">Color:</span> <span class="info-value">Red</span></div>
+                        <div class="info-row"><span class="info-label">Paint Condition:</span> <span class="info-value">Minor scratches on left door</span></div>
+                        <div class="info-row"><span class="info-label">Glass Condition:</span> <span class="info-value">Intact</span></div>
+                        <div class="info-row"><span class="info-label">Tyres:</span> <span class="info-value">Front left tyre worn</span></div>
+                    </div>
+                </div>
+
+                <!-- Exterior Photos -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Exterior Photos</h3>
+                        <div class="photo-grid">
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/front.jpeg" alt="Front View" style="width:160px;height:100px;object-fit:cover;border:2px solid #ccc;">
+                            </div>
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/left-damage.jpeg" alt="Left Side Damaged" style="width:160px;height:100px;object-fit:cover;border:2px solid red;">
+                                <span style="position:absolute;top:8px;left:8px;background:red;color:#fff;padding:2px 6px;font-size:0.8em;border-radius:4px;">Damage</span>
+                            </div>
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/rear.jpeg" alt="Rear View" style="width:160px;height:100px;object-fit:cover;border:2px solid #ccc;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interior Details -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Interior Details</h3>
+                        <div class="info-row"><span class="info-label">Seat Condition:</span> <span class="info-value">Clean, minor tear on rear seat</span></div>
+                        <div class="info-row"><span class="info-label">Dashboard:</span> <span class="info-value">Good</span></div>
+                        <div class="info-row"><span class="info-label">AC/Heater:</span> <span class="info-value">Working</span></div>
+                        <div class="info-row"><span class="info-label">Music System:</span> <span class="info-value">Working</span></div>
+                    </div>
+                </div>
+
+                <!-- Interior Photos -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Interior Photos</h3>
+                        <div class="photo-grid">
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/dashboard.jpeg" alt="Dashboard" style="width:160px;height:100px;object-fit:cover;border:2px solid #ccc;">
+                            </div>
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/rear-seat-damage.jpeg" alt="Rear Seat Damaged" style="width:160px;height:100px;object-fit:cover;border:2px solid red;">
+                                <span style="position:absolute;top:8px;left:8px;background:red;color:#fff;padding:2px 6px;font-size:0.8em;border-radius:4px;">Damage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Engine & Documents -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Engine & Documents</h3>
+                        <div class="info-row"><span class="info-label">Engine Number:</span> <span class="info-value">ENG1234567890</span></div>
+                        <div class="info-row"><span class="info-label">Chassis Number:</span> <span class="info-value">CHS9876543210</span></div>
+                        <div class="info-row"><span class="info-label">RC Book:</span> <span class="info-value">Available</span></div>
+                        <div class="info-row"><span class="info-label">Insurance:</span> <span class="info-value">Valid till Dec 2024</span></div>
+                        <div class="info-row"><span class="info-label">Pollution Certificate:</span> <span class="info-value">Valid</span></div>
+                    </div>
+                </div>
+
+                <!-- Engine & Documents Photos -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Engine & Documents Photos</h3>
+                        <div class="photo-grid">
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/engine.jpeg" alt="Engine" style="width:160px;height:100px;object-fit:cover;border:2px solid #ccc;">
+                            </div>
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/rc-book.jpeg" alt="RC Book" style="width:160px;height:100px;object-fit:cover;border:2px solid #ccc;">
+                            </div>
+                            <div class="photo-item" style="position:relative;display:inline-block;margin:8px;">
+                                <img src="../assets/photos/insurance-damage.jpg" alt="Insurance Damaged" style="width:160px;height:100px;object-fit:cover;border:2px solid red;">
+                                <span style="position:absolute;top:8px;left:8px;background:red;color:#fff;padding:2px 6px;font-size:0.8em;border-radius:4px;">Damage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Assessment -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Assessment</h3>
+                        <div class="info-row"><span class="info-label">Assessed By:</span> <span class="info-value">Sameer Singh (Field Officer)</span></div>
+                        <div class="info-row"><span class="info-label">Assessment Date:</span> <span class="info-value">14 Jan 2024</span></div>
+                        <div class="info-row"><span class="info-label">Assessment Summary:</span> <span class="info-value">Vehicle is in good running condition. Minor damages observed on left exterior and rear seat. All documents are valid and up to date.</span></div>
+                    </div>
+                </div>
+
+                <!-- Activity Log Card -->
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Activity Log</h3>
+                        <div class="info-row"><span class="info-label">13 Jan 2024, 09:00 AM:</span> <span class="info-value">Request created.</span></div>
+                        <div class="info-row"><span class="info-label">13 Jan 2024, 09:30 AM:</span> <span class="info-value">Assigned to Premium Assessors.</span></div>
+                        <div class="info-row"><span class="info-label">14 Jan 2024, 11:00 AM:</span> <span class="info-value">Field inspection completed by Sameer Singh.</span></div>
+                        <div class="info-row"><span class="info-label">15 Jan 2024, 02:00 PM:</span> <span class="info-value">Draft report submitted.</span></div>
+                        <div class="info-row"><span class="info-label">17 Jan 2024, 04:00 PM:</span> <span class="info-value">QC review started by QC Manager.</span></div>
+                        <div class="info-row"><span class="info-label">18 Jan 2024, 10:00 AM:</span> <span class="info-value">Report approved and valuation completed.</span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        // Get request ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestId = urlParams.get('id') || 'REQ003';
+        document.title = `View Request ${requestId} - Admin Dashboard`;
+        document.getElementById('requestId').textContent = requestId;
+
+        function downloadReport() {
+            showNotification('Downloading report...', 'info');
+            // Logic to trigger report download
+        }
+
+        function generateInvoice() {
+            showNotification('Redirecting to invoice generation...', 'info');
+            // Logic to navigate to invoice page with request data
+        }
+    </script>
+</body>
+</html> 

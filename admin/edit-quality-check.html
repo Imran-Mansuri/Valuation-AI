@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Quality Check - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a href="requests.html"><i class="fas fa-clipboard-list"></i><span>Requests</span></a></li>
+                    <li class="nav-item"><a href="clients.html"><i class="fas fa-users"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a href="agencies.html"><i class="fas fa-building"></i><span>Agencies</span></a></li>
+                    <li class="nav-item"><a href="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a></li>
+                    <li class="nav-item active"><a href="quality-control.html"><i class="fas fa-shield-alt"></i><span>Quality Control</span></a></li>
+                    <li class="nav-item"><a href="pricing.html"><i class="fas fa-rupee-sign"></i><span>Pricing</span></a></li>
+                    <li class="nav-item"><a href="reports.html"><i class="fas fa-chart-bar"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="master-data.html"><i class="fas fa-database"></i><span>Master Data</span></a></li>
+                    <li class="nav-item"><a href="gate-passes.html"><i class="fas fa-id-card"></i><span>Gate Passes</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a></li>
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="quality-control.html">Quality Control</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>Edit Quality Check</span>
+                    </div>
+                    <h1>Edit Quality Check</h1>
+                    <p>Update quality check information</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="User" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">Admin User</span>
+                            <span class="user-role">System Administrator</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <!-- Content -->
+            <div class="page-content">
+                <form id="editQualityCheckForm">
+                    <!-- Quality Check Header Card -->
+                    <div class="stat-card" style="margin-bottom:2rem;">
+                        <div class="stat-info">
+                            <h3 style="font-size:1.3rem;">Quality Check #<span id="checkId">QC001</span></h3>
+                            <span class="status-badge status-passed" id="checkStatus">Passed</span>
+                            <div style="margin-top:0.5rem;">
+                                <span class="meta-item"><i class="fas fa-calendar"></i> Date: <input type="date" class="input" id="checkDate" value="2024-01-15"></span>
+                                <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-user"></i> Officer: <input type="text" class="input" id="officerName" value="Priya Sharma"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Details Grid -->
+                    <div class="stats-grid" style="margin-bottom:2rem;">
+                        <!-- Vehicle Info -->
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>Vehicle Information</h3>
+                                <div class="info-row"><span class="info-label">Make:</span> <input type="text" class="input" id="make" value="Honda"></div>
+                                <div class="info-row"><span class="info-label">Model:</span> <input type="text" class="input" id="model" value="City"></div>
+                                <div class="info-row"><span class="info-label">Year:</span> <input type="number" class="input" id="year" value="2020"></div>
+                                <div class="info-row"><span class="info-label">Registration Number:</span> <input type="text" class="input" id="regNo" value="MH12AB1234"></div>
+                                <div class="info-row"><span class="info-label">Color:</span> <input type="text" class="input" id="color" value="White"></div>
+                            </div>
+                        </div>
+                        <!-- Quality Check Info -->
+                        <div class="stat-card">
+                            <div class="stat-info">
+                                <h3>Quality Check Information</h3>
+                                <div class="info-row"><span class="info-label">Check ID:</span> <input type="text" class="input" id="checkIdInfo" value="QC001" readonly></div>
+                                <div class="info-row"><span class="info-label">Request ID:</span> <input type="text" class="input" id="requestId" value="REQ001" readonly></div>
+                                <div class="info-row"><span class="info-label">Check Type:</span> <select class="input" id="checkType"><option value="Documentation">Documentation</option><option value="Photography">Photography</option><option value="Assessment">Assessment</option><option value="Compliance">Compliance</option></select></div>
+                                <div class="info-row"><span class="info-label">Status:</span> <select class="input" id="status"><option value="Passed">Passed</option><option value="Failed">Failed</option><option value="Pending">Pending</option><option value="Under Review">Under Review</option></select></div>
+                                <div class="info-row"><span class="info-label">Score:</span> <input type="number" class="input" id="score" value="95" min="0" max="100"> %</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comments Card -->
+                    <div class="stat-card">
+                        <div class="stat-info">
+                            <h3>Comments & Notes</h3>
+                            <textarea class="input" id="comments" rows="3" placeholder="Add comments or notes here...">All documents verified. Quality check passed with high score.</textarea>
+                        </div>
+                    </div>
+                    <!-- Action Buttons -->
+                    <div style="text-align:right;margin-bottom:2rem;">
+                        <button class="btn btn-secondary" type="button" onclick="window.location.href='quality-check-details.html?id=QC001'">Cancel</button>
+                        <button class="btn btn-primary" type="submit" style="margin-left:1em;"><i class="fas fa-save"></i> Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+    <script src="../js/admin.js"></script>
+    <script>
+        // Populate form with data from URL or mock (for demo)
+        const urlParams = new URLSearchParams(window.location.search);
+        const checkId = urlParams.get('id') || 'QC001';
+        document.getElementById('checkId').textContent = checkId;
+        document.getElementById('checkIdInfo').value = checkId;
+        document.getElementById('requestId').value = checkId === 'QC001' ? 'REQ001' : 'REQ002';
+        // You can add more dynamic population logic here
+        document.getElementById('editQualityCheckForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Quality check updated successfully!');
+            window.location.href = 'quality-check-details.html?id=' + checkId;
+        });
+    </script>
+</body>
+</html> 

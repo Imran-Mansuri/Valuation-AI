@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Invoice - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Create New Invoice</h1>
+                    <p>Generate a new invoice for valuation services</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-secondary" onclick="window.location.href='invoices.html'">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Invoices
+                    </button>
+                    <button class="btn btn-primary" onclick="saveAsDraft()">
+                        <i class="fas fa-save"></i>
+                        Save as Draft
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="form-container">
+                    <form id="createInvoiceForm" class="modern-form">
+                        <!-- Client & Request Information -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-user-tie"></i>
+                                <h3>Client & Request Information</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="clientSelect">Client *</label>
+                                    <select id="clientSelect" required onchange="loadClientDetails()">
+                                        <option value="">Select Client</option>
+                                        <option value="abc-bank">ABC Bank</option>
+                                        <option value="xyz-finance">XYZ Finance</option>
+                                        <option value="premium-motors">Premium Motors</option>
+                                        <option value="metro-finance">Metro Finance</option>
+                                        <option value="city-bank">City Bank</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="requestId">Request ID *</label>
+                                    <input type="text" id="requestId" required placeholder="Enter request ID">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="issueDate">Issue Date *</label>
+                                    <input type="date" id="issueDate" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="dueDate">Due Date *</label>
+                                    <input type="date" id="dueDate" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="invoiceNumber">Invoice Number</label>
+                                    <input type="text" id="invoiceNumber" placeholder="Auto-generated" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="poNumber">PO Number</label>
+                                    <input type="text" id="poNumber" placeholder="Enter PO number (optional)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Details -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-cogs"></i>
+                                <h3>Service Details</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="serviceType">Service Type *</label>
+                                    <select id="serviceType" required onchange="updatePricing()">
+                                        <option value="">Select Service</option>
+                                        <option value="standard">Standard Valuation</option>
+                                        <option value="premium">Premium Valuation</option>
+                                        <option value="express">Express Service</option>
+                                        <option value="bulk">Bulk Orders</option>
+                                        <option value="re-inspection">Re-inspection</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="vehicleType">Vehicle Type</label>
+                                    <select id="vehicleType" onchange="updatePricing()">
+                                        <option value="">Select Vehicle Type</option>
+                                        <option value="car">Car</option>
+                                        <option value="bike">Bike</option>
+                                        <option value="truck">Truck</option>
+                                        <option value="bus">Bus</option>
+                                        <option value="tractor">Tractor</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleMake">Vehicle Make</label>
+                                    <input type="text" id="vehicleMake" placeholder="e.g., Honda, Maruti, Toyota">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="vehicleModel">Vehicle Model</label>
+                                    <input type="text" id="vehicleModel" placeholder="e.g., City, Swift, Innova">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="vehicleYear">Vehicle Year</label>
+                                    <input type="number" id="vehicleYear" placeholder="e.g., 2020" min="1990" max="2024">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="vehicleNumber">Vehicle Number</label>
+                                    <input type="text" id="vehicleNumber" placeholder="e.g., MH12AB1234">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pricing Information -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-rupee-sign"></i>
+                                <h3>Pricing Information</h3>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="baseAmount">Base Amount (₹) *</label>
+                                    <input type="number" id="baseAmount" required placeholder="0.00" step="0.01" onchange="calculateTotal()">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="additionalCharges">Additional Charges (₹)</label>
+                                    <input type="number" id="additionalCharges" placeholder="0.00" step="0.01" onchange="calculateTotal()">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="gstRate">GST Rate (%)</label>
+                                    <select id="gstRate" onchange="calculateTotal()">
+                                        <option value="18" selected>18%</option>
+                                        <option value="12">12%</option>
+                                        <option value="5">5%</option>
+                                        <option value="0">0%</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="discount">Discount (₹)</label>
+                                    <input type="number" id="discount" placeholder="0.00" step="0.01" onchange="calculateTotal()">
+                                </div>
+                            </div>
+                            
+                            <!-- Price Summary -->
+                            <div class="price-summary">
+                                <div class="summary-row">
+                                    <span>Base Amount:</span>
+                                    <span id="summaryBase">₹0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Additional Charges:</span>
+                                    <span id="summaryAdditional">₹0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>Subtotal:</span>
+                                    <span id="summarySubtotal">₹0.00</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>GST (<span id="gstRateDisplay">18</span>%):</span>
+                                    <span id="summaryGST">₹0.00</span>
+                                </div>
+                                <div class="summary-row discount-row">
+                                    <span>Discount:</span>
+                                    <span id="summaryDiscount">-₹0.00</span>
+                                </div>
+                                <div class="summary-row total-row">
+                                    <span>Total Amount:</span>
+                                    <span id="summaryTotal">₹0.00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="form-section">
+                            <div class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                <h3>Additional Information</h3>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" rows="3" placeholder="Enter detailed description of services provided..."></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="terms">Terms & Conditions</label>
+                                <textarea id="terms" rows="4" placeholder="Enter terms and conditions...">1. Payment is due within 30 days of invoice date
+2. Late payments may incur additional charges
+3. All disputes are subject to local jurisdiction
+4. This invoice is valid for 90 days from issue date</textarea>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="paymentTerms">Payment Terms</label>
+                                    <select id="paymentTerms">
+                                        <option value="30">Net 30 Days</option>
+                                        <option value="15">Net 15 Days</option>
+                                        <option value="7">Net 7 Days</option>
+                                        <option value="0">Due on Receipt</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="currency">Currency</label>
+                                    <select id="currency">
+                                        <option value="INR" selected>Indian Rupee (₹)</option>
+                                        <option value="USD">US Dollar ($)</option>
+                                        <option value="EUR">Euro (€)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='invoices.html'">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                            <button type="button" class="btn btn-outline" onclick="saveAsDraft()">
+                                <i class="fas fa-save"></i>
+                                Save as Draft
+                            </button>
+                            <button type="button" class="btn btn-primary" onclick="createInvoice()">
+                                <i class="fas fa-file-invoice"></i>
+                                Create Invoice
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Invoice Created Successfully!</h2>
+                <button class="close-modal" onclick="closeModal('successModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="success-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Invoice INV-2024-001 has been created</h3>
+                    <p>The invoice has been successfully generated and is ready for sending to the client.</p>
+                    
+                    <div class="invoice-summary">
+                        <div class="summary-item">
+                            <span>Client:</span>
+                            <span id="modalClient">ABC Bank</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Amount:</span>
+                            <span id="modalAmount">₹1,180.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Due Date:</span>
+                            <span id="modalDueDate">2024-02-15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('successModal')">Close</button>
+                <button class="btn btn-primary" onclick="sendInvoice()">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Invoice
+                </button>
+                <button class="btn btn-outline" onclick="downloadInvoice()">
+                    <i class="fas fa-download"></i>
+                    Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/create-invoice.js"></script>
+</body>
+</html> 

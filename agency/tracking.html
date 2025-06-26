@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tracking - Agency Panel</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/agency-tracking.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-building"></i>
+                    <span>Agency Panel</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="field-officers.html">
+                            <i class="fas fa-users"></i>
+                            <span>Field Officers</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="tracking.html">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Live Tracking</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="service-areas.html">
+                            <i class="fas fa-map"></i>
+                            <span>Service Areas</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agreements.html">
+                            <i class="fas fa-file-contract"></i>
+                            <span>Agreements</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Live Tracking</h1>
+                    <p>Track field officers in real-time and monitor their activities</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search officers...">
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </div>
+                    <div class="user-menu">
+                        <img src="https://via.placeholder.com/40" alt="Agency" class="user-avatar">
+                        <div class="user-info">
+                            <span class="user-name">ABC Agency</span>
+                            <span class="user-role">Valuation Agency</span>
+                        </div>
+                        <button class="logout-btn" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Officers</h3>
+                            <p class="stat-value">6</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +1 today
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>On Duty</h3>
+                            <p class="stat-value">4</p>
+                            <span class="stat-change neutral">
+                                <i class="fas fa-minus"></i>
+                                No change
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Routes</h3>
+                            <p class="stat-value">8</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +2 today
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Vehicles Tracked</h3>
+                            <p class="stat-value">12</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +3 today
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Section -->
+                <div class="map-container">
+                    <div class="map-header">
+                        <h3>Live Map View</h3>
+                        <div class="map-controls">
+                            <button class="btn btn-outline btn-sm" onclick="refreshMap()">
+                                <i class="fas fa-refresh"></i>
+                                Refresh
+                            </button>
+                            <button class="btn btn-outline btn-sm" onclick="toggleHeatmap()">
+                                <i class="fas fa-fire"></i>
+                                Heatmap
+                            </button>
+                            <button class="btn btn-primary" onclick="fullscreenMap()">
+                                <i class="fas fa-expand"></i>
+                                Fullscreen
+                            </button>
+                        </div>
+                    </div>
+                    <div class="map-wrapper">
+                        <div class="map-placeholder">
+                            <i class="fas fa-map"></i>
+                            <h4>Interactive Map</h4>
+                            <p>Real-time tracking of field officers</p>
+                            <button class="btn btn-primary" onclick="loadMap()">
+                                <i class="fas fa-play"></i>
+                                Load Map
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="online">Online</option>
+                                <option value="offline">Offline</option>
+                                <option value="on-duty">On Duty</option>
+                                <option value="break">On Break</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Service Area</label>
+                            <select class="filter-select" id="areaFilter">
+                                <option value="">All Areas</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="pune">Pune</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="nashik">Nashik</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Activity Type</label>
+                            <select class="filter-select" id="activityFilter">
+                                <option value="">All Activities</option>
+                                <option value="traveling">Traveling</option>
+                                <option value="inspection">Vehicle Inspection</option>
+                                <option value="break">On Break</option>
+                                <option value="idle">Idle</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Time Range</label>
+                            <div class="date-range">
+                                <input type="time" class="filter-select" id="startTime">
+                                <span class="date-separator">to</span>
+                                <input type="time" class="filter-select" id="endTime">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table Section -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Officer Tracking Details</h3>
+                            <span class="table-count">Showing 6 active officers</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-outline btn-sm" onclick="exportData()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-primary" onclick="sendMessage()">
+                                <i class="fas fa-comment"></i>
+                                Send Message
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input" id="selectAll">
+                                    </th>
+                                    <th>Officer</th>
+                                    <th>Current Location</th>
+                                    <th>Status</th>
+                                    <th>Current Activity</th>
+                                    <th>Last Update</th>
+                                    <th>Battery</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">John Smith</div>
+                                            <div class="vehicle-number">FO001</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-name">Mumbai Central, Maharashtra</div>
+                                            <div class="client-email">19.0760° N, 72.8777° E</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Online</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Vehicle Inspection</div>
+                                            <div class="date-time">REQ001 - Honda City</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>2 minutes ago</div>
+                                            <div class="date-time">10:30 AM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>85%</div>
+                                            <div class="date-time">Good</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="trackOfficer('FO001')" title="Track">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="messageOfficer('FO001')" title="Message">
+                                                <i class="fas fa-comment"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="callOfficer('FO001')" title="Call">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="viewHistory('FO001')" title="History">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Sarah Jones</div>
+                                            <div class="vehicle-number">FO002</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-name">Pune Station, Maharashtra</div>
+                                            <div class="client-email">18.5204° N, 73.8567° E</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-active">Online</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Traveling</div>
+                                            <div class="date-time">En route to REQ002</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>5 minutes ago</div>
+                                            <div class="date-time">10:27 AM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>72%</div>
+                                            <div class="date-time">Medium</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="trackOfficer('FO002')" title="Track">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="messageOfficer('FO002')" title="Message">
+                                                <i class="fas fa-comment"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="callOfficer('FO002')" title="Call">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="viewHistory('FO002')" title="History">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="checkbox-input">
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Mike Wilson</div>
+                                            <div class="vehicle-number">FO003</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="client-info">
+                                            <div class="client-name">Nagpur City, Maharashtra</div>
+                                            <div class="client-email">21.1458° N, 79.0882° E</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-inactive">Offline</span>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>Off Duty</div>
+                                            <div class="date-time">Last active: 1 hour ago</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>1 hour ago</div>
+                                            <div class="date-time">9:30 AM</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="date-info">
+                                            <div>45%</div>
+                                            <div class="date-time">Low</div>
+                                        </div>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="trackOfficer('FO003')" title="Track">
+                                                <i class="fas fa-map-marker-alt"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="messageOfficer('FO003')" title="Message">
+                                                <i class="fas fa-comment"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="callOfficer('FO003')" title="Call">
+                                                <i class="fas fa-phone"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="viewHistory('FO003')" title="History">
+                                                <i class="fas fa-history"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-6 of 6 results
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                            </div>
+                            <button class="btn-page" disabled>
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Message Modal -->
+    <div class="modal-overlay" id="messageModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Send Message to Officer</h3>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label class="form-label">Recipient</label>
+                        <select class="input" required>
+                            <option value="">Select Officer</option>
+                            <option value="FO001">John Smith (FO001)</option>
+                            <option value="FO002">Sarah Jones (FO002)</option>
+                            <option value="FO003">Mike Wilson (FO003)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message Type</label>
+                        <select class="input" required>
+                            <option value="">Select Type</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="normal">Normal</option>
+                            <option value="reminder">Reminder</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="input" rows="4" placeholder="Enter your message..." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="sendMessage()">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/agency.js"></script>
+    <script src="../js/tracking.js"></script>
+</body>
+</html> 

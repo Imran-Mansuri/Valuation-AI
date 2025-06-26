@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Pricing - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a href="requests.html"><i class="fas fa-clipboard-list"></i><span>Requests</span></a></li>
+                    <li class="nav-item"><a href="clients.html"><i class="fas fa-users"></i><span>Clients</span></a></li>
+                    <li class="nav-item"><a href="agencies.html"><i class="fas fa-building"></i><span>Agencies</span></a></li>
+                    <li class="nav-item"><a href="employees.html"><i class="fas fa-user-tie"></i><span>Employees</span></a></li>
+                    <li class="nav-item"><a href="quality-control.html"><i class="fas fa-shield-alt"></i><span>Quality Control</span></a></li>
+                    <li class="nav-item active"><a href="pricing.html"><i class="fas fa-rupee-sign"></i><span>Pricing</span></a></li>
+                    <li class="nav-item"><a href="reports.html"><i class="fas fa-chart-bar"></i><span>Reports</span></a></li>
+                    <li class="nav-item"><a href="master-data.html"><i class="fas fa-database"></i><span>Master Data</span></a></li>
+                    <li class="nav-item"><a href="gate-passes.html"><i class="fas fa-id-card"></i><span>Gate Passes</span></a></li>
+                    <li class="nav-item"><a href="invoices.html"><i class="fas fa-file-invoice"></i><span>Invoices</span></a></li>
+                    <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
+                    <li class="nav-item"><a href="settings.html"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <div class="breadcrumb">
+                        <a href="dashboard.html">Dashboard</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <a href="pricing.html">Pricing</a>
+                        <i class="fas fa-chevron-right"></i>
+                        <span>View Pricing</span>
+                    </div>
+                    <h1>Pricing Details</h1>
+                    <p>View pricing rule details</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-primary" id="editBtn"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="stat-card" style="max-width:600px;margin:auto;margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3 style="font-size:1.3rem;">Pricing #<span id="pricingId">PRC001</span></h3>
+                        <span class="status-badge status-active" id="pricingStatus">Active</span>
+                        <div style="margin-top:0.5rem;">
+                            <span class="meta-item"><i class="fas fa-car"></i> Vehicle Type: <span id="vehicleType">Car</span></span>
+                            <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-users"></i> Client Type: <span id="clientType">Bank</span></span>
+                        </div>
+                        <div style="margin-top:0.5rem;">
+                            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Location: <span id="location">Mumbai</span></span>
+                            <span class="meta-item" style="margin-left:1.5em;"><i class="fas fa-tags"></i> Service Type: <span id="serviceType">Standard Valuation</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card" style="max-width:600px;margin:auto;margin-bottom:2rem;">
+                    <div class="stat-info">
+                        <h3>Pricing Breakdown</h3>
+                        <div class="info-row"><span class="info-label">Base Price:</span> <span class="info-value" id="basePrice">₹800</span></div>
+                        <div class="info-row"><span class="info-label">Additional Charges:</span> <span class="info-value" id="additionalCharges">₹200</span></div>
+                        <div class="info-row"><span class="info-label">GST Rate:</span> <span class="info-value" id="gstRate">18%</span></div>
+                        <div class="info-row"><span class="info-label">Total Price:</span> <span class="info-value" id="totalPrice">₹1,000</span></div>
+                        <div class="info-row"><span class="info-label">Status:</span> <span class="info-value" id="status">Active</span></div>
+                        <div class="info-row"><span class="info-label">Description:</span> <span class="info-value" id="description">Basic car valuation for banks in Mumbai</span></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // Get pricing ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const pricingId = urlParams.get('id') || 'PRC001';
+        document.getElementById('pricingId').textContent = pricingId;
+        document.getElementById('editBtn').onclick = function() {
+            window.location.href = `edit-pricing.html?id=${pricingId}`;
+        };
+        // TODO: Fetch and populate pricing details dynamically if backend/API is available
+    </script>
+</body>
+</html> 

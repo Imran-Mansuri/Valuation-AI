@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Control - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Quality Control</h1>
+                    <p>Monitor and maintain quality standards</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search quality checks, vehicles...">
+                    </div>
+                    <button class="btn btn-primary" onclick="showQualityCheckModal()">
+                        <i class="fas fa-plus"></i>
+                        New Quality Check
+                    </button>
+                    <button class="btn btn-secondary" onclick="showAuditModal()">
+                        <i class="fas fa-clipboard-check"></i>
+                        Audit Report
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Passed Checks</h3>
+                            <p class="stat-value">1,234</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +15.2%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Failed Checks</h3>
+                            <p class="stat-value">23</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-down"></i>
+                                -8.3%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Success Rate</h3>
+                            <p class="stat-value">98.2%</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +0.5%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Avg Check Time</h3>
+                            <p class="stat-value">2.3h</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-down"></i>
+                                -0.5h
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality Metrics Chart -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Quality Metrics Over Time</h3>
+                        <div class="chart-controls">
+                            <select class="chart-period">
+                                <option value="7">Last 7 Days</option>
+                                <option value="30" selected>Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="chart-wrapper">
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="passed">Passed</option>
+                                <option value="failed">Failed</option>
+                                <option value="pending">Pending</option>
+                                <option value="under-review">Under Review</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Quality Officer</label>
+                            <select class="filter-select">
+                                <option value="">All Officers</option>
+                                <option value="officer1">Priya Sharma</option>
+                                <option value="officer2">Amit Patel</option>
+                                <option value="officer3">Rajesh Kumar</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Check Type</label>
+                            <select class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="documentation">Documentation</option>
+                                <option value="photography">Photography</option>
+                                <option value="assessment">Assessment</option>
+                                <option value="compliance">Compliance</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-date" id="startDate">
+                                <span>to</span>
+                                <input type="date" class="filter-date" id="endDate">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">&nbsp;</label>
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality Checks Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>Recent Quality Checks</h3>
+                            <span class="table-count">Showing 1-10 of 1,257 checks</span>
+                        </div>
+                        <div class="table-actions">
+                            <button class="btn btn-secondary btn-sm" onclick="exportQualityData()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-secondary btn-sm" onclick="refreshTable()">
+                                <i class="fas fa-refresh"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th class="checkbox-column">
+                                        <input type="checkbox" id="selectAll" class="checkbox-input">
+                                    </th>
+                                    <th>Check ID</th>
+                                    <th>Request ID</th>
+                                    <th>Vehicle Details</th>
+                                    <th>Quality Officer</th>
+                                    <th>Check Type</th>
+                                    <th>Status</th>
+                                    <th>Score</th>
+                                    <th>Date</th>
+                                    <th class="actions-column">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="check-id">QC001</span>
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ001</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Honda City</div>
+                                            <div class="vehicle-details">2020 • White • MH12AB1234</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="officer-info">
+                                            <span class="officer-name">Priya Sharma</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-documentation">Documentation</span>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-passed">Passed</span>
+                                    </td>
+                                    <td>
+                                        <div class="score-display">
+                                            <span class="score-value">95%</span>
+                                            <div class="score-bar">
+                                                <div class="score-fill" style="width: 95%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="check-date">2024-01-15</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewQualityCheckDynamic('QC001')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="editQualityCheckDynamic('QC001')" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('QC001')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="check-id">QC002</span>
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ002</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Maruti Swift</div>
+                                            <div class="vehicle-details">2019 • Red • MH01CD5678</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="officer-info">
+                                            <span class="officer-name">Amit Patel</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-photography">Photography</span>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-failed">Failed</span>
+                                    </td>
+                                    <td>
+                                        <div class="score-display">
+                                            <span class="score-value">72%</span>
+                                            <div class="score-bar">
+                                                <div class="score-fill failed" style="width: 72%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="check-date">2024-01-14</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewQualityCheckDynamic('QC002')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="editQualityCheckDynamic('QC002')" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('QC002')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="check-id">QC003</span>
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ003</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Toyota Innova</div>
+                                            <div class="vehicle-details">2021 • Silver • MH03EF9012</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="officer-info">
+                                            <span class="officer-name">Rajesh Kumar</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-assessment">Assessment</span>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-pending">Pending</span>
+                                    </td>
+                                    <td>
+                                        <div class="score-display">
+                                            <span class="score-value">--</span>
+                                            <div class="score-bar">
+                                                <div class="score-fill pending"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="check-date">2024-01-13</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewQualityCheckDynamic('QC003')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="editQualityCheckDynamic('QC003')" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('QC003')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td class="checkbox-column">
+                                        <input type="checkbox" class="row-checkbox checkbox-input">
+                                    </td>
+                                    <td>
+                                        <span class="check-id">QC004</span>
+                                    </td>
+                                    <td>
+                                        <span class="request-id">REQ004</span>
+                                    </td>
+                                    <td>
+                                        <div class="vehicle-info">
+                                            <div class="vehicle-name">Hyundai Creta</div>
+                                            <div class="vehicle-details">2022 • Blue • MH04GH3456</div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="officer-info">
+                                            <span class="officer-name">Priya Sharma</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-compliance">Compliance</span>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge status-under-review">Under Review</span>
+                                    </td>
+                                    <td>
+                                        <div class="score-display">
+                                            <span class="score-value">85%</span>
+                                            <div class="score-bar">
+                                                <div class="score-fill under-review" style="width: 85%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="check-date">2024-01-12</span>
+                                    </td>
+                                    <td class="actions-column">
+                                        <div class="action-buttons">
+                                            <button class="btn-icon" onclick="viewQualityCheckDynamic('QC004')" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="editQualityCheckDynamic('QC004')" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon" onclick="downloadReport('QC004')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            <span>Showing 1-10 of 1,257 results</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="btn-page" onclick="previousPage()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="page-numbers">
+                                <button class="btn-page active">1</button>
+                                <button class="btn-page">2</button>
+                                <button class="btn-page">3</button>
+                                <button class="btn-page">4</button>
+                                <button class="btn-page">5</button>
+                            </div>
+                            <button class="btn-page" onclick="nextPage()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Quality Check Modal -->
+    <div class="modal-overlay" id="qualityCheckModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">New Quality Check</h2>
+                <button class="modal-close" onclick="closeModal('qualityCheckModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="qualityCheckForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Request ID *</label>
+                            <input type="text" class="input" required placeholder="Enter request ID">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Check Type *</label>
+                            <select class="input" required>
+                                <option value="">Select Check Type</option>
+                                <option value="documentation">Documentation</option>
+                                <option value="photography">Photography</option>
+                                <option value="assessment">Assessment</option>
+                                <option value="compliance">Compliance</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Quality Officer *</label>
+                            <select class="input" required>
+                                <option value="">Select Officer</option>
+                                <option value="officer1">Priya Sharma</option>
+                                <option value="officer2">Amit Patel</option>
+                                <option value="officer3">Rajesh Kumar</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Priority</label>
+                            <select class="input">
+                                <option value="normal">Normal</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Check Criteria</label>
+                        <div class="criteria-list">
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> Document completeness
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> Photo quality and coverage
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> Assessment accuracy
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> Compliance verification
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea class="input" placeholder="Any specific instructions or notes..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('qualityCheckModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="createQualityCheck()">Create Check</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audit Report Modal -->
+    <div class="modal-overlay" id="auditModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Quality Audit Report</h2>
+                <button class="modal-close" onclick="closeModal('auditModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="audit-summary">
+                    <div class="audit-card">
+                        <h3>Overall Quality Score</h3>
+                        <div class="audit-score">
+                            <span class="score-circle">98.2%</span>
+                            <p>Excellent quality standards maintained</p>
+                        </div>
+                    </div>
+                    
+                    <div class="audit-card">
+                        <h3>Quality Trends</h3>
+                        <div class="trend-list">
+                            <div class="trend-item positive">
+                                <span class="trend-icon">↗</span>
+                                <span>Documentation quality improved by 5%</span>
+                            </div>
+                            <div class="trend-item positive">
+                                <span class="trend-icon">↗</span>
+                                <span>Photo quality improved by 3%</span>
+                            </div>
+                            <div class="trend-item negative">
+                                <span class="trend-icon">↘</span>
+                                <span>Assessment accuracy declined by 1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="audit-card">
+                        <h3>Recommendations</h3>
+                        <div class="recommendations-list">
+                            <div class="recommendation-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Provide additional training for assessment accuracy</span>
+                            </div>
+                            <div class="recommendation-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Implement automated quality checks for documentation</span>
+                            </div>
+                            <div class="recommendation-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Review and update quality standards monthly</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('auditModal')">Close</button>
+                <button class="btn btn-primary" onclick="downloadAuditReport()">
+                    <i class="fas fa-download"></i>
+                    Download Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin.js"></script>
+    <script src="../js/quality-control.js"></script>
+</body>
+</html> 

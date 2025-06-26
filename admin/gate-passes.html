@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gate Passes - Admin Dashboard</title>
+    <link rel="stylesheet" href="../styles/admin.css">
+    <link rel="stylesheet" href="../styles/admin-pages.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-car"></i>
+                    <span>Valuation System</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>Requests</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="agencies.html">
+                            <i class="fas fa-building"></i>
+                            <span>Agencies</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="employees.html">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Employees</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="quality-control.html">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Quality Control</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pricing.html">
+                            <i class="fas fa-rupee-sign"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="reports.html">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="master-data.html">
+                            <i class="fas fa-database"></i>
+                            <span>Master Data</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a href="gate-passes.html">
+                            <i class="fas fa-id-card"></i>
+                            <span>Gate Passes</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="invoices.html">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Invoices</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="profile.html">
+                            <i class="fas fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1>Gate Pass Management</h1>
+                    <p>Manage access passes and security permissions</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search gate passes...">
+                    </div>
+                    <button class="btn btn-primary" onclick="showCreatePassModal()">
+                        <i class="fas fa-plus"></i>
+                        Create Pass
+                    </button>
+                    <button class="btn btn-secondary" onclick="showBulkApprovalModal()">
+                        <i class="fas fa-check-double"></i>
+                        Bulk Approval
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Total Passes</h3>
+                            <p class="stat-value">156</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +12 this week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Pending Approval</h3>
+                            <p class="stat-value">23</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-up"></i>
+                                +5 this week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Active Passes</h3>
+                            <p class="stat-value">128</p>
+                            <span class="stat-change positive">
+                                <i class="fas fa-arrow-up"></i>
+                                +8 this week
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Expired Passes</h3>
+                            <p class="stat-value">5</p>
+                            <span class="stat-change negative">
+                                <i class="fas fa-arrow-up"></i>
+                                +2 this week
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section">
+                    <div class="filters-header">
+                        <h3>Filters</h3>
+                        <button class="btn btn-outline btn-sm" onclick="clearFilters()">
+                            <i class="fas fa-times"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    
+                    <div class="filters-grid">
+                        <div class="filter-group">
+                            <label class="filter-label">Status</label>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="active">Active</option>
+                                <option value="expired">Expired</option>
+                                <option value="revoked">Revoked</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Pass Type</label>
+                            <select class="filter-select">
+                                <option value="">All Types</option>
+                                <option value="field-officer">Field Officer</option>
+                                <option value="client">Client</option>
+                                <option value="vendor">Vendor</option>
+                                <option value="visitor">Visitor</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Location</label>
+                            <select class="filter-select">
+                                <option value="">All Locations</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="pune">Pune</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="thane">Thane</option>
+                            </select>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">Date Range</label>
+                            <div class="date-range">
+                                <input type="date" class="filter-date" id="startDate">
+                                <span>to</span>
+                                <input type="date" class="filter-date" id="endDate">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-group">
+                            <label class="filter-label">&nbsp;</label>
+                            <button class="btn btn-primary" onclick="applyFilters()">
+                                <i class="fas fa-filter"></i>
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gate Passes Table -->
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <h3>All Gate Passes</h3>
+                            <p>Manage and monitor all access passes</p>
+                        </div>
+                        <div class="table-actions">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Search passes...">
+                            </div>
+                            <button class="btn btn-secondary" onclick="exportPasses()">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="btn btn-secondary" onclick="refreshTable()">
+                                <i class="fas fa-refresh"></i>
+                                Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="table-wrapper">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <input type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                                    </th>
+                                    <th>Pass ID</th>
+                                    <th>Person Details</th>
+                                    <th>Pass Type</th>
+                                    <th>Location</th>
+                                    <th>Valid From</th>
+                                    <th>Valid Until</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="pass-id">GP001</span>
+                                    </td>
+                                    <td>
+                                        <div class="person-info">
+                                            <div class="person-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="person-details">
+                                                <strong>Rajesh Kumar</strong>
+                                                <span>Field Officer • ABC Agency</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge field-officer">Field Officer</span>
+                                    </td>
+                                    <td>Mumbai, Maharashtra</td>
+                                    <td>2024-01-15</td>
+                                    <td>2024-12-31</td>
+                                    <td>
+                                        <span class="status-badge active">Active</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-gate-pass.html?id=GP001'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-gate-pass.html?id=GP001'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="downloadPass('GP001')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="revokePass('GP001')" title="Revoke">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="pass-id">GP002</span>
+                                    </td>
+                                    <td>
+                                        <div class="person-info">
+                                            <div class="person-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="person-details">
+                                                <strong>Priya Sharma</strong>
+                                                <span>Client • XYZ Finance</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge client">Client</span>
+                                    </td>
+                                    <td>Pune, Maharashtra</td>
+                                    <td>2024-01-10</td>
+                                    <td>2024-06-30</td>
+                                    <td>
+                                        <span class="status-badge pending">Pending</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-gate-pass.html?id=GP002'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-gate-pass.html?id=GP002'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="rejectPass('GP002')" title="Reject">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="pass-id">GP003</span>
+                                    </td>
+                                    <td>
+                                        <div class="person-info">
+                                            <div class="person-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="person-details">
+                                                <strong>Amit Patel</strong>
+                                                <span>Vendor • Security Services</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge vendor">Vendor</span>
+                                    </td>
+                                    <td>Nagpur, Maharashtra</td>
+                                    <td>2024-01-01</td>
+                                    <td>2024-03-31</td>
+                                    <td>
+                                        <span class="status-badge expired">Expired</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-gate-pass.html?id=GP003'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-gate-pass.html?id=GP003'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="deletePass('GP003')" title="Delete">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="row-checkbox" onchange="updateSelectedCount()">
+                                    </td>
+                                    <td>
+                                        <span class="pass-id">GP004</span>
+                                    </td>
+                                    <td>
+                                        <div class="person-info">
+                                            <div class="person-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <div class="person-details">
+                                                <strong>Neha Singh</strong>
+                                                <span>Visitor • Inspection Team</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="status-badge visitor">Visitor</span>
+                                    </td>
+                                    <td>Thane, Maharashtra</td>
+                                    <td>2024-01-20</td>
+                                    <td>2024-01-25</td>
+                                    <td>
+                                        <span class="status-badge approved">Approved</span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-icon" onclick="window.location.href='view-gate-pass.html?id=GP004'" title="View">
+                                                <i class="fas fa-eye"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="window.location.href='edit-gate-pass.html?id=GP004'" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="downloadPass('GP004')" title="Download">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <button class="btn btn-icon" onclick="revokePass('GP004')" title="Revoke">
+                                                <i class="fas fa-ban"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            Showing 1-4 of 156 passes
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" onclick="previousPage()" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn" onclick="goToPage(2)">2</button>
+                            <button class="pagination-btn" onclick="goToPage(3)">3</button>
+                            <span class="pagination-ellipsis">...</span>
+                            <button class="pagination-btn" onclick="goToPage(8)">8</button>
+                            <button class="pagination-btn" onclick="nextPage()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Pass Modal -->
+    <div class="modal" id="createPassModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Gate Pass</h2>
+                <button class="close-modal" onclick="closeModal('createPassModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createPassForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Person Name *</label>
+                            <input type="text" required placeholder="Enter person name">
+                        </div>
+                        <div class="form-group">
+                            <label>Organization *</label>
+                            <input type="text" required placeholder="Enter organization">
+                        </div>
+                        <div class="form-group">
+                            <label>Pass Type *</label>
+                            <select required>
+                                <option value="">Select Pass Type</option>
+                                <option value="field-officer">Field Officer</option>
+                                <option value="client">Client</option>
+                                <option value="vendor">Vendor</option>
+                                <option value="visitor">Visitor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Location *</label>
+                            <select required>
+                                <option value="">Select Location</option>
+                                <option value="mumbai">Mumbai</option>
+                                <option value="pune">Pune</option>
+                                <option value="nagpur">Nagpur</option>
+                                <option value="thane">Thane</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Valid From *</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Valid Until *</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Contact Number</label>
+                            <input type="tel" placeholder="+91 98765 43210">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="person@organization.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Purpose</label>
+                        <textarea placeholder="Enter purpose of visit..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Access Permissions</label>
+                        <div class="permissions-list">
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> Vehicle Inspection Area
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" checked> Documentation Room
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Storage Area
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox"> Office Area
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('createPassModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="createPass()">Create Pass</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Approval Modal -->
+    <div class="modal" id="bulkApprovalModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Bulk Approval</h2>
+                <button class="close-modal" onclick="closeModal('bulkApprovalModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="bulk-approval-summary">
+                    <h3>Selected Passes: <span id="selectedCount">0</span></h3>
+                    <div class="approval-options">
+                        <div class="option-group">
+                            <label>Action:</label>
+                            <select id="bulkAction">
+                                <option value="approve">Approve</option>
+                                <option value="reject">Reject</option>
+                                <option value="revoke">Revoke</option>
+                            </select>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label>Reason (Optional):</label>
+                            <textarea id="bulkReason" placeholder="Enter reason for action..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('bulkApprovalModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="executeBulkAction()">Execute Action</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+    <script src="../js/gate-passes.js"></script>
+</body>
+</html> 
